@@ -61,7 +61,7 @@
                                                     <td><?= $kry->nik_pemohon ?></td>
                                                     <td><?= $kry->jabatan_pemohon ?></td>
                                                     <td style="text-align: center;">
-                                                        <a href="<?php echo base_url();?>admin/edit_pemohon/<?php echo $kry->id_pemohon;?>" class="btn btn-xs btn-success m-r-5" role="button" title="Edit">
+                                                        <a href="<?php echo base_url();?>admin/edit_pemohon/<?php echo $kry->id_pemohon;?>" class="btn btn-xs btn-primary m-r-5" role="button" title="Edit">
                                                         <i class="icon-pencil"></i>&nbsp;
                                                         <a href="<?php echo base_url();?>admin/delete_pemohon/<?php echo $kry->id_pemohon;?>" onclick="return confirm('Apakah Anda Yakin?');" 
                                                         class="btn btn-xs btn-danger m-r-5" role="button" title="Hapus">

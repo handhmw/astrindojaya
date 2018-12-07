@@ -12,9 +12,9 @@
 					<div class="block-header">
 						<div class="row">
 							<div class="col-lg-6 col-md-8 col-sm-12">
-								<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-angle-double-left"></i></a> Pengguna</h2>
+								<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-angle-double-left"></i></a> Master Data</h2>
 								<ul class="breadcrumb">                            
-									<li class="breadcrumb-item">Pengguna</li>
+									<li class="breadcrumb-item">Master Data</li>
 									<li class="breadcrumb-item active">Data Pengguna</li>
 								</ul>
 							</div>      

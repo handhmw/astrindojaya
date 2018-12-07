@@ -2,15 +2,10 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-
 <body class="theme-cyan">
-
-<div id="wrapper">
-
+	<div id="wrapper">
     <?php include ('decorations/navbar.php');?>
-
     	<?php include ('decorations/sidebar.php');?>
-
 			<!-- Start Main Content -->
 			<div id="main-content">
 				<div class="container-fluid">
@@ -23,21 +18,20 @@
 							</div>      
 						</div>
 					</div>
-
 					<div class="row clearfix">
 						<div class="col-lg-3 col-md-6">
 							<div class="card top_counter">
 								<div class="body">
 									<div class="icon"><i class="fa fa-user"></i> </div>
-									<div class="content">
+										<div class="content">
 										<div class="text">Karyawan Baru</div>
-										<h5 class="number"><?= $jmlb; ?> <span>Orang</span></h5>
+											<h5 class="number"><?= $jmlb; ?> <span>Orang</span></h5>
 									</div>
 									<hr>
 									<div class="icon"><i class="fa fa-users"></i> </div>
-									<div class="content">
+										<div class="content">
 										<div class="text">Total Karyawan</div>
-										<h5 class="number"><?= $jml; ?> Orang</h5>
+											<h5 class="number"><?= $jml; ?> Orang</h5>
 									</div>
 								</div>
 							</div>
@@ -117,7 +111,6 @@
 							</div>
 						</div>                
 					</div>
-
 					<div class="row clearfix">
 						<div class="col-lg-8 col-md-12">
 							<div class="card">
@@ -648,8 +641,6 @@
 					</div>
 					<!-- End Main Content -->
 				</div>
-
-<?php include ('decorations/footer.php');?>
-
-</body>
+			<?php include ('decorations/footer.php');?>
+		</body>
 </html>

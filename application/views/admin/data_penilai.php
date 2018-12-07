@@ -63,7 +63,7 @@
                                                     <td><?= $kry->jabatan_penilai ?></td>
                                                     
                                                     <td style="text-align: center;">
-                                                        <a href="<?php echo base_url();?>admin/edit_penilai/<?php echo $kry->id_penilai;?>" class="btn btn-xs btn-success m-r-5" role="button" title="Edit">
+                                                        <a href="<?php echo base_url();?>admin/edit_penilai/<?php echo $kry->id_penilai;?>" class="btn btn-xs btn-primary m-r-5" role="button" title="Edit">
                                                         <i class="icon-pencil"></i>&nbsp;
                                                         <a href="<?php echo base_url();?>admin/delete_penilai/<?php echo $kry->id_penilai;?>" onclick="return confirm('Apakah Anda Yakin?');" 
                                                         class="btn btn-xs btn-danger m-r-5" role="button" title="Hapus">

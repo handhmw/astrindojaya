@@ -326,7 +326,7 @@ class Admin extends CI_Controller {
     public function penilai()
     {
         $data['karyawan'] = $this->md_penilai->tampil();
-        $data['judul']    = "DATA PENILAI";
+        $data['judul']    = "Data Penilai";
 
         $this->load->view('admin/data_penilai', $data);
     }
@@ -340,7 +340,7 @@ class Admin extends CI_Controller {
 
     public function add_penilai()
     {
-        $data['judul']   = 'TAMBAH PENILAI';
+        $data['judul']   = 'Tambah Data Penilai';
         $data['idk']     = $this->md_master->get_idk_penilai();
         $data['kode']    = $this->md_kode->kode_penilai();
         $data['name']    = $this->session->userdata('name');
@@ -376,7 +376,7 @@ class Admin extends CI_Controller {
 
     public function edit_penilai($id)
     {
-        $data['judul']      = 'EDIT DATA PENILAI';
+        $data['judul']      = 'Edit Data Penilai';
         $data['idp']        = $this->md_master->get_idp();
         $data['jbt']        = $this->md_master->get_jabatan();
         $data['kode']       = $this->md_kode->kode_penilai();
@@ -405,7 +405,7 @@ class Admin extends CI_Controller {
     public function pemohon()
     {
         $data['karyawan'] = $this->md_pemohon->tampil();
-        $data['judul']    = "DATA PEMOHON";
+        $data['judul']    = "Data Pemohon";
 
         $this->load->view('admin/data_pemohon', $data);
     }
@@ -419,7 +419,7 @@ class Admin extends CI_Controller {
 
     public function add_pemohon()
     {
-        $data['judul']   = 'TAMBAH PEMOHON';
+        $data['judul']   = 'Tambah Data Pemohon';
         $data['idk']     = $this->md_master->get_idk_pemohon();
         $data['kode']    = $this->md_kode->kode_pemohon();
         $data['name']    = $this->session->userdata('name');
@@ -455,7 +455,7 @@ class Admin extends CI_Controller {
 
     public function edit_pemohon($id)
     {
-        $data['judul']   = 'EDIT DATA PEMOHON';
+        $data['judul']   = 'Edit Data Pemohon';
         $data['idp']     = $this->md_master->get_idp();
         $data['jbt']     = $this->md_master->get_jabatan();
         $data['kode']    = $this->md_kode->kode_pemohon();
