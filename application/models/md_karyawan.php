@@ -51,8 +51,9 @@ class Md_karyawan extends CI_Model
 
         public function birthday()
 	{
-                $this->db->order_by('pangkat_kry', 'ASC');
-                $query = $this->db->get('tb_karyawan');
+                $query = $this->db->order_by('jabatan_kry', 'ASC');
+                $query = $this->db->query("SELECT nama_kry, jabatan_kry, tgl_lahir_kry FROM tb_karyawan 
+                                           WHERE date_format(str_to_date(tgl_lahir_kry, '%d-%m-%Y'), '%m') = MONTH(NOW())");
                 return $query->result();
 	}
 
