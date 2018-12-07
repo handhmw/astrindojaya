@@ -25,7 +25,6 @@
 							</div>      
 						</div>
 					</div>
-
 					<div class="row clearfix">
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 col-xl-12">						
 							<div class="card mb-3">
@@ -48,12 +47,12 @@
 										<label for="" class="col-sm-3 col-form-label">Departemen</label>
 										<div class="col-sm-6">
 											<select class="form-control" name="dep_pmhn" value="<?php echo set_value('dep_pmhn', $kry_->dep_pmhn); ?>">
-											<?php echo form_error('dep_pmhn'); ?>
 												<?php foreach ($dep as $dep_) {  ?>
 													<option <?php if($dep_->departemen==$kry_->dep_pmhn) { echo "selected"; }?> value="<?php echo $dep_->departemen;?>">
 													<?php echo $dep_->departemen?></option>	
 												<?php } ?>
 											</select>
+											<?php echo form_error('dep_pmhn'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -66,13 +65,13 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Jabatan Pemohon</label>
 										<div class="col-sm-6">
-											<select class="form-control" name="jabatan_pemohon_pmhn" value="<?php echo set_value('jabatan_pemohon_pmhn', $kry_->jabatan_pemohon_pmhn); ?>">
-												<?php echo form_error('jabatan_pemohon_pmhn'); ?>
+											<select class="form-control" name="jabatan_pemohon_pmhn">
 												<?php foreach ($jbt as $jbt_) {  ?>
 													<option <?php if($jbt_->jabatan==$kry_->jabatan_pemohon_pmhn) { echo "selected"; }?> value="<?php echo $jbt_->jabatan;?>">
 													<?php echo $jbt_->jabatan?></option>	
 												<?php } ?>
 											</select>
+											<?php echo form_error('jabatan_pemohon_pmhn'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -81,25 +80,25 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Jabatan</label>
 										<div class="col-sm-6">
-											<select class="form-control" name="jabatan_pmhn" value="<?php echo set_value('jabatan_pmhn', $kry_->jabatan_pmhn); ?>">
-											<?php echo form_error('jabatan_pmhn'); ?>
+											<select class="form-control" name="jabatan_pmhn">
 												<?php foreach ($jbt2 as $jbtp_) {  ?>
 													<option <?php if($jbtp_->jabatan==$kry_->jabatan_pmhn) { echo "selected"; }?> value="<?php echo $jbtp_->jabatan;?>">
 													<?php echo $jbtp_->jabatan?></option>	
 												<?php } ?>
 											</select>
+											<?php echo form_error('jabatan_pmhn'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Lokasi</label>
 										<div class="col-sm-6">
-											<select class="form-control" name="lokasi_pmhn" value="<?php echo set_value('lokasi_pmhn', $kry_->lokasi_pmhn); ?>">
-											<?php echo form_error('lokasi_pmhn'); ?>
+											<select class="form-control" name="lokasi_pmhn">
 												<?php foreach ($unt as $unt_) {  ?>
 													<option <?php if($unt_->unit==$kry_->lokasi_pmhn) { echo "selected"; }?> value="<?php echo $unt_->unit;?>">
 													<?php echo $unt_->unit?></option>	
 												<?php } ?>
 											</select>
+											<?php echo form_error('lokasi_pmhn'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -112,13 +111,13 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Status Pekerjaan</label>
 										<div class="col-sm-6">
-											<select class="form-control" name="status_kerja_pmhn" value="<?php echo set_value('status_kerja_pmhn', $kry_->status_kerja_pmhn); ?>">
-											<?php echo form_error('status_kerja_pmhn'); ?>
+											<select class="form-control" name="status_kerja_pmhn">
 												<?php foreach ($krj as $krj_) {  ?>
 													<option <?php if($krj_->status_kerja==$kry_->status_kerja_pmhn) { echo "selected"; }?> value="<?php echo $krj_->status_kerja;?>">
 													<?php echo $krj_->status_kerja?></option>	
 												<?php } ?>
 											</select>
+											<?php echo form_error('status_kerja_pmhn'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -138,25 +137,25 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Dasar Permohonan</label>
 										<div class="col-sm-6">
-											<select class="form-control" name="dasar_permohonan_pmhn" value="<?php echo set_value('dasar_permohonan_pmhn', $kry_->dasar_permohonan_pmhn); ?>">
-											<?php echo form_error('dasar_permohonan_pmhn'); ?>            
+											<select class="form-control" name="dasar_permohonan_pmhn">            
 												<?php foreach($pmh as $pmh_) { ?>
 													<option <?php if($pmh_->permohonan==$kry_->dasar_permohonan_pmhn) { echo "selected"; }?> value="<?php echo $pmh_->permohonan;?>">
 													<?php echo $pmh_->permohonan?></option>
 												<?php } ?>
 											</select>
+											<?php echo form_error('dasar_permohonan_pmhn'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Sumber Rekrutmen</label>
 										<div class="col-sm-6">
-											<select class="form-control" name="sumber_rekrutmen_pmhn" value="<?php echo set_value('sumber_rekrutmen_pmhn', $kry_->sumber_rekrutmen_pmhn); ?>">
-												<?php echo form_error('sumber_rekrutmen_pmhn'); ?>
+											<select class="form-control" name="sumber_rekrutmen_pmhn">
 													<?php foreach ($rek as $rek_) {  ?>
 														<option <?php if($rek_->rekrutmen==$kry_->sumber_rekrutmen_pmhn) { echo "selected"; }?> value="<?php echo $rek_->rekrutmen;?>">
 														<?php echo $rek_->rekrutmen?></option>	
 													<?php } ?>
 											</select>
+											<?php echo form_error('sumber_rekrutmen_pmhn'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -180,12 +179,12 @@
 										<label for="" class="col-sm-3 col-form-label">Jenis Kelamin</label>
 										<div class="col-sm-6">
 											<select class="form-control" name="jk_pmhn" value="<?php echo set_value('jk_pmhn', $kry_->jk_pmhn); ?>">
-											<?php echo form_error('jk_pmhn'); ?>
 												<?php foreach ($jkl as $jk_) {  ?>
 													<option <?php if($jk_->jk==$kry_->jk_pmhn) { echo "selected"; }?> value="<?php echo $jk_->jk;?>">
 													<?php echo $jk_->jk?></option>	
 												<?php } ?>
 											</select>
+											<?php echo form_error('jk_pmhn'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -199,12 +198,12 @@
 										<label for="" class="col-sm-3 col-form-label">Pendidikan</label>
 										<div class="col-sm-6">
 											<select class="form-control" name="pendidikan_pmhn" value="<?php echo set_value('pendidikan_pmhn', $kry_->pendidikan_pmhn); ?>">
-											<?php echo form_error('pendidikan_pmhn'); ?>
 												<?php foreach ($pdd as $pdd_) {  ?>
 													<option <?php if($pdd_->pendidikan==$kry_->pendidikan_pmhn) { echo "selected"; }?> value="<?php echo $pdd_->pendidikan;?>">
 													<?php echo $pdd_->pendidikan?></option>	
 												<?php } ?>
 											</select>
+											<?php echo form_error('pendidikan_pmhn'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -258,7 +257,7 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Office Equipment</label>
 										<div class="col-sm-6">
-											<textarea value="<?php echo $kry_->office_equipment_pmhn; ?>" class="form-control" rows="5" cols="30" name="alamat_kry">
+											<textarea value="<?php echo $kry_->office_equipment_pmhn; ?>" class="form-control" rows="5" cols="30" name="office_equipment_pmhn">
 											<?php echo $kry_->office_equipment_pmhn; ?></textarea>
 										</div>
 									</div>

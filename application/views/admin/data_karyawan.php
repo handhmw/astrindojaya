@@ -2,15 +2,10 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-
 <body class="theme-cyan">
-
-<div id="wrapper">
-
+    <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
-
     	<?php include ('decorations/sidebar.php');?>
-
 			<!-- Start Main Content -->
 			<div id="main-content">
 				<div class="container-fluid">
@@ -31,15 +26,27 @@
                             <div class="card">
                                 <div class="header">
 
-                                    <h5><i class="fa fa-users"></i> <?php echo $judul; ?></h5><br>
-                                    <a href="<?php echo base_url();?>admin/add_karyawan" class="btn btn-xs btn-default" role="button" title="Tambah Karyawan">
-                                    <i class="icon-plus"></i><span> Tambah</span></a>
-                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter" title="Import Data">
-                                    <i class="fa fa-upload"></i> Import</button>
-                                    <a href="<?php echo base_url() ?>admin/print_karyawan" class="btn btn-xs btn-default" role="button" title="Print Data">
-                                    <i class="fa fa-print"></i><span> Print</span></a>
-                                    <a href="<?=base_url('report_karyawan/report_manual')?>" class="btn btn-xs btn-default" role="button" title="Print Manual">
-                                    <i class="fa fa-file-text"></i><span> Manual</span></a>
+                                <?php
+                                     if(isset($_SESSION['hapus_sukses']) || isset($_SESSION['update_sukses'])) :
+                                        $notif = '';
+                                        isset($_SESSION['hapus_sukses']) ? $notif .= $_SESSION['hapus_sukses'] : '';
+                                        isset($_SESSION['update_sukses']) ? $notif .= $_SESSION['update_sukses'] : '';
+                                     ?>
+                                    <div class="alert alert-success">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>Sukses!</strong> <?php echo $notif; ?>
+                                    </div>
+                                <?php endif;?>
+
+                                <h5><i class="fa fa-users"></i> <?php echo $judul; ?></h5><br>
+                                <a href="<?php echo base_url();?>admin/add_karyawan" class="btn btn-xs btn-default" role="button" title="Tambah Karyawan">
+                                <i class="icon-plus"></i><span> Tambah</span></a>
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter" title="Import Data">
+                                <i class="fa fa-upload"></i> Import</button>
+                                <a href="<?php echo base_url() ?>admin/print_karyawan" class="btn btn-xs btn-default" role="button" title="Print Data">
+                                <i class="fa fa-print"></i><span> Print</span></a>
+                                <a href="<?=base_url('report_karyawan/report_manual')?>" class="btn btn-xs btn-default" role="button" title="Print Manual">
+                                <i class="fa fa-file-text"></i><span> Manual</span></a>
                                   
                                 <div class="body">
                                     <div class="table-responsive">
@@ -83,7 +90,6 @@
                                 </div>
                             </div>
                         </div>
-
 					</div>
 				</div>
 			</div>
@@ -95,22 +101,22 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalCenterTitle"><i class="fa fa-file-excel-o"></i> Upload Data Excel Anda</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                         <div class="modal-body">
                             <form method="post" action="<?php echo base_url("admin/import"); ?>" enctype="multipart/form-data">
                             <!-- <form method="post" action="<?php echo base_url("excel/upload"); ?>" enctype="multipart/form-data"> -->
-                            <div class="file-upload">
-                                <div class="file-select">
-                                    <div class="file-select-button" id="fileName">Choose File</div>
-                                    <div class="file-select-name" id="noFile">No file chosen...</div> 
-                                        <input type="file" name="chooseFile" id="chooseFile">
-                                    </div><br>
-                                    <input type="submit" name="import" value="Import" class="btn btn-xs btn-primary" role="button">
+                                <div class="file-upload">
+                                    <div class="file-select">
+                                        <div class="file-select-button" id="fileName">Choose File</div>
+                                        <div class="file-select-name" id="noFile">No file chosen...</div> 
+                                            <input type="file" name="chooseFile" id="chooseFile">
+                                        </div><br>
+                                        <input type="submit" name="import" value="Import" class="btn btn-xs btn-primary" role="button">
+                                    </div>
                                 </div>
-                            </div>
                             </form>
                             <div class="modal-footer">
                         </div>

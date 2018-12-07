@@ -2,15 +2,10 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-
 <body class="theme-cyan">
-
-<div id="wrapper">
-
+    <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
-
     	<?php include ('decorations/sidebar.php');?>
-
 			<!-- Start Main Content -->
 			<div id="main-content">
 				<div class="container-fluid">
@@ -25,9 +20,7 @@
 							</div>      
 						</div>
 					</div>
-
 					<div class="row clearfix">
-		
 						<div class="col-lg-12">
                             <div class="card">
                                 <div class="header">
@@ -39,7 +32,7 @@
                                         ?>
                                         <div class="alert alert-success">
                                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                <strong>Sukses!</strong> <?php echo $notif; ?>
+                                            <strong>Sukses!</strong> <?php echo $notif; ?>
                                             </div>
                                     <?php endif;?>
 
@@ -80,18 +73,13 @@
                                                 <?php $no++; endforeach; ?>
                                             </tbody>
                                         </table>
-                                    </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-					</div>
-				</div>
-			</div>
-			<!-- End Main Content -->
-</div>
-
-<?php include ('decorations/footer.php');?>
-
-</body>
-</html>
+					    </div>
+				    </div>
+			    </div>
+			    <!-- End Main Content -->
+            <?php include ('decorations/footer.php');?>
+        </body>
+    </html>

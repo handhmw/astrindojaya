@@ -133,8 +133,6 @@
                     </div>
                 </div>
             </div>
-
-
 </div>
 
 <?php include ('decorations/footer.php');?>

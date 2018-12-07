@@ -13,6 +13,7 @@ class Md_permohonan extends CI_Model
 	}
 
 	public function simpan(){
+                $kondisi = ['id_pmhn' => $this->input->post('id_pmhn')];
 		$data = [
                                 'id_pmhn'                => $this->input->post('id_pmhn'),
                                 'dep_pmhn'               => $this->input->post('dep_pmhn'),
@@ -39,7 +40,8 @@ class Md_permohonan extends CI_Model
                                 'tgl_bergabung_pmhn'     => $this->input->post('tgl_bergabung_pmhn'),
                                 'office_equipment_pmhn'  => $this->input->post('office_equipment_pmhn')
 		];
-		$this->db->insert('tb_karyawan_baru', $data);
+
+		$this->db->insert('tb_karyawan_baru', $data, $kondisi);
 	}
 
 	public function edit($id_pmhn){
@@ -52,6 +54,7 @@ class Md_permohonan extends CI_Model
 	}
 
 	public function update(){
+		$kondisi = ['id_pmhn' => $this->input->post('id_pmhn')];
 		$data = [
                                 'id_pmhn'                => $this->input->post('id_pmhn'),
                                 'dep_pmhn'               => $this->input->post('dep_pmhn'),
@@ -77,9 +80,9 @@ class Md_permohonan extends CI_Model
                                 'keterampilan_pmhn'      => $this->input->post('keterampilan_pmhn'),
                                 'tgl_bergabung_pmhn'     => $this->input->post('tgl_bergabung_pmhn'),
                                 'office_equipment_pmhn'  => $this->input->post('office_equipment_pmhn')
-                ];
-                
-		$this->db->update('tb_karyawan_baru', $data);
+		];
+
+		$this->db->update('tb_karyawan_baru', $data, $kondisi);
         }
         
 	public function hapus($id_pmhn){
@@ -132,7 +135,7 @@ class Md_permohonan extends CI_Model
                                 'label' => 'Tanggal Permohonan',
                                 'rules' => 'required'],
 
-                                ['field' => 'dasar_permohonan_pmhn',
+                                ['field' => 'dasar_permohoan_pmhn',
                                 'label' => 'Dasar Permohonan',
                                 'rules' => 'required'],
 
@@ -140,9 +143,9 @@ class Md_permohonan extends CI_Model
                                 'label' => 'Sumber Rekrutmen',
                                 'rules' => 'required'],
                                 
-                                 ['field' => 'ringkasan_tugas_pmhn',
-                                 'label' => 'Ringkasan Tugas',
-                                 'rules' => 'required'],
+                                // ['field' => 'ringkasan_tugas_pmhn',
+                                // 'label' => 'Ringkasan Tugas',
+                                // 'rules' => 'required'],
 
                                 ['field' => 'gajih_pmhn',
                                 'label' => 'Rate Gajih',
@@ -164,21 +167,21 @@ class Md_permohonan extends CI_Model
                                 'label' => 'Jurusan',
                                 'rules' => 'required'],
 
-                                ['field' => 'pengalaman_kerja_pmhn',
-                                'label' => 'Pengalaman Kerja',
-                                'rules' => 'required'],
+                                // ['field' => 'pengalaman_kerja_pmhn',
+                                // 'label' => 'Pengalaman Kerja',
+                                // 'rules' => 'required'],
                                 
                                 ['field' => 'bidang_pmhn',
                                 'label' => 'Bidang',
                                 'rules' => 'required'],
 
-                                ['field' => 'syarat_lain_pmhn',
-                                'label' => 'Syarat Lainnya',
-                                'rules' => 'required'],
+                                // ['field' => 'syarat_lain_pmhn',
+                                // 'label' => 'Syarat Lainnya',
+                                // 'rules' => 'required'],
 
-                                ['field' => 'keterampilan_pmhn',
-                                'label' => 'Keterampilan',
-                                'rules' => 'required'],
+                                // ['field' => 'keterampilan_pmhn',
+                                // 'label' => 'Keterampilan',
+                                // 'rules' => 'required'],
                                 
                                 ['field' => 'tgl_bergabung_pmhn',
                                 'label' => 'Tanggal Bergabung',

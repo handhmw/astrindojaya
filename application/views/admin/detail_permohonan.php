@@ -2,15 +2,10 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-
 <body class="theme-cyan">
-
 <div id="wrapper">
-
     <?php include ('decorations/navbar.php');?>
-
     	<?php include ('decorations/sidebar.php');?>
-
 			<!-- Start Main Content -->
 			<div id="main-content">
 				<div class="container-fluid">
@@ -25,7 +20,6 @@
 							</div>      
 						</div>
 					</div>
-
 					<div class="row clearfix">
                         <div class="col-lg-12">
                             <div class="card">
@@ -155,10 +149,7 @@
 				</div>
 			</div>
 			<!-- End Main Content -->
-</div>
-
-<?php include ('decorations/footer.php');?>
-
-</body>
-<!-- Mirrored from thememakker.com/templates/lucid/hr/html/light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 03:23:51 GMT -->
+        </div>
+    <?php include ('decorations/footer.php');?>
+    </body>
 </html>

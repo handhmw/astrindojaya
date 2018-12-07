@@ -123,11 +123,11 @@ class Md_percobaan extends CI_Model
                         'rules' => 'required'],
 
                         ['field' => 'tgl_mulai_cb',
-                        'label' => 'tgl_masuk Mulai',
+                        'label' => 'Tanggal Mulai',
                         'rules' => 'required'],
 
                         ['field' => 'tgl_selesai_cb',
-                        'label' => 'tgl_masuk Selesai',
+                        'label' => 'Tanggal Selesai',
                         'rules' => 'required'],
 
                         ['field' => 'percobaan_cb',

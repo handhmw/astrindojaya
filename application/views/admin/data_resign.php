@@ -2,15 +2,10 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-
 <body class="theme-cyan">
-
-<div id="wrapper">
-
+    <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
-
     	<?php include ('decorations/sidebar.php');?>
-
 			<!-- Start Main Content -->
 			<div id="main-content">
 				<div class="container-fluid">
@@ -25,7 +20,6 @@
 							</div>      
 						</div>
 					</div>
-                  
 					<div class="row clearfix">
 						<div class="col-lg-12">
                             <div class="card">
@@ -38,7 +32,7 @@
                                         ?>
                                         <div class="alert alert-success">
                                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                <strong>Sukses!</strong> <?php echo $notif; ?>
+                                            <strong>Sukses!</strong> <?php echo $notif; ?>
                                             </div>
                                     <?php endif;?>
 
@@ -77,7 +71,6 @@
                                                     <td><?= $kry->jabatan_rs ?></td>
                                                     <td><?= $kry->tgl_masuk_rs?></td>
                                                     <td><?= $kry->tgl_resign_rs ?></td>
-                                                    
                                                     <td style="text-align: center;">
                                                         <a href="<?php echo base_url();?>admin/detail_resign/<?php echo $kry->id_rs;?>" class="btn btn-xs btn-success m-r-5" role="button" title="Detail">
                                                         <i class="icon-magnifier"></i>&nbsp;
@@ -91,15 +84,13 @@
                                                 <?php $no++; endforeach; ?>
                                             </tbody>
                                         </table>
-                                    </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-					</div>
-				</div>
-			</div>
-			<!-- End Main Content -->
+					    </div>
+				    </div>
+			    </div>
+			    <!-- End Main Content -->
 
             <!-- MODAL UPLOAD -->
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -129,13 +120,7 @@
                     </div>
                 </div>
             </div>
-
-
-</div>
-
-<?php include ('decorations/footer.php');?>
-<script src="<?php echo base_url() ?>assets/js/upload.js"></script>
-
-</body>
-<!-- Mirrored from thememakker.com/templates/lucid/hr/html/light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 03:23:51 GMT -->
+        <?php include ('decorations/footer.php');?>
+        <script src="<?php echo base_url() ?>assets/js/upload.js"></script>
+    </body>
 </html>

@@ -2,15 +2,10 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-
 <body class="theme-cyan">
-
 <div id="wrapper">
-
     <?php include ('decorations/navbar.php');?>
-
     	<?php include ('decorations/sidebar.php');?>
-
 			<!-- Start Main Content -->
 			<div id="main-content">
 				<div class="container-fluid">
@@ -25,7 +20,6 @@
 							</div>      
 						</div>
 					</div>
-
 					<div class="row clearfix">
 						<div class="col-lg-12">
                             <div class="card">
@@ -47,34 +41,31 @@
                                             </div>
                                     <?php endif;?>
                                 <div class="table-responsive">
-                                        <table class="table table-bordered" width="100%" cellpadding="0" cellspacing="0" id="examples">
-                                            <thead style="background-color:#e9ecef;">
-                                                <tr style="text-align:center;">
-                                                    <th>Kode Divisi</th>   
-                                                    <th>Unik</th>                               
-                                                    <th>Divisi</th>  
-                                                    <th>Aksi</th>
-                                                </tr>
-                                            </thead>
-                                 
-                                            <tbody>
-                                                    <?php 
-                                                    foreach ($divisi as $dvs_): ?>
-                                                <tr style="text-align: center;">
-                                                    <td><?= $dvs_->id ?></td>
-                                                    <td><?= $dvs_->unik ?></td>
-                                                    <td><?= $dvs_->divisi ?></td>
-                                                    <td>
-                                                        <a href="<?php echo base_url();?>admin/edit_divisi/<?php echo $dvs_->id;?>" class="btn btn-xs btn-primary m-r-5" role="button" title="ubah">
-                                                        <i class="icon-pencil"></i>&nbsp;
-                                                        <a href="<?php echo base_url();?>admin/delete_divisi/<?php echo $dvs_->id;?>"
-                                                           onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-xs btn-danger m-r-5" role="button" title="hapus"><i class="icon-trash"></i></a> 
-                                                    </td>
-                                                </tr>
-                                                    <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
-                                    </button>
+                                    <table class="table table-bordered" width="100%" cellpadding="0" cellspacing="0" id="examples">
+                                        <thead style="background-color:#e9ecef;">
+                                            <tr style="text-align:center;">
+                                                <th>Kode Divisi</th>   
+                                                <th>Unik</th>                               
+                                                <th>Divisi</th>  
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($divisi as $dvs_): ?>
+                                            <tr style="text-align: center;">
+                                                <td><?= $dvs_->id ?></td>
+                                                <td><?= $dvs_->unik ?></td>
+                                                <td><?= $dvs_->divisi ?></td>
+                                                <td>
+                                                    <a href="<?php echo base_url();?>admin/edit_divisi/<?php echo $dvs_->id;?>" class="btn btn-xs btn-primary m-r-5" role="button" title="ubah">
+                                                    <i class="icon-pencil"></i>&nbsp;
+                                                    <a href="<?php echo base_url();?>admin/delete_divisi/<?php echo $dvs_->id;?>"
+                                                    onclick="return confirm('Apakah Anda Yakin?');" class="btn btn-xs btn-danger m-r-5" role="button" title="hapus"><i class="icon-trash"></i></a> 
+                                                </td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -82,10 +73,6 @@
 				</div>
 			</div>
 			<!-- End Main Content -->
-</div>
-
-<?php include ('decorations/footer.php');?>
-
-</body>
-<!-- Mirrored from thememakker.com/templates/lucid/hr/html/light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 03:23:51 GMT -->
+        <?php include ('decorations/footer.php');?>
+    </body>
 </html>

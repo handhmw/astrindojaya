@@ -54,9 +54,6 @@ class Md_karyawan extends CI_Model
                 $this->db->order_by('pangkat_kry', 'ASC');
                 $query = $this->db->get('tb_karyawan');
                 return $query->result();
-                //$query = $this->db->where('tgl_lahir_kry');
-                // $query = "SELECT nama_kry, jabatan_kry, tgl_lahir_kry FROM tb_karyawan WHERE DATE_FORMAT(tgl_lahir_kry,'dd-mm-yyyy') BETWEEN DATE_FORMAT((INTERVAL 7 DAY + CURDATE()),'dd-mm-yyyy')
-                // AND DATE_FORMAT((INTERVAL 28 DAY + CURDATE()),'dd-mm-yyyy') ORDER BY DATE_FORMAT(tgl_lahir_kry,'dd-mm-yyyy')";
 	}
 
 	public function tampil()
@@ -64,24 +61,6 @@ class Md_karyawan extends CI_Model
                 $this->db->order_by('pangkat_kry', 'ASC');
                 $query = $this->db->get('tb_karyawan');
                 return $query->result();
-                
-                //$this->db->order_by('pangkat', 'ASC');
-                //$query = $this->db->get('tb_karyawan', 'DESC');
-                //$query = $this->db->where("EXTRACT(month FROM 'tb_karyawan')","MONTH(NOW())");
-                //$query = $this->db->where("EXTRACT(day FROM 'tb_karyawan')","DAY(NOW())");
-                //return $query->result();
-
-                // $array = array(
-                //         'jabatan'    => 'PRODUCT MANAGER', 
-                //         'pangkat'    => 'MANAGER', 
-                //         'departemen' => 'MARKETING'
-                //     );
-                //$this->db->where($array);
-
-                // $this->db->or_where('jabatan', 'PRODUCT MANAGER');
-                // $this->db->or_where('jabatan', 'ACCOUNT EXECUTIVE MANAGER');
-                // $query = $this->db->get('tb_karyawan');
-                // return $query->result();
 	}
 
 	public function simpan()
@@ -109,7 +88,7 @@ class Md_karyawan extends CI_Model
                                 'tgl_masuk_kry'         => $this->input->post('tgl_masuk_kry'),
                                 'status_kerja_kry'      => $this->input->post('status_kerja_kry'),
                                 'status_nikah_kry'      => $this->input->post('status_nikah_kry'),
-                                'email_kry'             => $this->input->post('email_kry'),
+                                'email_kry'             => $this->input->post('email_kry')
 			];
 
 		$this->db->insert('tb_karyawan', $data);
@@ -153,7 +132,7 @@ class Md_karyawan extends CI_Model
                         'tgl_masuk_kry'         => $this->input->post('tgl_masuk_kry'),
                         'status_kerja_kry'      => $this->input->post('status_kerja_kry'),
                         'status_nikah_kry'      => $this->input->post('status_nikah_kry'),
-                        'email_kry'             => $this->input->post('email_kry'),
+                        'email_kry'             => $this->input->post('email_kry')
                 ];
 
 		$this->db->update('tb_karyawan', $data, $kondisi);

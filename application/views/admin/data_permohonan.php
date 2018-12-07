@@ -2,15 +2,10 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-
 <body class="theme-cyan">
-
-<div id="wrapper">
-
+    <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
-
     	<?php include ('decorations/sidebar.php');?>
-
 			<!-- Start Main Content -->
 			<div id="main-content">
 				<div class="container-fluid">
@@ -27,7 +22,6 @@
 					</div>
 
 					<div class="row clearfix">
-		
 						<div class="col-lg-12">
                             <div class="card">
                                 <div class="header">
@@ -38,8 +32,8 @@
                                     <a href="<?php echo base_url() ?>admin/print_permohonan" class="btn btn-xs btn-default" role="button" title="Print Data">
                                     <i class="fa fa-print"></i><span> Print</span></a>                       
                                 </div>
-                                <div class="body">
 
+                                <div class="body">
                                     <?php
                                         if(isset($_SESSION['hapus_sukses']) || isset($_SESSION['update_sukses'])) :
                                             $notif = '';
@@ -48,8 +42,8 @@
                                         ?>
                                         <div class="alert alert-success">
                                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                <strong>Sukses!</strong> <?php echo $notif; ?>
-                                            </div>
+                                            <strong>Sukses!</strong> <?php echo $notif; ?>
+                                         </div>
                                     <?php endif;?>
 
                                     <div class="table-responsive">
@@ -96,12 +90,11 @@
                                 </div>
                             </div>
                         </div>
-
 					</div>
 				</div>
 			</div>
 			<!-- End Main Content -->
-</div>
+        </div>
 
 <!-- MODAL UPLOAD -->
 <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

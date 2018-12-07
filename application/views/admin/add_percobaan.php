@@ -8,13 +8,9 @@
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/datepicker/css/bootstrap-datepicker3.min.css">
 
 <body class="theme-cyan">
-
 <div id="wrapper">
-
     <?php include ('decorations/navbar.php');?>
-
     	<?php include ('decorations/sidebar.php');?>
-
 			<!-- Start Main Content -->
 			<div id="main-content">
 				<div class="container-fluid">
@@ -32,135 +28,136 @@
 
 					<div class="row clearfix">
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 col-xl-12">			
-								<div class="card mb-3">
-									<div class="card-header">
-										<h5><i class="fa fa-plus-square"></i> <?php echo $judul; ?></h5>
-									</div>
-									<div class="card-body">
+							<div class="card mb-3">
+								<div class="card-header">
+									<h5><i class="fa fa-plus-square"></i> <?php echo $judul; ?></h5>
+								</div>
+								<div class="card-body">
 									<div class="alert alert-success alert-dismissible fade show" role="alert">
-									<strong>Catatan</strong><li>Objectives diisi oleh atasan langsung disesuaikan dengan pekerjaan masing-masing karyawan. Khusus untuk tim sales salah satu isi dari objectives adalah sales achievement.</li> 
-									<li>Kriteria pengisian untuk penilaian adalah sebagai berikut :</li> 
+										<strong>Catatan</strong><li>Objectives diisi oleh atasan langsung disesuaikan dengan pekerjaan masing-masing karyawan. Khusus untuk tim sales salah satu isi dari objectives adalah sales achievement.</li> 
+										<li>Kriteria pengisian untuk penilaian adalah sebagai berikut :</li> 
 										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
 
 									<?php echo form_open('admin/save_percobaan', ['class' => 'form-horizontal', 'method' => 'post']); ?>
-										<div class="form-group row">
-											<label for="" class="col-sm-3 col-form-label">Kode Percobaan</label>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" name="id_cb" readonly value="<?php echo set_value('id_cb'); ?><?= $kode; ?>">
-												<?php echo form_error('id_cb'); ?>
-											</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Kode Percobaan</label>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" name="id_cb" readonly value="<?php echo set_value('id_cb'); ?><?= $kode; ?>">
+											<?php echo form_error('id_cb'); ?>
 										</div>
-										<div class="form-group row">
-											<label for="" class="col-sm-3 col-form-label"></label>
-											<div class="col-sm-6">
-												<select class="form-control" id="idk">
-													<option disabled selected >--Pilih Karyawan--</option>
-														<?php foreach($idk as $id_) { ?>
-															<option value="<?php echo $id_->id_kry;?>"><?php echo $id_->nik_kry;?> - <?php echo $id_->nama_kry;?></option>
-														<?php } ?>
-												</select>
-											</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label"></label>
+										<div class="col-sm-6">
+											<select class="form-control" id="idk">
+												<option disabled selected >--Pilih Karyawan--</option>
+												<?php foreach($idk as $id_) { ?>
+													<option value="<?php echo $id_->id_kry;?>"><?php echo $id_->nik_kry;?> - <?php echo $id_->nama_kry;?></option>
+												<?php } ?>
+											</select>
 										</div>
-										<div class="form-group row">
-											<label for="" class="col-sm-3 col-form-label">Nama Karyawan</label>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" name="nama_cb" value="<?php echo set_value('nama_cb'); ?>">
-												<?php echo form_error('nama_cb'); ?>
-											</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Nama Karyawan</label>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" name="nama_cb" value="<?php echo set_value('nama_cb'); ?>">
+											<?php echo form_error('nama_cb'); ?>
 										</div>
-										<div class="form-group row">
-											<label for="" class="col-sm-3 col-form-label">NIK</label>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" name="nik_cb" value="<?php echo set_value('nik_cb'); ?>">
-												<?php echo form_error('nik_cb'); ?>
-											</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">NIK</label>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" name="nik_cb" value="<?php echo set_value('nik_cb'); ?>">
+											<?php echo form_error('nik_cb'); ?>
 										</div>
-										<div class="form-group row">
-											<label for="" class="col-sm-3 col-form-label">Departemen</label>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" name="dep_cb" value="<?php echo set_value('dep_cb'); ?>">
-												<?php echo form_error('dep_cb'); ?>
-											</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Departemen</label>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" name="dep_cb" value="<?php echo set_value('dep_cb'); ?>">
+											<?php echo form_error('dep_cb'); ?>
 										</div>
-										<div class="form-group row">
-											<label for="" class="col-sm-3 col-form-label">Jabatan</label>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" name="jabatan_cb" value="<?php echo set_value('jabatan_cb'); ?>">
-												<?php echo form_error('jabatan_cb'); ?>
-											</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Jabatan</label>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" name="jabatan_cb" value="<?php echo set_value('jabatan_cb'); ?>">
+											<?php echo form_error('jabatan_cb'); ?>
 										</div>
-										<div class="form-group row">
-											<label for="" class="col-sm-3 col-form-label">Tanggal Masuk</label>
-											<div class="col-sm-6">
-												<input id="tgl_kerja" type="text" class="form-control" name="tgl_masuk_cb" value="<?php echo set_value('tgl_masuk_cb'); ?>">
-												<?php echo form_error('tgl_masuk_cb'); ?>
-											</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Tanggal Masuk</label>
+										<div class="col-sm-6">
+											<input id="tgl_kerja" type="text" class="form-control" name="tgl_masuk_cb" value="<?php echo set_value('tgl_masuk_cb'); ?>">
+											<?php echo form_error('tgl_masuk_cb'); ?>
 										</div>
-										<div class="form-group row">
-											<label for="" class="col-sm-3 col-form-label">Jenis Percobaan</label>
-											<div class="col-sm-6">
-												<select class="form-control" name="jenis_cb" value="<?php echo set_value('jenis_cb'); ?>">
-												<?php echo form_error('jenis_cb'); ?>
-													<option value="disabled selected">--Pilih Jenis--</option>
-														<?php foreach($krj as $kr_) { ?>
-															<option value="<?php echo $kr_->status_kerja;?>"><?php echo $kr_->status_kerja;?></option>
-														<?php } ?>
-												</select>
-											</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Jenis Percobaan</label>
+										<div class="col-sm-6">
+											<select class="form-control" name="jenis_cb" value="<?php echo set_value('jenis_cb'); ?>">
+												<option value="disabled selected">--Pilih Jenis--</option>
+												<?php foreach($krj as $kr_) { ?>
+												<option value="<?php echo $kr_->status_kerja;?>"><?php echo $kr_->status_kerja;?></option>
+												<?php } ?>
+											</select>
+											<?php echo form_error('jenis_cb'); ?>
 										</div>
-										<div class="form-group row">
-											<label for="" class="col-sm-3 col-form-label">Tanggal Mulai</label>
-											<div class="col-sm-6">
-												<input id="tgl_mulai" type="text" class="form-control" name="tgl_mulai_cb" value="<?php echo set_value('tgl_mulai_cb'); ?>">
-												<?php echo form_error('tgl_mulai_cb'); ?>
-											</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Tanggal Mulai</label>
+										<div class="col-sm-6">
+											<input id="tgl_mulai" type="text" class="form-control" name="tgl_mulai_cb" value="<?php echo set_value('tgl_mulai_cb'); ?>">
+											<?php echo form_error('tgl_mulai_cb'); ?>
 										</div>
-										<div class="form-group row">
-											<label for="" class="col-sm-3 col-form-label">Tanggal Selesai</label>
-											<div class="col-sm-6">
-												<input id="tgl_selesai" type="text" class="form-control" name="tgl_selesai_cb" value="<?php echo set_value('tgl_selesai_cb'); ?>">
-												<?php echo form_error('tgl_selesai_cb'); ?>
-											</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Tanggal Selesai</label>
+										<div class="col-sm-6">
+											<input id="tgl_selesai" type="text" class="form-control" name="tgl_selesai_cb" value="<?php echo set_value('tgl_selesai_cb'); ?>">
+											<?php echo form_error('tgl_selesai_cb'); ?>
 										</div>
-										<div class="form-group row">
-											<label for="" class="col-sm-3 col-form-label">Percobaan Ke</label>
-											<div class="col-sm-6">
-												<input type="number" class="form-control" name="percobaan_cb" value="<?php echo set_value('percobaan_cb'); ?>">
-												<?php echo form_error('percobaan_cb'); ?>
-											</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Percobaan Ke</label>
+										<div class="col-sm-6">
+											<input type="number" class="form-control" name="percobaan_cb" value="<?php echo set_value('percobaan_cb'); ?>">
+											<?php echo form_error('percobaan_cb'); ?>
 										</div>
-										<div class="form-group row">
-											<label for="" class="col-sm-3 col-form-label">Catatan HR/GA</label>
-											<div class="col-sm-6">
-												<textarea class="form-control" rows="5" cols="30" name="catatan_hr_cb"></textarea>
-											</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Catatan HR/GA</label>
+										<div class="col-sm-6">
+											<textarea class="form-control" rows="5" cols="30" name="catatan_hr_cb"></textarea>
+											<?php echo form_error('catatan_hr_cb'); ?>
 										</div>
-										<div class="form-group row">
-											<label for="" class="col-sm-3 col-form-label">Catatan Atasan Langsung</label>
-											<div class="col-sm-6">
-												<textarea class="form-control" rows="5" cols="30" name="catatan_atasan_cb"></textarea>
-											</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Catatan Atasan Langsung</label>
+										<div class="col-sm-6">
+											<textarea class="form-control" rows="5" cols="30" name="catatan_atasan_cb"></textarea>
+											<?php echo form_error('catatan_atasan_cb'); ?>
 										</div>
-										<br>
-										<div class="form-group row">
-											<div class="col-sm-6">
-												<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
-												<a href="<?php echo site_url();?>admin/percobaan" class="btn btn-xs btn-danger" role="button">
-                                    			<i class="fa fa-angle-double-left"></i><span> Batal</span></a>
-											</div>
+									</div>
+									<br>
+									<div class="form-group row">
+										<div class="col-sm-6">
+											<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+											<a href="<?php echo site_url();?>admin/percobaan" class="btn btn-xs btn-danger" role="button">
+                                    		<i class="fa fa-angle-double-left"></i><span> Batal</span></a>
 										</div>
-										<?php echo form_close(); ?>
-				
-									</div>							
-								</div><!-- end card-->					
-							</div>			
+									</div>
+									<?php echo form_close(); ?>
+								</div>							
+							</div><!-- end card-->					
+						</div>			
+					</div>
 				</div>
-			</div>
 			<!-- End Main Content -->
-</div>
+			</div>
 
 <?php include ('decorations/footer.php');?>
 <script src="<?php echo base_url() ?>assets/datepicker/js/bootstrap-datepicker.js"></script>
