@@ -1,5 +1,4 @@
 <?php
-
 class Md_karyawan extends CI_Model
 {
 	public function __construct()
@@ -99,9 +98,9 @@ class Md_karyawan extends CI_Model
 	{
 		$query = $this->db->get_where('tb_karyawan', ['id_kry' => $id_kry]);
 		return $query->row();
-    }
+        }
     
-    public function detail($id_kry)
+         public function detail($id_kry)
 	{
         return $this->db->get_where('tb_karyawan', array('id_kry' => $id_kry))->result();
 	}

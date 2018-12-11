@@ -1,11 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require_once APPPATH."/third_party/PHPExcel/PHPExcel/IOFactory.php";
+//require_once APPPATH."/third_party/PHPExcel/PHPExcel/IOFactory.php";
 class Admin extends CI_Controller {
-    private $filename = "import_data"; 
+    //private $filename = "import_data"; 
     function __construct() {
         parent::__construct();
+        $this->load->library(array('PHPExcel','PHPExcel/IOFactory'));
         $this->load->model(array('md_user','md_excel','md_master','md_departemen','md_divisi',
                                  'md_jabatan','md_pangkat','md_percobaan',
                                  'md_karyawan','md_permohonan','md_kode', 'md_resign',
@@ -1402,6 +1403,519 @@ class Admin extends CI_Controller {
         $data['judul']     = 'Grafik Permintaan per Departemen';
 		$data['graph']     = $this->md_master->get_column();
 		$this->load->view('admin/grafik_dep', $data);
-	}
+    }
+
+    public function excel()
+	{
+		$this->load->view('admin/excel');
+    }
+    
+    // -------------------------------------Upload Data-------------------------------------//
+    
+    public function upload(){
+        $fileName = $this->input->post('file', TRUE);
+      
+        $config['upload_path'] = './uploads/excel/'; 
+        $config['file_name'] = $fileName;
+        $config['allowed_types'] = 'xls|xlsx|csv|ods|ots';
+        $config['max_size'] = 10000;
+      
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config); 
+        
+        if (!$this->upload->do_upload('file')) {
+            $error = array('error' => $this->upload->display_errors());
+            $this->session->set_flashdata('msg','Ada kesalah dalam upload'); 
+            redirect('admin'); 
+        } 
+        
+        else {
+            $media = $this->upload->data();
+            $inputFileName = 'uploads/excel/'.$media['file_name'];
+         
+        try {
+            $inputFileType = IOFactory::identify($inputFileName);
+            $objReader = IOFactory::createReader($inputFileType);
+            $objPHPExcel = $objReader->load($inputFileName);
+        }  
+         
+        catch(Exception $e) {
+            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+        }
+      
+        $sheet = $objPHPExcel->getSheet(0);
+        $highestRow = $sheet->getHighestRow();
+        $highestColumn = $sheet->getHighestColumn();
+      
+        for ($row = 2; $row <= $highestRow; $row++){  
+            $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
+                NULL,
+                TRUE,
+                FALSE);
+            $data = array(
+            "No"=> $rowData[0][0],
+            "NamaKaryawan"=> $rowData[0][1],
+            "Alamat"=> $rowData[0][2],
+            "Posisi"=> $rowData[0][3],
+            "Status"=> $rowData[0][4]
+        );
+            $this->db->insert("tb_import",$data);
+        } 
+            $this->session->set_flashdata('msg','Data Berhasil Diupload ...!!'); 
+            redirect('admin');
+        }  
+    } 
+
+    public function upload_karyawan(){
+        $fileName = $this->input->post('file', TRUE);
+      
+        $config['upload_path'] = './uploads/excel/'; 
+        $config['file_name'] = $fileName;
+        $config['allowed_types'] = 'xls|xlsx|csv|ods|ots';
+        $config['max_size'] = 10000;
+      
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config); 
+        
+        if (!$this->upload->do_upload('file')) {
+            $error = array('error' => $this->upload->display_errors());
+            $this->session->set_flashdata('msg','Ada kesalah dalam upload'); 
+            redirect('admin/karyawan'); 
+        } 
+        
+        else {
+            $media = $this->upload->data();
+            $inputFileName = 'uploads/excel/'.$media['file_name'];
+         
+        try {
+            $inputFileType  = IOFactory::identify($inputFileName);
+            $objReader      = IOFactory::createReader($inputFileType);
+            $objPHPExcel    = $objReader->load($inputFileName);
+        }  
+         
+        catch(Exception $e) {
+            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+        }
+      
+        $sheet          = $objPHPExcel->getSheet(0);
+        $highestRow     = $sheet->getHighestRow();
+        $highestColumn  = $sheet->getHighestColumn();
+      
+        for ($row = 2; $row <= $highestRow; $row++){  
+            $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
+                NULL,
+                TRUE,
+                FALSE);
+            $data = array(
+            "id_kry"            => $rowData[0][0],
+            "nama_kry"          => $rowData[0][1],
+            "nik_kry"           => $rowData[0][2],
+            "jabatan_kry"       => $rowData[0][3],
+            "pangkat_kry"       => $rowData[0][4],
+            "divisi_kry"        => $rowData[0][5],
+            "dep_kry"           => $rowData[0][6],
+            "lokasi_kry"        => $rowData[0][7],
+            "panggilan_kry"     => $rowData[0][8],
+            "identitas_kry"     => $rowData[0][9],
+            "jk_kry"            => $rowData[0][10],
+            "tempat_lahir_kry"  => $rowData[0][11],
+            "tgl_lahir_kry"     => $rowData[0][12],
+            "negara_kry"        => $rowData[0][13],
+            "agama_kry"         => $rowData[0][14],
+            "npwp_kry"          => $rowData[0][15],
+            "alamat_kry"        => $rowData[0][16],
+            "tlp_rumah_kry"     => $rowData[0][17],
+            "no_hp_kry"         => $rowData[0][18],
+            "tgl_masuk_kry"     => $rowData[0][19],
+            "status_kerja"      => $rowData[0][20],
+            "status_nikah_kry"  => $rowData[0][21],
+            "email_kry"         => $rowData[0][22]
+        );
+            $this->db->insert("tb_karyawan",$data);
+        } 
+            $this->session->set_flashdata('msg','Data Berhasil Diupload ...!!'); 
+            redirect('admin/karyawan');
+        }  
+    }
+
+    public function upload_permohonan(){
+        $fileName = $this->input->post('file', TRUE);
+      
+        $config['upload_path'] = './uploads/excel/'; 
+        $config['file_name'] = $fileName;
+        $config['allowed_types'] = 'xls|xlsx|csv|ods|ots';
+        $config['max_size'] = 10000;
+      
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config); 
+        
+        if (!$this->upload->do_upload('file')) {
+            $error = array('error' => $this->upload->display_errors());
+            $this->session->set_flashdata('msg','Ada kesalah dalam upload'); 
+            redirect('admin/permohonan'); 
+        } 
+        
+        else {
+            $media = $this->upload->data();
+            $inputFileName = 'uploads/excel/'.$media['file_name'];
+         
+        try {
+            $inputFileType  = IOFactory::identify($inputFileName);
+            $objReader      = IOFactory::createReader($inputFileType);
+            $objPHPExcel    = $objReader->load($inputFileName);
+        }  
+         
+        catch(Exception $e) {
+            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+        }
+      
+        $sheet          = $objPHPExcel->getSheet(0);
+        $highestRow     = $sheet->getHighestRow();
+        $highestColumn  = $sheet->getHighestColumn();
+      
+        for ($row = 2; $row <= $highestRow; $row++){  
+            $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
+                NULL,
+                TRUE,
+                FALSE);
+            $data = array(
+            "id_pmhn"               => $rowData[0][0],
+            "dep_pmhn"              => $rowData[0][1],
+            "nama_pemohon_pmhn"     => $rowData[0][2],
+            "jabatan_pemohon_pmhn"  => $rowData[0][3],
+            "jabatan_pmhn"          => $rowData[0][4],
+            "lokasi_pmhn"           => $rowData[0][5],
+            "waktu_pmhn"            => $rowData[0][6],
+            "status_kerja_pmhn"     => $rowData[0][7],
+            "jumlah_pmhn"           => $rowData[0][8],
+            "tanggal_pmhn"          => $rowData[0][9],
+            "dasar_permohonan_pmhn" => $rowData[0][10],
+            "sumber_rekrutmen_pmhn" => $rowData[0][11],
+            "ringkasan_tugas_pmhn"  => $rowData[0][12],
+            "gajih_pmhn"            => $rowData[0][13],
+            "jk_pmhn"               => $rowData[0][14],
+            "usia_pmhn"             => $rowData[0][15],
+            "pendidikan_pmhn"       => $rowData[0][16],
+            "jurusan_pmhn"          => $rowData[0][17],
+            "pengalaman_kerja_pmhn" => $rowData[0][18],
+            "bidang_pmhn"           => $rowData[0][19],
+            "syarat_lain_pmhn"      => $rowData[0][20],
+            "keterampilan_pmhn"     => $rowData[0][21],
+            "tgl_bergabung_pmhn"    => $rowData[0][22],
+            "office_equipment_pmhn" => $rowData[0][23]
+        );
+            $this->db->insert("tb_karyawan_baru",$data);
+        } 
+            $this->session->set_flashdata('msg','Data Berhasil Diupload ...!!'); 
+            redirect('admin/permohonan');
+        }  
+    }
+
+    
+
+    public function upload_percobaan(){
+        $fileName = $this->input->post('file', TRUE);
+      
+        $config['upload_path'] = './uploads/excel/'; 
+        $config['file_name'] = $fileName;
+        $config['allowed_types'] = 'xls|xlsx|csv|ods|ots';
+        $config['max_size'] = 10000;
+      
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config); 
+        
+        if (!$this->upload->do_upload('file')) {
+            $error = array('error' => $this->upload->display_errors());
+            $this->session->set_flashdata('msg','Ada kesalah dalam upload'); 
+            redirect('admin/percobaan'); 
+        } 
+        
+        else {
+            $media = $this->upload->data();
+            $inputFileName = 'uploads/excel/'.$media['file_name'];
+         
+        try {
+            $inputFileType  = IOFactory::identify($inputFileName);
+            $objReader      = IOFactory::createReader($inputFileType);
+            $objPHPExcel    = $objReader->load($inputFileName);
+        }  
+         
+        catch(Exception $e) {
+            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+        }
+      
+        $sheet          = $objPHPExcel->getSheet(0);
+        $highestRow     = $sheet->getHighestRow();
+        $highestColumn  = $sheet->getHighestColumn();
+      
+        for ($row = 2; $row <= $highestRow; $row++){  
+            $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
+                NULL,
+                TRUE,
+                FALSE);
+            $data = array(
+            "id_cb"             => $rowData[0][0],
+            "nama_cb"           => $rowData[0][1],
+            "nik_cb"            => $rowData[0][2],
+            "dep_cb"            => $rowData[0][3],
+            "jabatan_cb"        => $rowData[0][4],
+            "tgl_masuk_cb"      => $rowData[0][5],
+            "jenis_cb"          => $rowData[0][6],
+            "tgl_mulai_cb"      => $rowData[0][7],
+            "tgl_selesai_cb"    => $rowData[0][8],
+            "percobaan_cb"      => $rowData[0][9],
+            "catatan_hr_cb"     => $rowData[0][10],
+            "catatan_atasan_cb" => $rowData[0][11]
+        );
+            $this->db->insert("tb_percobaan",$data);
+        } 
+            $this->session->set_flashdata('msg','Data Berhasil Diupload ...!!'); 
+            redirect('admin/percobaan');
+        }  
+    }
+
+    public function upload_penilaian(){
+        $fileName = $this->input->post('file', TRUE);
+      
+        $config['upload_path'] = './uploads/excel/'; 
+        $config['file_name'] = $fileName;
+        $config['allowed_types'] = 'xls|xlsx|csv|ods|ots';
+        $config['max_size'] = 10000;
+      
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config); 
+        
+        if (!$this->upload->do_upload('file')) {
+            $error = array('error' => $this->upload->display_errors());
+            $this->session->set_flashdata('msg','Ada kesalah dalam upload'); 
+            redirect('admin/penilaian'); 
+        } 
+        
+        else {
+            $media = $this->upload->data();
+            $inputFileName = 'uploads/excel/'.$media['file_name'];
+         
+        try {
+            $inputFileType  = IOFactory::identify($inputFileName);
+            $objReader      = IOFactory::createReader($inputFileType);
+            $objPHPExcel    = $objReader->load($inputFileName);
+        }  
+         
+        catch(Exception $e) {
+            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+        }
+      
+        $sheet          = $objPHPExcel->getSheet(0);
+        $highestRow     = $sheet->getHighestRow();
+        $highestColumn  = $sheet->getHighestColumn();
+      
+        for ($row = 2; $row <= $highestRow; $row++){  
+            $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
+                NULL,
+                TRUE,
+                FALSE);
+            $data = array(
+            "id_nl"               => $rowData[0][0],
+            "nama_nl"             => $rowData[0][1],
+            "nik_nl"              => $rowData[0][2],
+            "dep_nl"              => $rowData[0][3],
+            "tgl_masuk_nl"        => $rowData[0][4],
+            "jabatan_nl"          => $rowData[0][5],
+            "nama_penilai_nl"     => $rowData[0][6],
+            "jabatan_penilai_nl"  => $rowData[0][7]
+        );
+            $this->db->insert("tb_penilaian",$data);
+        } 
+            $this->session->set_flashdata('msg','Data Berhasil Diupload ...!!'); 
+            redirect('admin/penilaian');
+        }  
+    }
+
+    public function upload_training(){
+        $fileName = $this->input->post('file', TRUE);
+      
+        $config['upload_path'] = './uploads/excel/'; 
+        $config['file_name'] = $fileName;
+        $config['allowed_types'] = 'xls|xlsx|csv|ods|ots';
+        $config['max_size'] = 10000;
+      
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config); 
+        
+        if (!$this->upload->do_upload('file')) {
+            $error = array('error' => $this->upload->display_errors());
+            $this->session->set_flashdata('msg','Ada kesalah dalam upload'); 
+            redirect('admin/training'); 
+        } 
+        
+        else {
+            $media = $this->upload->data();
+            $inputFileName = 'uploads/excel/'.$media['file_name'];
+         
+        try {
+            $inputFileType  = IOFactory::identify($inputFileName);
+            $objReader      = IOFactory::createReader($inputFileType);
+            $objPHPExcel    = $objReader->load($inputFileName);
+        }  
+         
+        catch(Exception $e) {
+            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+        }
+      
+        $sheet          = $objPHPExcel->getSheet(0);
+        $highestRow     = $sheet->getHighestRow();
+        $highestColumn  = $sheet->getHighestColumn();
+      
+        for ($row = 2; $row <= $highestRow; $row++){  
+            $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
+                NULL,
+                TRUE,
+                FALSE);
+            $data = array(
+                "id_tr"                  => $rowData[0][0],
+                "nama_pemohon_tr"        => $rowData[0][1],
+                "jabatan_pemohon_tr"     => $rowData[0][2],
+                "dep_pemohon_tr"         => $rowData[0][3],
+                "tgl_permohonan_tr"      => $rowData[0][4],
+                "judul_training_tr"      => $rowData[0][5],
+                "penyelenggara_tr"       => $rowData[0][6],
+                "tgl_pelaksanaan_tr"     => $rowData[0][7],
+                "tempat_pelaksanaan_tr"  => $rowData[0][8],
+                "biaya_tr"               => $rowData[0][9],
+                "pembayaran_tr"          => $rowData[0][10],
+                "tgl_terima"             => $rowData[0][11],
+                "tgl_bayar_tr"           => $rowData[0][12]
+        );
+            $this->db->insert("tb_training",$data);
+        } 
+            $this->session->set_flashdata('msg','Data Berhasil Diupload ...!!'); 
+            redirect('admin/training');
+        }  
+    }
+
+    public function upload_resign(){
+        $fileName = $this->input->post('file', TRUE);
+      
+        $config['upload_path'] = './uploads/excel/'; 
+        $config['file_name'] = $fileName;
+        $config['allowed_types'] = 'xls|xlsx|csv|ods|ots';
+        $config['max_size'] = 10000;
+      
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config); 
+        
+        if (!$this->upload->do_upload('file')) {
+            $error = array('error' => $this->upload->display_errors());
+            $this->session->set_flashdata('msg','Ada kesalah dalam upload'); 
+            redirect('admin/resign'); 
+        } 
+        
+        else {
+            $media = $this->upload->data();
+            $inputFileName = 'uploads/excel/'.$media['file_name'];
+         
+        try {
+            $inputFileType  = IOFactory::identify($inputFileName);
+            $objReader      = IOFactory::createReader($inputFileType);
+            $objPHPExcel    = $objReader->load($inputFileName);
+        }  
+         
+        catch(Exception $e) {
+            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+        }
+      
+        $sheet          = $objPHPExcel->getSheet(0);
+        $highestRow     = $sheet->getHighestRow();
+        $highestColumn  = $sheet->getHighestColumn();
+      
+        for ($row = 2; $row <= $highestRow; $row++){  
+            $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
+                NULL,
+                TRUE,
+                FALSE);
+            $data = array(
+                "id_rs"          => $rowData[0][0],
+                "bulan_rs"       => $rowData[0][1],
+                "nama_rs"        => $rowData[0][2],
+                "pangkat_rs"     => $rowData[0][3],
+                "jabatan_rs"     => $rowData[0][4],
+                "dep_rs"         => $rowData[0][5],
+                "tgl_masuk_rs"   => $rowData[0][6],
+                "tgl_resign_rs"  => $rowData[0][7],
+                "masa_bulan_rs"  => $rowData[0][8],
+                "masa_tahun_rs"  => $rowData[0][9],
+                "keterangan_rs"  => $rowData[0][10]
+        );
+            $this->db->insert("tb_resign",$data);
+        } 
+            $this->session->set_flashdata('msg','Data Berhasil Diupload ...!!'); 
+            redirect('admin/resign');
+        }  
+    }
+
+    public function upload_mpp(){
+        $fileName = $this->input->post('file', TRUE);
+      
+        $config['upload_path'] = './uploads/excel/'; 
+        $config['file_name'] = $fileName;
+        $config['allowed_types'] = 'xls|xlsx|csv|ods|ots';
+        $config['max_size'] = 10000;
+      
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config); 
+        
+        if (!$this->upload->do_upload('file')) {
+            $error = array('error' => $this->upload->display_errors());
+            $this->session->set_flashdata('msg','Ada kesalah dalam upload'); 
+            redirect('admin/mpp'); 
+        } 
+        
+        else {
+            $media = $this->upload->data();
+            $inputFileName = 'uploads/excel/'.$media['file_name'];
+         
+        try {
+            $inputFileType  = IOFactory::identify($inputFileName);
+            $objReader      = IOFactory::createReader($inputFileType);
+            $objPHPExcel    = $objReader->load($inputFileName);
+        }  
+         
+        catch(Exception $e) {
+            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+        }
+      
+        $sheet          = $objPHPExcel->getSheet(0);
+        $highestRow     = $sheet->getHighestRow();
+        $highestColumn  = $sheet->getHighestColumn();
+      
+        for ($row = 2; $row <= $highestRow; $row++){  
+            $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
+                NULL,
+                TRUE,
+                FALSE);
+            $data = array(
+                "id_pp"             => $rowData[0][0],
+                "jabatan_pp"        => $rowData[0][1],
+                "dep_pp"            => $rowData[0][2],
+                "status_pp"         => $rowData[0][3],
+                "jml_butuh_pp"      => $rowData[0][4],
+                "sisa_pp"           => $rowData[0][5],
+                "nama_pmh_pp"       => $rowData[0][6],
+                "jabatan_pmh_pp"    => $rowData[0][7],
+                "tgl_pmh_pp"        => $rowData[0][8],
+                "tgl_tempo_pp"      => $rowData[0][9],
+                "tgl_wawancara_pp"  => $rowData[0][10],
+                "tgl_pmnh_pp"       => $rowData[0][11],
+                "kcp_pmnh_pp"       => $rowData[0][12],
+                "total_pp"          => $rowData[0][13],
+                "sumber_rek_pp"     => $rowData[0][14],
+                "ket_pp"            => $rowData[0][15]
+        );
+            $this->db->insert("tb_mpp",$data);
+        } 
+            $this->session->set_flashdata('msg','Data Berhasil Diupload ...!!'); 
+            redirect('admin/mpp');
+        }  
+    }
    
 }

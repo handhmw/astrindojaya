@@ -1,85 +1,143 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/*
- * Author : Ismo Broto : git @ismo1106
- */
-class Import extends CI_Controller {
-    public function __construct() {
-        parent::__construct();
-        $this->load->library('PHPExcel');
-    }
-    function index() {
-        $msg    = $this->uri->segment(3);
-        $alert  = '';
-        if($msg == 'success'){
-            $alert  = 'Success!!';
-        }
-        $data['_alert'] = $alert;
-        $this->load->view('admin/karyawan',$data);
-    }
-    public function upload(){
-        $fileName = $this->input->post('file', TRUE);
-      
-        $config['upload_path'] = './uploads/'; 
-        $config['file_name'] = $fileName;
-        $config['allowed_types'] = 'xls|xlsx|csv|ods|ots';
-        $config['max_size'] = 10000;
-      
-        $this->load->library('upload', $config);
-        $this->upload->initialize($config); 
-        
-        if (!$this->upload->do_upload('file')) {
-         $error = array('error' => $this->upload->display_errors());
-         $this->session->set_flashdata('msg','Ada kesalah dalam upload'); 
-         redirect('admin/karyawan'); 
-        } else {
-         $media = $this->upload->data();
-         $inputFileName = 'uploads/'.$media['file_name'];
-         
-         try {
-          $inputFileType = IOFactory::identify($inputFileName);
-          $objReader = IOFactory::createReader($inputFileType);
-          $objPHPExcel = $objReader->load($inputFileName);
-         } catch(Exception $e) {
-          die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
-         }
-      
-         $sheet = $objPHPExcel->getSheet(0);
-         $highestRow = $sheet->getHighestRow();
-         $highestColumn = $sheet->getHighestColumn();
-      
-         for ($row = 2; $row <= $highestRow; $row++){  
-           $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
-             NULL,
-             TRUE,
-             FALSE);
-           $data = array(
-            "nama"              => $rowData[0][0],
-            "nik"               => $rowData[0][1],
-            "jabatan"           => $rowData[0][2],
-            "pangkat"           => $rowData[0][3],
-            "divisi"            => $rowData[0][4],
-            "departemen"        => $rowData[0][5],
-            "unit"              => $rowData[0][6],
-            "nama_panggilan"    => $rowData[0][7],
-            "identitas"         => $rowData[0][8],
-            "jk"                => $rowData[0][9],
-            "tempat_lahir"      => $rowData[0][10],
-            "tgl_lahir"         => $rowData[0][11],
-            "negara"            => $rowData[0][12],
-            "agama"             => $rowData[0][13],
-            "npwp"              => $rowData[0][14],
-            "alamat"            => $rowData[0][15],
-            "tlp_rumah"         => $rowData[0][16],
-            "no_hp"             => $rowData[0][17],
-            "tgl_masuk"         => $rowData[0][18],
-            "status_kerja"      => $rowData[0][19],
-            "status_nikah"      => $rowData[0][20],
-            "email"             => $rowData[0][21]
-          );
-          $this->db->insert("tb_karyawan",$data);
-         } 
-         $this->session->set_flashdata('msg','Berhasil upload ...!!'); 
-         redirect('admin/karyawan');
-        }  
-       } 
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Excel extends CI_Controller {
+	function __construct(){
+		parent::__construct();
+		$this->load->library(array('PHPExcel','PHPExcel/IOFactory'));
+		$this->load->model('mread');
+	}
+	public function index()
+	{
+		$this->load->view('excel');
+	}
+	public function upload(){
+		$fileName = time().$_FILES['file']['name'];
+
+		$config['upload_path'] = './assets/xls_file/'; //buat folder dengan nama assets di root folder
+		$config['file_name'] = $fileName;
+		$config['allowed_types'] = 'xls|xlsx|csv';
+		$config['max_size'] = 10000;
+
+		$this->load->library('upload');
+		$this->upload->initialize($config);
+
+		if(! $this->upload->do_upload('file') )
+		$this->upload->display_errors();
+
+		$media = $this->upload->data('file');
+		$inputFileName = './assets/xls_file/'.$media['file_name'];
+		
+		try {
+				$inputFileType = IOFactory::identify($inputFileName);
+				$objReader = IOFactory::createReader($inputFileType);
+				$objPHPExcel = $objReader->load($inputFileName);
+			} catch(Exception $e) {
+				die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+			}
+
+			$sheet = $objPHPExcel->getSheet(0);
+			$highestRow = $sheet->getHighestRow();
+			$highestColumn = $sheet->getHighestColumn();
+			
+			for ($row = 2; $row <= $highestRow; $row++){                  //  Read a row of data into an array                 
+				$rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
+												NULL,
+												TRUE,
+												FALSE);
+												
+				//Sesuaikan sama nama kolom tabel di database								
+				 $data = array(
+					"idimport"=> $rowData[0][0],
+					"nama"=> $rowData[0][1],
+					"alamat"=> $rowData[0][2],
+					"kontak"=> $rowData[0][3]
+				);
+				//sesuaikan nama dengan nama tabel
+				$insert = $this->db->insert("eimport",$data);
+				//delete_files($media['file_path']);
+					
+			}
+		redirect('excel/');
+	}
+	public function export(){
+		$ambildata = $this->mread->export_kontak();
+		
+		if(count($ambildata)>0){
+			$objPHPExcel = new PHPExcel();
+			// Set properties
+			$objPHPExcel->getProperties()
+				  ->setCreator("SAMSUL ARIFIN") //creator
+					->setTitle("Programmer - Regional Planning and Monitoring, XL AXIATA");  //file title
+
+			$objset = $objPHPExcel->setActiveSheetIndex(0); //inisiasi set object
+			$objget = $objPHPExcel->getActiveSheet();  //inisiasi get object
+
+			$objget->setTitle('Sample Sheet'); //sheet title
+			
+			$objget->getStyle("A1:C1")->applyFromArray(
+				array(
+					'fill' => array(
+						'type' => PHPExcel_Style_Fill::FILL_SOLID,
+						'color' => array('rgb' => '92d050')
+					),
+					'font' => array(
+						'color' => array('rgb' => '000000')
+					)
+				)
+			);
+
+			//table header
+			$cols = array("A","B","C");
+			
+			$val = array("Nama ","Alamat","Kontak");
+			
+			for ($a=0;$a<3; $a++) 
+			{
+				$objset->setCellValue($cols[$a].'1', $val[$a]);
+				
+				//Setting lebar cell
+				$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(25); // NAMA
+				$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(25); // ALAMAT
+				$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(25); // Kontak
+			
+				$style = array(
+					'alignment' => array(
+						'horizontal' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+					)
+				);
+				$objPHPExcel->getActiveSheet()->getStyle($cols[$a].'1')->applyFromArray($style);
+			}
+			
+			$baris  = 2;
+			foreach ($ambildata as $frow){
+				
+				//sesuaikan dengan nama kolom tabel
+				$objset->setCellValue("A".$baris, $frow->nama); //membaca data nama
+				$objset->setCellValue("B".$baris, $frow->alamat); //membaca data alamat
+				$objset->setCellValue("C".$baris, $frow->kontak); //membaca data alamat
+				
+				//Set number value
+				$objPHPExcel->getActiveSheet()->getStyle('C1:C'.$baris)->getNumberFormat()->setFormatCode('0');
+				
+				$baris++;
+			}
+			
+			$objPHPExcel->getActiveSheet()->setTitle('Data Export');
+
+			$objPHPExcel->setActiveSheetIndex(0);  
+			$filename = urlencode("Data".date("Y-m-d H:i:s").".xls");
+			  
+			  header('Content-Type: application/vnd.ms-excel'); //mime type
+			  header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+			  header('Cache-Control: max-age=0'); //no cache
+
+			$objWriter = IOFactory::createWriter($objPHPExcel, 'Excel5');                
+			$objWriter->save('php://output');
+		}else{
+			redirect('Excel');
+		}
+	}
 }
+
+/* End of file welcome.php */
+/* Location: ./application/controllers/welcome.php */
