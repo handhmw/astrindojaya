@@ -27,7 +27,7 @@
                                     <h5><i class="fa fa-user"></i> <?php echo $judul; ?></h5><br>
                                 </div>
                                 <div class="body">
-                                    <div id="piechart"></div>
+                                    <div id="column"></div>
                                 </div>
                             </div>
                         </div>
@@ -43,49 +43,48 @@
 		<script src="<?php echo base_url();?>assets/highcharts/modules/exporting.js" type="text/javascript"></script>
 		<script src="<?php echo base_url();?>assets/highcharts/modules/offline-exporting.js" type="text/javascript"></script>
 		<script type="text/javascript">
-		
-		$(function () {
-			$('#piechart').highcharts({
-				chart: {
-					plotBackgroundColor: null,
-					plotBorderWidth: null,
-					plotShadow: false
-				},
-				title: {
-					text: 'Data Karyawan per Departemen'
-				},
-				tooltip: {
-					pointFormat: '{series.name}: <b>{point.y:,.0f} Orang</b>'
-				},
-				plotOptions: {
-					pie: {
-						allowPointSelect: true,
-						cursor: 'pointer',
-						dataLabels: {
-							enabled: true,
-							format: '<b>{point.name}</b>: {point.y:,.0f} Orang',
-							style: {
-								color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+			$(function () {
+				$('#column').highcharts({
+					chart: {
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Data Karyawan per Departemen'
+					},
+					tooltip: {
+						pointFormat: '{series.name}: <b>{point.y:,.0f} Orang</b>'
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								format: '<b>{point.name}</b>: {point.y:,.0f} Orang',
+								style: {
+									color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+								}
 							}
 						}
-					}
-				},
-				series: [{
-					type: 'column',
-					name: 'Jumlah Karyawan',
-					data: [
-							<?php 
-							if(count($graph)>0)
-							{
-							foreach ($graph as $data) {
-							echo "['" .$data->dep_kry . "'," . $data->jumlah ."],\n";
-							}
-							}
-							?>
-					]
-				}]
+					},
+					series: [{
+						type: 'column',
+						name: 'Jumlah Karyawan',
+						data: [
+								<?php 
+								if(count($graph)>0)
+								{
+								foreach ($graph as $data) {
+								echo "['" .$data->dep_kry . "'," . $data->jumlah ."],\n";
+								}
+								}
+								?>
+						]
+					}]
+				});
 			});
-		});
 		</script>	
 	</body>
 </html>

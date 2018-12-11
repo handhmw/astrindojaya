@@ -13,7 +13,6 @@ class Page extends CI_Controller{
       }else{
           echo "Access Denied";
       }
- 
   }
  
   function staff(){

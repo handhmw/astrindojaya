@@ -280,13 +280,13 @@
     $(document).ready(function () {
         $('#tgl_lahir').datepicker({
 			locale:'id',
-            format: "dd/mm/yyyy",
+            format: "dd-mm-yyyy",
             autoclose: true
         });
 
 		$('#tgl_masuk').datepicker({
 			locale:'id',
-            format: "dd/mm/yyyy",
+            format: "dd-mm-yyyy",
             autoclose: true
         });
     });

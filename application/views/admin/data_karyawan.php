@@ -106,7 +106,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="<?php echo base_url("admin/upload_karyawan"); ?>" enctype="multipart/form-data">
+                            <!-- <form method="post" action="<?php echo base_url("admin/upload_karyawan"); ?>" enctype="multipart/form-data">
                                 <div class="file-upload">
                                     <div class="file-select">
                                         <div class="file-select-button" id="fileName">Choose File</div>
@@ -116,6 +116,10 @@
                                         <input type="submit" name="import" value="Import" class="btn btn-xs btn-primary" role="button">
                                     </div>
                                 </div>
+                            </form> -->
+                            <form action="<?php echo base_url();?>admin/upload_karyawan/" enctype="multipart/form-data" method="post">
+                                <input name="file" type="file" />
+                                <input type="submit" value="Import File" />
                             </form>
                             <div class="modal-footer">
                         </div>
