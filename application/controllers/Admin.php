@@ -42,6 +42,24 @@ class Admin extends CI_Controller {
         $this->load->view('admin/index',$data);
     }
 
+    // ===================================GET BY ID START=================================== //
+
+    function get_karyawan()
+	{
+		$id_kry  = $this->input->post('id_kry');
+		$data    = $this->md_master->get_karyawan_bykode($id_kry);
+		echo json_encode($data);
+    }
+
+    function get_penilai()
+	{
+		$id_penilai  = $this->input->post('id_penilai');
+		$data 		 = $this->md_master->get_penilai_bykode($id_penilai);
+		echo json_encode($data);
+    }
+
+    // ===================================GET BY ID END=================================== //
+
     // ===================================CRUD MASTER DATA START=================================== //
     
     public function departemen()
@@ -326,13 +344,6 @@ class Admin extends CI_Controller {
         $data['judul']    = "Data Penilai";
 
         $this->load->view('admin/data_penilai', $data);
-    }
-
-    function get_penilai()
-	{
-		$id_penilai  = $this->input->post('id_penilai');
-		$data 		 = $this->md_master->get_penilai_bykode($id_penilai);
-		echo json_encode($data);
     }
 
     public function add_penilai()
@@ -900,13 +911,6 @@ class Admin extends CI_Controller {
     // ===================================CRUD PERCOBAAN END=================================== //
 
     // ==================================CRUD PENILAIAN START================================= //
-    
-    function get_karyawan()
-	{
-		$id   = $this->input->post('id_kry');
-		$data = $this->md_master->get_karyawan_bykode($id);
-		echo json_encode($data);
-	}
     
     public function penilaian()
     {

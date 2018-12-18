@@ -5,18 +5,18 @@ if (!defined('BASEPATH'))
  
 class Md_master extends CI_Model
 {
-    function get_karyawan_bykode($id){
-		$hsl = $this->db->query("SELECT * FROM tb_karyawan WHERE id_kry='$id'");
+    function get_karyawan_bykode($id_kry){
+		$hsl = $this->db->query("SELECT * FROM tb_karyawan WHERE id_kry='$id_kry'");
 		if($hsl->num_rows()>0){
 			foreach ($hsl->result() as $data) {
-				$hasil=array(
-					'id_kry' 		    => $data->id,
-					'nama_kry' 			=> $data->nama,
-					'nik_kry' 			=> $data->nik,
-					'dep_kry' 	        => $data->dep,
-					'tgl_masuk_kry' 	=> $data->tgl_masuk,
-                    'jabatan_kry' 		=> $data->jabatan,
-                    'pangkat_kry' 		=> $data->pangkat,
+				$hasil = array(
+					'id_kry' 		=> $data->id_kry,
+					'nama_kry' 	    => $data->nama_kry,
+					'nik_kry' 	    => $data->nik_kry,
+					'dep_kry' 	    => $data->dep_kry,
+					'pangkat_kry' 	=> $data->pangkat_kry,
+                    'jabatan_kry' 	=> $data->jabatan_kry,
+                    'tgl_masuk_kry' => $data->tgl_masuk_kry,
 				);
 			}
 		}
@@ -27,11 +27,11 @@ class Md_master extends CI_Model
 		$hsl = $this->db->query("SELECT * FROM tb_penilai WHERE id_penilai='$id_penilai'");
 		if($hsl->num_rows()>0){
 			foreach ($hsl->result() as $data) {
-				$hasil=array(
-					'id_penilai' 			=> $data->id_penilai,
-                    'nama_penilai' 			=> $data->nama_penilai,
-                    'nik_penilai' 			=> $data->nik_penilai,
-					'jabatan_penilai' 		=> $data->jabatan_penilai,
+				$hasil = array(
+					'id_penilai' 	  => $data->id_penilai,
+                    'nama_penilai' 	  => $data->nama_penilai,
+                    'nik_penilai' 	  => $data->nik_penilai,
+					'jabatan_penilai' => $data->jabatan_penilai,
 					);
 			}
 		}

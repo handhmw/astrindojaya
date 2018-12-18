@@ -25,7 +25,6 @@
 							</div>      
 						</div>
 					</div>
-
 					<div class="row clearfix">
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 col-xl-12">						
 							<div class="card mb-3">
@@ -56,10 +55,10 @@
 								<div class="form-group row">
 									<label for="" class="col-sm-3 col-form-label"></label>
 									<div class="col-sm-6">
-										<select class="form-control" id="idk">
+										<select class="form-control" id="kodeku_" >
 											<option disabled selected >--Pilih Karyawan--</option>
 											<?php foreach($idk as $row) { ?>
-												<option value="<?php echo $row->id_kry;?>"><?php echo $row->nik_kry;?> - <?php echo $row->nama_kry;?></option>
+												<option value="<?php echo $row->id_kry;?>"><?php echo $row->nama_kry;?></option>
 											<?php } ?>
 										</select>
 									</div>
@@ -67,45 +66,45 @@
 								<div class="form-group row">
 									<label for="dep" class="col-sm-3 col-form-label">Nama Lengkap</label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control" name="nama_nl"  value="<?php echo set_value('nama_nl'); ?>">
+										<input type="text" class="form-control" id="nama_" name="nama_nl"  value="<?php echo set_value('nama_nl'); ?>" readonly>
 										<?php echo form_error('nama_nl'); ?>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="nama_pemohon" class="col-sm-3 col-form-label">NIK</label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control" name="nik_nl"  value="<?php echo set_value('nik_nl'); ?>">
+										<input type="text" class="form-control" id="nik_" name="nik_nl"  value="<?php echo set_value('nik_nl'); ?>" readonly>
 										<?php echo form_error('nik_nl'); ?>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="jbt" class="col-sm-3 col-form-label">Departemen</label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control" name="dep_nl"  value="<?php echo set_value('dep_nl'); ?>">
+										<input type="text" class="form-control" id="dep_" name="dep_nl"  value="<?php echo set_value('dep_nl'); ?>" readonly>
 										<?php echo form_error('dep_nl'); ?>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="" class="col-sm-3 col-form-label">Tanggal Masuk</label>
 									<div class="col-sm-6">
-										<input id="tgl_masuk" type="text"  name="tgl_masuk_nl" class="form-control">
+										<input type="text" id="tgl_"  name="tgl_masuk_nl" class="form-control" readonly>
 										<?php echo form_error('tgl_masuk_nl'); ?>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="" class="col-sm-3 col-form-label">Jabatan Karyawan</label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control" name="jabatan_nl"  value="<?php echo set_value('jabatan_nl'); ?>">
+										<input type="text" class="form-control" id="jabatan_" name="jabatan_nl"  value="<?php echo set_value('jabatan_nl'); ?>" readonly>
 										<?php echo form_error('jabatan_nl'); ?>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="" class="col-sm-3 col-form-label"></label>
 									<div class="col-sm-6">
-										<select class="form-control" name="nama_penilai" id="idp">
+										<select class="form-control" id="penilai_">
 											<option disabled selected>--Pilih Penilai--</option>
 											<?php foreach($idp as $row) { ?>
-												<option value="<?php echo $row->id_penilai;?>"><?php echo $row->nik_penilai;?> - <?php echo $row->nama_penilai;?></option>
+												<option value="<?php echo $row->id_penilai;?>"><?php echo $row->nama_penilai;?></option>
 											<?php } ?>
 										</select>
 									</div>
@@ -113,14 +112,14 @@
 								<div class="form-group row">
 									<label for="dep" class="col-sm-3 col-form-label">Nama Penilai</label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control" id="nama_penilai_nl" name="nama_penilai_nl"  value="<?php echo set_value('nama_penilai_nl'); ?>">
+										<input type="text" class="form-control" id="namapn_" name="nama_penilai_nl"  value="<?php echo set_value('nama_penilai_nl'); ?>" readonly>
 										<?php echo form_error('nama_penilai_nl'); ?>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="" class="col-sm-3 col-form-label">Jabatan Penilai</label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control" id="jabatan_penilai_nl" name="jabatan_penilai_nl"  value="<?php echo set_value('jabatan_penilai_nl'); ?>">
+										<input type="text" class="form-control" id="jabatanpn_" name="jabatan_penilai_nl"  value="<?php echo set_value('jabatan_penilai_nl'); ?>" readonly>
 										<?php echo form_error('jabatan_penilai_nl'); ?>
 									</div>
 								</div>
@@ -153,8 +152,7 @@
 				monthsShort: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
 				today: "Hari Ini",
 				clear: "Clear",
-				format: "yyyy-mm-dd",
-				titleFormat: "MM yyyy", /* Leverages same syntax as ‘format’ */
+				format: "dd-mm-yyyy",
 				weekStart: 0
 	};
 </script>
@@ -169,44 +167,42 @@
 	}); 
 
 	$(document).ready(function(){
-		$('#idk').on('input',function(){
-                
-            var idk = $(this).val();
+		$('#kodeku_').on('input',function(){
+            var id_kry = $(this).val();
             $.ajax({
                 type : "POST",
 				url  : "<?php echo base_url('admin/get_karyawan')?>",
                 dataType : "JSON",
-                data : {id: idk},
+                data : {id_kry: id_kry},
                 cache:false,
                 success: function(data){
-                    $.each(data,function(id, nama, nik, departemen, tgl_masuk, jabatan){
-                        $('[name="nama"]').val(data.nama);
-                        $('[name="nik"]').val(data.nik);
-                        $('[name="departemen"]').val(data.departemen);
-                        $('[name="tgl_masuk"]').val(data.tgl_masuk);
-                        $('[name="jabatan"]').val(data.jabatan);
+                    $.each(data,function(id_kry, nama_kry, nik_kry, dep_kry, tgl_masuk_kry, jabatan_kry){
+                        $('[id="nama_"]').val(data.nama_kry);
+                        $('[id="nik_"]').val(data.nik_kry);
+                        $('[id="dep_"]').val(data.dep_kry);
+						$('[id="jabatan_"]').val(data.jabatan_kry);
+                        $('[id="tgl_"]').val(data.tgl_masuk_kry);
                     });   
                 }
             });
             return false;
         });
-
 	});
 
 	$(document).ready(function(){
-		$('#idp').on('input',function(){
+		$('#penilai_').on('input',function(){
                 
-            var idp = $(this).val();
+            var id_penilai = $(this).val();
             $.ajax({
                 type : "POST",
 				url  : "<?php echo base_url('admin/get_penilai')?>",
                 dataType : "JSON",
-                data : {id_penilai: idp},
+                data : {id_penilai: id_penilai},
                 cache:false,
                 success: function(data){
                     $.each(data,function(id_penilai, nama_penilai, jabatan_penilai){
-                        $('[id="nama_penilai"]').val(data.nama_penilai);
-                        $('[id="jabatan_penilai"]').val(data.jabatan_penilai);
+                        $('[id="namapn_"]').val(data.nama_penilai);
+                        $('[id="jabatanpn_"]').val(data.jabatan_penilai);
                     });   
                 }
             });
