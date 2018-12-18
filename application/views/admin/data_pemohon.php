@@ -44,11 +44,12 @@
                                         <table class="table table-bordered dataTable" cellspacing="0" id="examples">
                                             <thead style="background-color:#e9ecef;">
                                                 <tr style="text-align:center;">
-                                                    <th>NO</th>
-                                                    <th>KODE PEMOHON</th>                                  
-                                                    <th>NAMA PEMOHON</th>
+                                                    <th>No.</th>
+                                                    <th>Kode</th>                                  
+                                                    <th>Nama Pemohon</th>
                                                     <th>NIK</th>    
-                                                    <th>JABATAN</th> 
+                                                    <th>Jabatan</th> 
+                                                    <th>Departemen</th>
                                                     <th style="text-align:center;">Aksi</th>
                                                 </tr>
                                             </thead>
@@ -60,6 +61,7 @@
                                                     <td><?= $kry->nama_pemohon ?></td>
                                                     <td><?= $kry->nik_pemohon ?></td>
                                                     <td><?= $kry->jabatan_pemohon ?></td>
+                                                    <td><?= $kry->dep_pemohon ?></td>
                                                     <td style="text-align: center;">
                                                         <a href="<?php echo base_url();?>admin/edit_pemohon/<?php echo $kry->id_pemohon;?>" class="btn btn-xs btn-primary m-r-5" role="button" title="Edit">
                                                         <i class="icon-pencil"></i>&nbsp;

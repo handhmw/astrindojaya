@@ -65,6 +65,18 @@
 											</select>
 										</div>
 									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Departemen</label>
+										<div class="col-sm-6">
+											<select class="form-control" name="dep_pemohon">
+												<?php foreach ($dep as $dep) {  ?>
+													<option <?php if($dep->departemen==$kry->dep_pemohon) { echo "selected"; }?> value="<?php echo $dep->departemen;?>">
+													<?php echo $dep->departemen?></option>	
+												<?php } ?>
+											</select>
+											<?php echo form_error('dep_pemohon'); ?>
+										</div>
+									</div>
 									<br>
 									<div class="form-group row">
 										<div class="col-sm-6">

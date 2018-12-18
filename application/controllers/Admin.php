@@ -58,6 +58,13 @@ class Admin extends CI_Controller {
 		echo json_encode($data);
     }
 
+    function get_pemohon()
+	{
+		$id_pemohon  = $this->input->post('id_pemohon');
+		$data 		 = $this->md_master->get_pemohon_bykode($id_pemohon);
+		echo json_encode($data);
+    }
+
     // ===================================GET BY ID END=================================== //
 
     // ===================================CRUD MASTER DATA START=================================== //
@@ -418,13 +425,6 @@ class Admin extends CI_Controller {
         $this->load->view('admin/data_pemohon', $data);
     }
 
-    function get_pemohon()
-	{
-		$id_pemohon  = $this->input->post('id_pemohon');
-		$data 		 = $this->md_master->get_pemohon_bykode($id_pemohon);
-		echo json_encode($data);
-    }
-
     public function add_pemohon()
     {
         $data['judul']   = 'Tambah Data Pemohon';
@@ -466,6 +466,7 @@ class Admin extends CI_Controller {
         $data['judul']   = 'Edit Data Pemohon';
         $data['idp']     = $this->md_master->get_idp();
         $data['jbt']     = $this->md_master->get_jabatan();
+        $data['dep']     = $this->md_master->get_dept();
         $data['kode']    = $this->md_kode->kode_pemohon();
         $data['name']    = $this->session->userdata('name');
         $data['kry']     = $this->md_pemohon->edit($id);

@@ -32,41 +32,57 @@ class Md_master extends CI_Model
                     'nama_penilai' 	  => $data->nama_penilai,
                     'nik_penilai' 	  => $data->nik_penilai,
 					'jabatan_penilai' => $data->jabatan_penilai,
-					);
+				);
+			}
+		}
+		return $hasil;
+    }
+
+    function get_pemohon_bykode($id_pemohon){
+		$hsl = $this->db->query("SELECT * FROM tb_pemohon WHERE id_pemohon='$id_pemohon'");
+		if($hsl->num_rows()>0){
+			foreach ($hsl->result() as $data) {
+				$hasil = array(
+					'id_pemohon' 	  => $data->id_pemohon,
+                    'nama_pemohon' 	  => $data->nama_pemohon,
+                    'nik_pemohon' 	  => $data->nik_pemohon,
+                    'jabatan_pemohon' => $data->jabatan_pemohon,
+                    'dep_pemohon'     => $data->dep_pemohon,
+				);
 			}
 		}
 		return $hasil;
     }
     
-    function get_idk()
-    {
-        $this->db->where('pangkat_kry', 'STAFF');
-        $this->db->or_where('pangkat_kry', 'OPERATOR');
-        $query = $this->db->get('tb_karyawan');
-        return $query->result();
-    }
+    // function get_idk()
+    // {
+    //     $this->db->where('pangkat_kry', 'STAFF');
+    //     $this->db->or_where('pangkat_kry', 'OPERATOR');
+    //     $query = $this->db->get('tb_karyawan');
+    //     return $query->result();
+    // }
 
-    function get_idk_penilai()
-    {
-        $this->db->where('pangkat_kry', 'MANAGER');
-        $query = $this->db->get('tb_karyawan');
-        return $query->result();
-    }
+    // function get_idk_penilai()
+    // {
+    //     $this->db->where('pangkat_kry', 'MANAGER');
+    //     $query = $this->db->get('tb_karyawan');
+    //     return $query->result();
+    // }
 
-    function get_idk_pemohon()
-    {
-        //$this->db->where('pangkat', 'MANAGER');
-        $query = $this->db->get('tb_karyawan');
-        return $query->result();
-    }
+    // function get_idk_pemohon()
+    // {
+    //     //$this->db->where('pangkat', 'MANAGER');
+    //     $query = $this->db->get('tb_karyawan');
+    //     return $query->result();
+    // }
 
-    function get_idp()
-    {
-        // $this->db->where('jabatan_penilai', 'PRODUCT MANAGER');
-        // $query = $this->db->get('tb_penilai');
-        // return $query->result();
-        return $this->db->from('tb_penilai')->get()->result();
-    }
+    // function get_idp()
+    // {
+    //     // $this->db->where('jabatan_penilai', 'PRODUCT MANAGER');
+    //     // $query = $this->db->get('tb_penilai');
+    //     // return $query->result();
+    //     return $this->db->from('tb_penilai')->get()->result();
+    // }
 
     public function get_dept()
     {

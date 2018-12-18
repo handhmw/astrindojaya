@@ -43,10 +43,10 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label"></label>
 										<div class="col-sm-6">
-											<select class="form-control" name="id" id="idk">
+											<select class="form-control" id="kodeku_">
 												<option disabled selected>--Pilih Nama Pemohon--</option>
 												<?php foreach($idk as $row) { ?>
-													<option value="<?php echo $row->id_kry;?>"><?php echo $row->nik_kry;?> - <?php echo $row->nama_kry;?></option>
+													<option value="<?php echo $row->id_kry;?>"><?php echo $row->nama_kry;?></option>
 												<?php } ?>
 											</select>
 										</div>
@@ -54,22 +54,29 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">NIK</label>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="nik_kry" name="nik_pemohon"  value="<?php echo set_value('nik_pemohon'); ?>">
+											<input type="text" class="form-control" id="nik_" name="nik_pemohon"  value="<?php echo set_value('nik_pemohon'); ?>">
 											<?php echo form_error('nik_pemohon'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Nama pemohon</label>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="nama_kry" name="nama_pemohon"  value="<?php echo set_value('nama_pemohon'); ?>">
+											<input type="text" class="form-control" id="nama_" name="nama_pemohon"  value="<?php echo set_value('nama_pemohon'); ?>">
 											<?php echo form_error('nama_pemohon'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Jabatan pemohon</label>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="jabatan_kry" name="jabatan_pemohon"  value="<?php echo set_value('jabatan_pemohon'); ?>">
+											<input type="text" class="form-control" id="jabatan_" name="jabatan_pemohon"  value="<?php echo set_value('jabatan_pemohon'); ?>">
 											<?php echo form_error('jabatan_pemohon'); ?>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Departemen pemohon</label>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="dep_" name="dep_pemohon"  value="<?php echo set_value('dep_pemohon'); ?>">
+											<?php echo form_error('dep_pemohon'); ?>
 										</div>
 									</div>
 									<br>
@@ -92,20 +99,20 @@
 		<?php include ('decorations/footer.php');?>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$('#idk').on('input',function(){
-						
-					var idk = $(this).val();
+				$('#kodeku_').on('input',function(){
+					var id_kry = $(this).val();
 					$.ajax({
 						type : "POST",
 						url  : "<?php echo base_url('admin/get_karyawan')?>",
 						dataType : "JSON",
-						data : {id: idk},
+						data : {id_kry: id_kry},
 						cache:false,
 						success: function(data){
-							$.each(data,function(id_pemohon, nama_pemohon, nik_pemohon, jabatan_pemohon){
-								$('[id="nama"]').val(data.nama);
-								$('[id="nik"]').val(data.nik);
-								$('[id="jabatan"]').val(data.jabatan);
+							$.each(data,function(id_kry, nama_kry, nik_kry, dep_kry, tgl_masuk_kry, jabatan_kry){
+								$('[id="nama_"]').val(data.nama_kry);
+								$('[id="nik_"]').val(data.nik_kry);
+								$('[id="dep_"]').val(data.dep_kry);
+								$('[id="jabatan_"]').val(data.jabatan_kry);
 							});   
 						}
 					});

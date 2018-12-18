@@ -25,7 +25,6 @@
 							</div>      
 						</div>
 					</div>
-
 					<div class="row clearfix">
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 col-xl-12">			
 							<div class="card mb-3">
@@ -52,10 +51,10 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label"></label>
 										<div class="col-sm-6">
-											<select class="form-control" id="idk">
+											<select class="form-control" id="kodeku_">
 												<option disabled selected >--Pilih Karyawan--</option>
 												<?php foreach($idk as $id_) { ?>
-													<option value="<?php echo $id_->id_kry;?>"><?php echo $id_->nik_kry;?> - <?php echo $id_->nama_kry;?></option>
+													<option value="<?php echo $id_->id_kry;?>"><?php echo $id_->nama_kry;?></option>
 												<?php } ?>
 											</select>
 										</div>
@@ -63,35 +62,35 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Nama Karyawan</label>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" name="nama_cb" value="<?php echo set_value('nama_cb'); ?>">
+											<input type="text" class="form-control" id="nama_" name="nama_cb" value="<?php echo set_value('nama_cb'); ?>" readonly>
 											<?php echo form_error('nama_cb'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">NIK</label>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" name="nik_cb" value="<?php echo set_value('nik_cb'); ?>">
+											<input type="text" class="form-control" id="nik_" name="nik_cb" value="<?php echo set_value('nik_cb'); ?>" readonly>
 											<?php echo form_error('nik_cb'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Departemen</label>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" name="dep_cb" value="<?php echo set_value('dep_cb'); ?>">
+											<input type="text" class="form-control" id="dep_" name="dep_cb" value="<?php echo set_value('dep_cb'); ?>" readonly>
 											<?php echo form_error('dep_cb'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Jabatan</label>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" name="jabatan_cb" value="<?php echo set_value('jabatan_cb'); ?>">
+											<input type="text" class="form-control" id="jabatan_" name="jabatan_cb" value="<?php echo set_value('jabatan_cb'); ?>" readonly>
 											<?php echo form_error('jabatan_cb'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Tanggal Masuk</label>
 										<div class="col-sm-6">
-											<input id="tgl_kerja" type="text" class="form-control" name="tgl_masuk_cb" value="<?php echo set_value('tgl_masuk_cb'); ?>">
+											<input type="text" id="tgl_" class="form-control" name="tgl_masuk_cb" value="<?php echo set_value('tgl_masuk_cb'); ?>" readonly>
 											<?php echo form_error('tgl_masuk_cb'); ?>
 										</div>
 									</div>
@@ -171,8 +170,7 @@
 				monthsShort: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
 				today: "Hari Ini",
 				clear: "Clear",
-				format: "yyyy-mm-dd",
-				titleFormat: "MM yyyy", /* Leverages same syntax as ‘format’ */
+				format: "dd-mm-yyyy",
 				weekStart: 0
 	};
 </script>
@@ -201,28 +199,26 @@
 	}); 
 
 	$(document).ready(function(){
-		$('#idk').on('input',function(){
-                
-            var idk = $(this).val();
+		$('#kodeku_').on('input',function(){
+            var id_kry = $(this).val();
             $.ajax({
                 type : "POST",
 				url  : "<?php echo base_url('admin/get_karyawan')?>",
                 dataType : "JSON",
-                data : {id: idk},
+                data : {id_kry: id_kry},
                 cache:false,
                 success: function(data){
-                    $.each(data,function(id, nama, nik, departemen, tgl_masuk, jabatan){
-                        $('[name="nama"]').val(data.nama);
-                        $('[name="nik"]').val(data.nik);
-                        $('[name="departemen"]').val(data.departemen);
-                        $('[name="tgl_masuk"]').val(data.tgl_masuk);
-                        $('[name="jabatan"]').val(data.jabatan);
+                    $.each(data,function(id_kry, nama_kry, nik_kry, dep_kry, tgl_masuk_kry, jabatan_kry){
+                        $('[id="nama_"]').val(data.nama_kry);
+                        $('[id="nik_"]').val(data.nik_kry);
+                        $('[id="dep_"]').val(data.dep_kry);
+						$('[id="jabatan_"]').val(data.jabatan_kry);
+                        $('[id="tgl_"]').val(data.tgl_masuk_kry);
                     });   
                 }
             });
             return false;
         });
-
 	});
 </script>
 

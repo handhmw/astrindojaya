@@ -20,6 +20,7 @@ class Md_pemohon extends CI_Model
                     'nama_pemohon'      => $this->input->post('nama_pemohon'),
                     'nik_pemohon'       => $this->input->post('nik_pemohon'),
                     'jabatan_pemohon'   => $this->input->post('jabatan_pemohon'),
+                    'dep_pemohon'       => $this->input->post('dep_pemohon'),
 		];
 
 		$this->db->insert('tb_pemohon', $data);
@@ -45,6 +46,7 @@ class Md_pemohon extends CI_Model
                         'nama_pemohon'      => $this->input->post('nama_pemohon'),
                         'nik_pemohon'       => $this->input->post('nik_pemohon'),
                         'jabatan_pemohon'   => $this->input->post('jabatan_pemohon'),
+                        'dep_pemohon'       => $this->input->post('dep_pemohon'),
                 ];
 
 		$this->db->update('tb_pemohon', $data, $kondisi);
@@ -76,6 +78,10 @@ class Md_pemohon extends CI_Model
 
                         ['field' => 'jabatan_pemohon',
                         'label' => 'Jabatan pemohon',
+                        'rules' => 'required'],
+
+                        ['field' => 'dep_pemohon',
+                        'label' => 'Departemen pemohon',
                         'rules' => 'required'],
                         ];
 
