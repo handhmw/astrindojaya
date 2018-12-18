@@ -54,20 +54,20 @@ class Md_master extends CI_Model
 		return $hasil;
     }
     
-    // function get_idk()
-    // {
-    //     $this->db->where('pangkat_kry', 'STAFF');
-    //     $this->db->or_where('pangkat_kry', 'OPERATOR');
-    //     $query = $this->db->get('tb_karyawan');
-    //     return $query->result();
-    // }
+    function get_idk()
+    {
+        $this->db->where('pangkat_kry', 'STAFF');
+        $this->db->or_where('pangkat_kry', 'OPERATOR');
+        $query = $this->db->get('tb_karyawan');
+        return $query->result();
+    }
 
-    // function get_idk_penilai()
-    // {
-    //     $this->db->where('pangkat_kry', 'MANAGER');
-    //     $query = $this->db->get('tb_karyawan');
-    //     return $query->result();
-    // }
+    function get_idk_penilai()
+    {
+        $this->db->where('pangkat_kry', 'MANAGER');
+        $query = $this->db->get('tb_karyawan');
+        return $query->result();
+    }
 
     // function get_idk_pemohon()
     // {
