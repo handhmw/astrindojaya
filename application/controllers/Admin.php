@@ -837,7 +837,7 @@ class Admin extends CI_Controller {
      public function add_percobaan()
      {
          $data['judul']   = 'Tambah Karyawan Percobaan';
-         $data['idk']     = $this->md_master->get_idk();
+         $data['idk']     = $this->md_master->get_idk_karyawan();
          $data['dep']     = $this->md_master->get_dept();
          $data['jbt']     = $this->md_master->get_jabatan();
          $data['krj']     = $this->md_master->get_kerja();
@@ -933,7 +933,7 @@ class Admin extends CI_Controller {
     public function add_penilaian()
     {
         $data['judul']   = 'Tambah Penilaian Karyawan';
-        $data['idk']     = $this->md_master->get_idk();
+        $data['idk']     = $this->md_master->get_idk_karyawan();
         $data['idp']     = $this->md_master->get_idp();
         $data['kode']    = $this->md_kode->kode_penilaian();
         $data['name']    = $this->session->userdata('name');
@@ -1029,7 +1029,7 @@ class Admin extends CI_Controller {
      public function add_training()
      {
          $data['judul']   = 'Tambah Training Karyawan';
-         $data['idk']     = $this->md_master->get_idk();
+         $data['idk']     = $this->md_master->get_idk_karyawan();
          $data['kode']    = $this->md_kode->kode_training();
          $data['name']    = $this->session->userdata('name');
  
@@ -1122,6 +1122,7 @@ class Admin extends CI_Controller {
      public function add_resign()
      {
          $data['judul']   = 'Tambah Karyawan Resign';
+         $data['idk']     = $this->md_master->get_idk_karyawan();
          $data['dep']     = $this->md_master->get_dept();
          $data['jbt']     = $this->md_master->get_jabatan();
          $data['pgk']     = $this->md_master->get_pangkat();
@@ -1160,6 +1161,7 @@ class Admin extends CI_Controller {
      public function edit_resign($id)
      {
          $data['judul']     = 'Edit Karyawan Resign';
+         $data['idk']       = $this->md_master->get_idk_all();
          $data['dep']       = $this->md_master->get_dept();
          $data['jbt']       = $this->md_master->get_jabatan();
          $data['pgk']       = $this->md_master->get_pangkat();

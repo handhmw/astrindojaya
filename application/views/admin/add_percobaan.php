@@ -39,7 +39,6 @@
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
-
 									<?php echo form_open('admin/save_percobaan', ['class' => 'form-horizontal', 'method' => 'post']); ?>
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Kode Percobaan</label>

@@ -103,7 +103,7 @@
 									<select class="form-control" id="idk_">
 										<option disabled selected >--Pilih Pemohon--</option>
 										<?php foreach($idk as $id_) { ?>
-											<option value="<?php echo $id_->id_kry;?>"><?php echo $id_->nik_kry;?> - <?php echo $id_->nama_kry;?></option>
+											<option value="<?php echo $id_->id_kry;?>"><?php echo $id_->nama_kry;?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -111,14 +111,14 @@
 							<div class="form-group row">
 								<label for="" class="col-sm-3 col-form-label"></label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" id="nama_" name="nama_pmh_pp" value="<?php echo set_value('nama_pmh_pp'); ?>">
+									<input type="text" class="form-control" id="nama_" name="nama_pmh_pp" value="<?php echo set_value('nama_pmh_pp'); ?>" readonly>
 									<?php echo form_error('nama_pmh_pp'); ?>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="" class="col-sm-3 col-form-label">Jabatan Pemohon</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" id="jabatan_" name="jabatan_pmh_pp" value="<?php echo set_value('jabatan_pmh_pp'); ?>">
+									<input type="text" class="form-control" id="jabatan_" name="jabatan_pmh_pp" value="<?php echo set_value('jabatan_pmh_pp'); ?>" readonly>
 									<?php echo form_error('jabatan_pmh_pp'); ?>
 								</div>
 							</div>

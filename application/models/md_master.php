@@ -62,6 +62,12 @@ class Md_master extends CI_Model
         return $query->result();
     }
 
+    function get_idk_karyawan()
+    {
+        $query = $this->db->get('tb_karyawan');
+        return $query->result();
+    }
+
     function get_idk_penilai()
     {
         $this->db->where('pangkat_kry', 'MANAGER');
@@ -69,20 +75,20 @@ class Md_master extends CI_Model
         return $query->result();
     }
 
-    // function get_idk_pemohon()
-    // {
-    //     //$this->db->where('pangkat', 'MANAGER');
-    //     $query = $this->db->get('tb_karyawan');
-    //     return $query->result();
-    // }
+    function get_idk_pemohon()
+    {
+        //$this->db->where('pangkat', 'MANAGER');
+        $query = $this->db->get('tb_karyawan');
+        return $query->result();
+    }
 
-    // function get_idp()
-    // {
-    //     // $this->db->where('jabatan_penilai', 'PRODUCT MANAGER');
-    //     // $query = $this->db->get('tb_penilai');
-    //     // return $query->result();
-    //     return $this->db->from('tb_penilai')->get()->result();
-    // }
+    function get_idp()
+    {
+        // $this->db->where('jabatan_penilai', 'PRODUCT MANAGER');
+        // $query = $this->db->get('tb_penilai');
+        // return $query->result();
+        return $this->db->from('tb_penilai')->get()->result();
+    }
 
     public function get_dept()
     {
@@ -194,7 +200,7 @@ class Md_master extends CI_Model
     function statistik_pengunjung()
     {
     
-    $sql= $this->db->query("select
+    $sql = $this->db->query("select
                             ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=1)AND (YEAR(date)=2016))),0) AS `Januari`,
                             ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=2)AND (YEAR(date)=2016))),0) AS `Februari`,
                             ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=3)AND (YEAR(date)=2016))),0) AS `Maret`,
@@ -209,8 +215,6 @@ class Md_master extends CI_Model
                             ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=12)AND (YEAR(date)=2016))),0) AS `Desember`
                             from tb_counter GROUP BY YEAR(date) 
     ");
-    
-    return $sql;
-    
+        return $sql;
     } 
 }
