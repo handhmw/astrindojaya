@@ -31,7 +31,7 @@
     
         $pdf->SetFont('helvetica','',6,'',true);
     
-        $pdf->AddPage('P');
+        $pdf->AddPage('L');
         $i=0;
             
             $html='<h3>Data Permohonan Karyawan</h3>

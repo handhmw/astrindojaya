@@ -36,18 +36,18 @@
                                         </div>
                                     <?php endif;?>
                                     <h5><i class="fa fa-users"></i> <?php echo $judul; ?></h5><br>
-                                    <a href="<?php echo base_url();?>admin/add_mpp" class="btn btn-xs btn-default" role="button" title="Tambah mpp">
+                                    <a href="<?php echo base_url();?>admin/add_mpp" class="btn btn-xs btn-default" role="button" title="Tambah MPP">
                                     <i class="icon-plus"></i><span> Tambah</span></a>
                                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter" title="Import Data">
                                     <i class="fa fa-upload"></i> Import</button>
-                                    <a href="<?php echo base_url() ?>report_mpp/print_mpp" class="btn btn-xs btn-default" role="button" title="Print Data">
-                                    <i class="fa fa-print"></i><span> Print Jab</span></a>
-                                    <a href="<?php echo base_url() ?>report_mpp_dep/print_mpp" class="btn btn-xs btn-default" role="button" title="Print Data">
-                                    <i class="fa fa-print"></i><span> Print Dep</span></a>
-                                    <a href="<?=base_url('report_mpp_area/print_mpp')?>" class="btn btn-xs btn-default" role="button" title="Print Manual">
-                                    <i class="fa fa-file-text"></i><span> Print Area</span></a>
-                                    <a href="<?=base_url('report_mpp_tat/print_mpp')?>" class="btn btn-xs btn-default" role="button" title="Print Manual">
-                                    <i class="fa fa-file-text"></i><span> Print TAT</span></a>
+                                    <a href="<?php echo base_url() ?>report_mpp/print_mpp" class="btn btn-xs btn-default" role="button" title="Print per Jabatan">
+                                    <i class="fa fa-print"></i><span> Jabatan</span></a>
+                                    <a href="<?php echo base_url() ?>report_mpp_dep/print_mpp" class="btn btn-xs btn-default" role="button" title="Print per Departemen">
+                                    <i class="fa fa-print"></i><span> Departemen</span></a>
+                                    <a href="<?=base_url('report_mpp_area/print_mpp')?>" class="btn btn-xs btn-default" role="button" title="Print per Area">
+                                    <i class="fa fa-print"></i><span> Area</span></a>
+                                    <a href="<?=base_url('report_mpp_tat/print_mpp')?>" class="btn btn-xs btn-default" role="button" title="Print Data TAT">
+                                    <i class="fa fa-print"></i><span> TAT</span></a>
                                   
                                 <div class="body">
                                     <div class="table-responsive">
