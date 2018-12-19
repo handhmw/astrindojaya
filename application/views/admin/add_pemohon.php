@@ -54,28 +54,28 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">NIK</label>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="nik_" name="nik_pemohon"  value="<?php echo set_value('nik_pemohon'); ?>">
+											<input type="text" class="form-control" id="nik_" name="nik_pemohon"  value="<?php echo set_value('nik_pemohon'); ?>" readonly>
 											<?php echo form_error('nik_pemohon'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Nama pemohon</label>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="nama_" name="nama_pemohon"  value="<?php echo set_value('nama_pemohon'); ?>">
+											<input type="text" class="form-control" id="nama_" name="nama_pemohon"  value="<?php echo set_value('nama_pemohon'); ?>" readonly>
 											<?php echo form_error('nama_pemohon'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Jabatan pemohon</label>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="jabatan_" name="jabatan_pemohon"  value="<?php echo set_value('jabatan_pemohon'); ?>">
+											<input type="text" class="form-control" id="jabatan_" name="jabatan_pemohon"  value="<?php echo set_value('jabatan_pemohon'); ?>" readonly>
 											<?php echo form_error('jabatan_pemohon'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Departemen pemohon</label>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="dep_" name="dep_pemohon"  value="<?php echo set_value('dep_pemohon'); ?>">
+											<input type="text" class="form-control" id="dep_" name="dep_pemohon"  value="<?php echo set_value('dep_pemohon'); ?>" readonly>
 											<?php echo form_error('dep_pemohon'); ?>
 										</div>
 									</div>
@@ -108,7 +108,7 @@
 						data : {id_kry: id_kry},
 						cache:false,
 						success: function(data){
-							$.each(data,function(id_kry, nama_kry, nik_kry, dep_kry, tgl_masuk_kry, jabatan_kry){
+							$.each(data,function(id_kry, nama_kry, nik_kry, dep_kry, jabatan_kry){
 								$('[id="nama_"]').val(data.nama_kry);
 								$('[id="nik_"]').val(data.nik_kry);
 								$('[id="dep_"]').val(data.dep_kry);
