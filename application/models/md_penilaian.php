@@ -63,13 +63,19 @@ class Md_penilaian extends CI_Model
 		$this->db->delete('tb_penilaian', ['id_nl' => $id_nl]);
         }
 
-        public function print($tabel,$id_nl)
+        // public function print($tabel,$id_nl)
+        // {
+        //         $query = $this->db->select()
+        //                         ->from($tabel)
+        //                         ->where($id_nl)
+        //                         ->get();
+        //         return $query->result();
+        // }
+
+        public function print()
         {
-                $query = $this->db->select()
-                                ->from($tabel)
-                                ->where($id_nl)
-                                ->get();
-                return $query->result();
+                $query = $this->db->get('tb_penilaian');
+                return $query->result_array();
         }
         
         public function val_penilaian()

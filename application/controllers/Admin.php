@@ -599,12 +599,12 @@ class Admin extends CI_Controller {
         $data['karyawan'] = $this->md_karyawan->tampil();
         $data['judul']    = "Data Karayawan";
 
-        $msg    = $this->uri->segment(3);
-        $alert  = '';
-        if($msg == 'success'){
-            $alert  = 'Success!!';
-        }
-        $data['_alert'] = $alert;
+        // $msg    = $this->uri->segment(3);
+        // $alert  = '';
+        // if($msg == 'success'){
+        //     $alert  = 'Success!!';
+        // }
+        // $data['_alert'] = $alert;
 
         $this->load->view('admin/data_karyawan', $data);
     }
@@ -700,7 +700,6 @@ class Admin extends CI_Controller {
     public function print_karyawan()
     {
         $data['karyawan'] = $this->md_karyawan->print();
-
         $this->load->view('admin/print_karyawan', $data);
     }
 

@@ -75,11 +75,17 @@ class Md_training extends CI_Model
 		$this->db->delete('tb_training', ['id_tr' => $id_tr]);
         }
 
-        public function print($tabel,$id_tr)
-        {
+        // public function print($tabel,$id_tr)
+        // {
 
-                $query = $this->db->get_where('tb_training', ['id_tr' => $id_tr]);
-		return $query->result();
+        //         $query = $this->db->get_where('tb_training', ['id_tr' => $id_tr]);
+	// 	return $query->result();
+        // }
+
+        public function print()
+        {
+                $query = $this->db->get('tb_training');
+                return $query->result_array();
         }
         
         public function val_training()

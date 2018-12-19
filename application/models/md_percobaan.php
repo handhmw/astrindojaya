@@ -76,20 +76,20 @@ class Md_percobaan extends CI_Model
 		$this->db->delete('tb_percobaan', ['id_cb' => $id_cb]);
         }
 
-        // public function print()
-        // {
-        //         $query = $this->db->get('tb_percobaan');
-        //         return $query->result_array();
-        // }
-
-        public function print($tabel,$id_cb)
+        public function print()
         {
-                $query = $this->db->select()
-                                ->from($tabel)
-                                ->where($id_cb)
-                                ->get();
-                return $query->result();
+                $query = $this->db->get('tb_percobaan');
+                return $query->result_array();
         }
+
+        // public function print($tabel,$id_cb)
+        // {
+        //         $query = $this->db->select()
+        //                         ->from($tabel)
+        //                         ->where($id_cb)
+        //                         ->get();
+        //         return $query->result();
+        // }
         
         public function val_percobaan()
         {
