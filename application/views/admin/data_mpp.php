@@ -2,15 +2,10 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-
 <body class="theme-cyan">
-
 <div id="wrapper">
-
     <?php include ('decorations/navbar.php');?>
-
     	<?php include ('decorations/sidebar.php');?>
-
 			<!-- Start Main Content -->
 			<div id="main-content">
 				<div class="container-fluid">
@@ -25,12 +20,10 @@
 							</div>      
 						</div>
 					</div>
-                  
 					<div class="kry clearfix">
 						<div class="col-lg-12">
                             <div class="card">
                                 <div class="header">
-
                                     <?php
                                         if(isset($_SESSION['hapus_sukses']) || isset($_SESSION['update_sukses'])) :
                                             $notif = '';
@@ -42,7 +35,6 @@
                                             <strong>Sukses!</strong> <?php echo $notif; ?>
                                         </div>
                                     <?php endif;?>
-
                                     <h5><i class="fa fa-users"></i> <?php echo $judul; ?></h5><br>
                                     <a href="<?php echo base_url();?>admin/add_mpp" class="btn btn-xs btn-default" role="button" title="Tambah mpp">
                                     <i class="icon-plus"></i><span> Tambah</span></a>
@@ -116,20 +108,16 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <!-- <form action="<?php echo base_url();?>admin/upload_percobaan/" enctype="multipart/form-data" method="post">
+                                    <form action="<?php echo base_url();?>admin/upload_percobaan/" enctype="multipart/form-data" method="post">
                                         <div class="file-upload">
                                             <div class="file-select">
                                                 <div class="file-select-button" id="fileName">Choose File</div>
                                                 <div class="file-select-name" id="noFile">No file chosen...</div> 
-                                                    <input type="file" name="chooseFile" id="chooseFile">
+                                                    <input type="file" name="file" id="chooseFile">
                                                 </div><br>
                                                     <input type="submit" name="import" value="Import" class="btn btn-xs btn-primary" role="button">
                                             </div>
                                         </div>
-                                    </form> -->
-                                    <form action="<?php echo base_url();?>admin/upload_mpp/" enctype="multipart/form-data" method="post">
-                                        <input name="file" type="file" />
-                                        <input type="submit" value="Import File" />
                                     </form>
                                 <div class="modal-footer">
                             </div>
