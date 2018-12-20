@@ -10,10 +10,8 @@
         $pdf->SetHeaderData('logo.jpg',30,'PT. Astrindo Senayasa','Mangga Dua Square Blok G 24, Jalan Gunung Sahari Raya, Pademangan, RT.12/RW.6, Jakarta Utara, Daerah Khusus Ibukota Jakarta.',array(0, 0, 0),array(0, 0, 0));
         $pdf->SetFooterData(array(255, 255, 255), array(255, 255, 255));
     
-    
         $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN,'',PDF_FONT_SIZE_MAIN));
         $pdf->setFooterFont(Array(PDF_FONT_NAME_MAIN,'',PDF_FONT_SIZE_MAIN));
-    
         $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
     
         //set margin
