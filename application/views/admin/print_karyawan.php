@@ -36,7 +36,7 @@
         $html='<h3>Data Karyawan</h3>
             <table border="0.5" bgcolor="#666666" cellpadding="2">
                 <tr align="center" bgcolor="#ffffff">
-                    <th  align="center">ID</th>
+                    <th width="3%">No</th>
                     <th  align="center">Nama Lengkap</th>
                     <th align="center">NIK</th>
                     <th  align="center">Jabatan</th>
@@ -64,9 +64,9 @@
                     {
                         $i++;
                         $html.='<tr bgcolor="#ffffff">
-                                <td>'.$row['id_kry'].'</td>
+                                <td align="center">'.$i.'</td>
                                 <td>'.$row['nama_kry'].'</td>
-                                <td>'.$row['nik_kry'].'</td>
+                                <td align="center">'.$row['nik_kry'].'</td>
                                 <td>'.$row['jabatan_kry'].'</td>
                                 <td>'.$row['pangkat_kry'].'</td>
                                 <td>'.$row['divisi_kry'].'</td>
@@ -74,16 +74,16 @@
                                 <td>'.$row['unit_kry'].'</td>
                                 <td>'.$row['nama_panggilan_kry'].'</td>
                                 <td>'.$row['identitas_kry'].'</td>
-                                <td>'.$row['jk_kry'].'</td>
+                                <td align="center">'.$row['jk_kry'].'</td>
                                 <td>'.$row['tempat_lahir_kry'].'</td>
-                                <td>'.$row['tgl_lahir_kry'].'</td>
+                                <td align="center">'.$row['tgl_lahir_kry'].'</td>
                                 <td>'.$row['negara_kry'].'</td>
                                 <td>'.$row['agama_kry'].'</td>
-                                <td>'.$row['npwp_kry'].'</td>
+                                <td align="center">'.$row['npwp_kry'].'</td>
                                 <td>'.$row['alamat_kry'].'</td>
-                                <td>'.$row['tlp_rumah_kry'].'</td>
-                                <td>'.$row['no_hp_kry'].'</td>
-                                <td>'.$row['tgl_masuk_kry'].'</td>
+                                <td align="center">'.$row['tlp_rumah_kry'].'</td>
+                                <td align="center">'.$row['no_hp_kry'].'</td>
+                                <td align="center">'.$row['tgl_masuk_kry'].'</td>
                                 <td>'.$row['status_kerja_kry'].'</td>
                                 <td>'.$row['status_nikah_kry'].'</td>
                                 <td>'.$row['email_kry'].'</td>

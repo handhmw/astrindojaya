@@ -28,24 +28,22 @@
     
         //FONT Subsetting
         $pdf->setFontSubsetting(true);
-    
         $pdf->SetFont('helvetica','',6,'',true);
-    
-        $pdf->AddPage('P');
+        $pdf->AddPage('L');
         $i=0;
             
             $html='<h3>Data Training Karyawan</h3>
                     <table border="0.5" bgcolor="#666666" cellpadding="2">
                         <tr align="center" bgcolor="#ffffff">
-                            <th >No</th>
-                            <th >Nama Pemohon</th>
+                            <th width="3%">No</th>
+                            <th>Nama Pemohon</th>
                             <th >NIK</th>
-                            <th >Jabatan</th>
+                            <th width="13%">Jabatan</th>
                             <th>Departemen</th>
                             <th>Tgl Permohonan</th>
                             <th>Judul Training</th>
                             <th >Penyelenggara</th>
-                            <th >Tgl Penyelenggaraan</th>
+                            <th >Tgl Acara</th>
                             <th >Tempat</th>
                             <th>Biaya</th>
                             <th>Pembayaran</th>
@@ -58,7 +56,7 @@
                     $html.='<tr bgcolor="#ffffff">
                             <td align="center">'.$i.'</td>
                             <td align="center">'.$row['nama_pemohon_tr'].'</td>
-                            <td> '.$row['nik_pemohon_tr'].'</td>
+                            <td align="center"> '.$row['nik_pemohon_tr'].'</td>
                             <td> '.$row['jabatan_pemohon_tr'].'</td>
                             <td align="center"> '.$row['dep_pemohon_tr'].'</td>
                             <td align="center">'.$row['tgl_permohonan_tr'].'</td>
@@ -66,10 +64,10 @@
                             <td align="center">'.$row['penyelenggara_tr'].'</td>
                             <td align="center">'.$row['tgl_pelaksanaan_tr'].'</td>
                             <td> '.$row['tempat_pelaksanaan_tr'].'</td>
-                            <td> '.$row['biaya_tr'].'</td>
+                            <td align="center"> '.$row['biaya_tr'].'</td>
                             <td> '.$row['pembayaran_tr'].'</td>
-                            <td> '.$row['tgl_terima_tr'].'</td>
-                            <td> '.$row['nik_bayar_tr'].'</td>
+                            <td align="center"> '.$row['tgl_terima_tr'].'</td>
+                            <td align="center"> '.$row['tgl_bayar_tr'].'</td>
                         </tr>';
                 }
             $html.='</table>';

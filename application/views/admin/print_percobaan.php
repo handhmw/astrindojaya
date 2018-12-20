@@ -35,18 +35,18 @@
         $i=0;
             
             $html='<h3>Data Karyawan Percobaan</h3>
-                    <table border="0.5" bgcolor="#666666" cellpadding="2">
+                    <table border="0.5" bgcolor="#666666" cellpadding="2" position: relative;>
                         <tr align="center" bgcolor="#ffffff">
-                            <th >No</th>
-                            <th >Nama Pemohon</th>
-                            <th >NIK</th>
+                            <th width="3%">No</th>
+                            <th width="15%">Nama Pemohon</th>
+                            <th width="6%">NIK</th>
                             <th>Departemen</th>
-                            <th >Jabatan</th>
-                            <th>Tgl Masuk</th>
+                            <th>Jabatan</th>
+                            <th width="8%">Tgl Masuk</th>
                             <th>Jenis</th>
-                            <th >Tgl Mulai</th>
-                            <th >Tgl Selesai</th>
-                            <th >Percobaan</th>
+                            <th width="8%">Tgl Mulai</th>
+                            <th width="8%">Tgl Selesai</th>
+                            <th>Percobaan</th>
                             <th>Catatan HR/GA</th>
                             <th>Catatan Atasan</th>
                         </tr>';
@@ -55,12 +55,12 @@
                     $i++;
                     $html.='<tr bgcolor="#ffffff">
                             <td align="center">'.$i.'</td>
-                            <td align="center">'.$row['nama_cb'].'</td>
-                            <td> '.$row['nik_cb'].'</td>
-                            <td align="center"> '.$row['dep_cb'].'</td>
+                            <td>'.$row['nama_cb'].'</td>
+                            <td align="center"> '.$row['nik_cb'].'</td>
+                            <td> '.$row['dep_cb'].'</td>
                             <td> '.$row['jabatan_cb'].'</td>
                             <td align="center">'.$row['tgl_masuk_cb'].'</td>
-                            <td align="center">'.$row['jenis_cb'].'</td>
+                            <td>'.$row['jenis_cb'].'</td>
                             <td align="center">'.$row['tgl_mulai_cb'].'</td>
                             <td align="center">'.$row['tgl_selesai_cb'].'</td>
                             <td> '.$row['percobaan_cb'].'</td>

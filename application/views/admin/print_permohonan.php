@@ -20,7 +20,6 @@
         $pdf->SetMargins(PDF_MARGIN_LEFT,PDF_MARGIN_TOP - 6,PDF_MARGIN_RIGHT);
         $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
         $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-    
         $pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM - 5);
     
         //SET Scaling ImagickPixel
@@ -28,16 +27,14 @@
     
         //FONT Subsetting
         $pdf->setFontSubsetting(true);
-    
         $pdf->SetFont('helvetica','',6,'',true);
-    
         $pdf->AddPage('L');
         $i=0;
             
             $html='<h3>Data Permohonan Karyawan</h3>
                     <table border="0.5" bgcolor="#666666" cellpadding="2">
                         <tr align="center" bgcolor="#ffffff">
-                            <th >No</th>
+                            <th width="3%">No</th>
                             <th>Departemen</th>
                             <th >Nama Pemohon</th>
                             <th >Jabatan Pemohon</th>
@@ -69,26 +66,26 @@
                             <td align="center">'.$i.'</td>
                             <td align="center">'.$row['dep_pmhn'].'</td>
                             <td> '.$row['nama_pemohon_pmhn'].'</td>
-                            <td align="center"> '.$row['jabatan_pemohon_pmhn'].'</td>
+                            <td> '.$row['jabatan_pemohon_pmhn'].'</td>
                             <td> '.$row['jabatan_pmhn'].'</td>
-                            <td align="center">'.$row['lokasi_pmhn'].'</td>
+                            <td>'.$row['lokasi_pmhn'].'</td>
                             <td align="center">'.$row['waktu_pmhn'].'</td>
                             <td align="center">'.$row['status_kerja_pmhn'].'</td>
                             <td align="center">'.$row['jumlah_pmhn'].'</td>
-                            <td> '.$row['tanggal_pmhn'].'</td>
+                            <td align="center"> '.$row['tanggal_pmhn'].'</td>
                             <td> '.$row['dasar_permohonan_pmhn'].'</td>
                             <td> '.$row['sumber_rekrutmen_pmhn'].'</td>
                             <td> '.$row['ringkasan_tugas_pmhn'].'</td>
-                            <td> '.$row['gajih_pmhn'].'</td>
-                            <td> '.$row['jk_pmhn'].'</td>
-                            <td> '.$row['usia_pmhn'].'</td>
-                            <td> '.$row['pendidikan_pmhn'].'</td>
+                            <td align="center"> '.$row['gajih_pmhn'].'</td>
+                            <td align="center"> '.$row['jk_pmhn'].'</td>
+                            <td align="center"> '.$row['usia_pmhn'].'</td>
+                            <td align="center"> '.$row['pendidikan_pmhn'].'</td>
                             <td> '.$row['jurusan_pmhn'].'</td>
                             <td> '.$row['pengalaman_kerja_pmhn'].'</td>
                             <td> '.$row['bidang_pmhn'].'</td>
                             <td> '.$row['syarat_lain_pmhn'].'</td>
                             <td> '.$row['keterampilan_pmhn'].'</td>
-                            <td> '.$row['tgl_bergabung_pmhn'].'</td>
+                            <td align="center"> '.$row['tgl_bergabung_pmhn'].'</td>
                             <td> '.$row['office_equipment_pmhn'].'</td>
                         </tr>';
                 }
