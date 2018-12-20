@@ -33,7 +33,7 @@
         $i=0;
             
             $html='<h3>Data Penilaian Karyawan</h3>
-                    <table border="0.5" bgcolor="#666666">
+                    <table border="0.5" bgcolor="#666666" cellpadding="2">
                         <tr align="center" bgcolor="#ffffff">
                             <th >No</th>
                             <th >Nama Karyawan</th>

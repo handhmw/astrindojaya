@@ -13,14 +13,12 @@
     
         $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN,'',PDF_FONT_SIZE_MAIN));
         $pdf->setFooterFont(Array(PDF_FONT_NAME_MAIN,'',PDF_FONT_SIZE_MAIN));
-    
         $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
     
         //set margin
         $pdf->SetMargins(PDF_MARGIN_LEFT,PDF_MARGIN_TOP - 6,PDF_MARGIN_RIGHT);
         $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
         $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-    
         $pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM - 5);
     
         //SET Scaling ImagickPixel
@@ -28,14 +26,12 @@
     
         //FONT Subsetting
         $pdf->setFontSubsetting(true);
-    
         $pdf->SetFont('helvetica','',6,'',true);
-    
         $pdf->AddPage('P');
         $i=0;
             
             $html='<h3>Data Karyawan Resign</h3>
-                    <table border="0.5" bgcolor="#666666">
+                    <table border="0.5" bgcolor="#666666" cellpadding="2">
                         <tr align="center" bgcolor="#ffffff">
                             <th width="3%">No</th>
                             <th width="6%">Bulan</th>
