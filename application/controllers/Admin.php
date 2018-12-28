@@ -1885,7 +1885,7 @@ class Admin extends CI_Controller {
 				'smtp_host' => 'ssl://smtp.googlemail.com',
 		      	'smtp_port' => 465,
 		      	'smtp_user' => 'handrihmw@gmail.com', 
-		      	'smtp_pass' => '313606gmail', 
+		      	'smtp_pass' => 'PASSWORD', 
 		      	'mailtype' 	=> 'html',
 		      	'charset' 	=> 'iso-8859-1',
 		      	'wordwrap' 	=> TRUE
@@ -1986,7 +1986,7 @@ class Admin extends CI_Controller {
 				'smtp_host' => 'ssl://smtp.googlemail.com',
 		      	'smtp_port' => 465,
 		      	'smtp_user' => 'handrihmw@gmail.com', 
-		      	'smtp_pass' => '313606gmail', 
+		      	'smtp_pass' => 'PASSWORD', 
 		      	'mailtype' 	=> 'html',
 		      	'charset' 	=> 'iso-8859-1',
 		      	'wordwrap' 	=> TRUE
