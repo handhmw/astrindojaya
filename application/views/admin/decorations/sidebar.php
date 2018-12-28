@@ -79,9 +79,9 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#Authentication" class="has-arrow"><i class="icon-lock"></i><span>Authentication</span></a>
+                                <a href="#Authentication" class="has-arrow"><i class="icon-bell"></i><span>Notification</span></a>
                                 <ul>
-                                    <li><a href="<?php echo base_url('#');?>">Email Notification</a></li>
+                                    <li><a href="<?php echo base_url('admin/notifikasi');?>">Email Notification</a></li>
                                     <li><a href="<?php echo base_url('#');?>">Forgot Password</a></li>
                                 </ul>
                             </li>

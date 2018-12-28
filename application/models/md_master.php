@@ -23,6 +23,25 @@ class Md_master extends CI_Model
 		return $hasil;
     }
 
+    function get_karyawan_notif_bykode($id_kry){
+		$hsl = $this->db->query("SELECT * FROM tb_karyawan WHERE id_kry='$id_kry'");
+		if($hsl->num_rows()>0){
+			foreach ($hsl->result() as $data) {
+				$hasil = array(
+					'id_kry' 		=> $data->id_kry,
+					'nama_kry' 	    => $data->nama_kry,
+					'nik_kry' 	    => $data->nik_kry,
+                    'jabatan_kry' 	=> $data->jabatan_kry,
+                    'tgl_lahir_kry' => $data->tgl_lahir_kry,
+					'email_kry' 	=> $data->email_kry,
+					'no_hp_kry' 	=> $data->no_hp_kry,
+					'alamat_kry' 	=> $data->alamat_kry,
+				);
+			}
+		}
+		return $hasil;
+    }
+
     function get_penilai_bykode($id_penilai){
 		$hsl = $this->db->query("SELECT * FROM tb_penilai WHERE id_penilai='$id_penilai'");
 		if($hsl->num_rows()>0){

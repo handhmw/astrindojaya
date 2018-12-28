@@ -51,6 +51,13 @@ class Admin extends CI_Controller {
 		echo json_encode($data);
     }
 
+    function get_karyawan_notif()
+	{
+		$id_kry  = $this->input->post('id_kry');
+		$data    = $this->md_master->get_karyawan_notif_bykode($id_kry);
+		echo json_encode($data);
+    }
+
     function get_penilai()
 	{
 		$id_penilai  = $this->input->post('id_penilai');
@@ -1821,5 +1828,115 @@ class Admin extends CI_Controller {
     }
 
     // -------------------------------------END UPLOAD DATA-------------------------------------//
+
+    // -------------------------------------START NOTIFIKASI-------------------------------------//
+    public function notifikasi()
+    {
+         $data['judul'] = 'Info Data Karyawan Baru';
+         $data['jbt']   = $this->md_master->get_jabatan();
+         $data['idn']   = $this->md_master->get_idk_karyawan();
+         $data['name']  = $this->session->userdata('name');
+ 
+         $this->load->view('admin/notifikasi',$data);
+    }
+
+    public function send()
+	{
+		$subject = 'Data Karyawan Baru - ' . $this->input->post("nama");
+		$file_data = $this->upload_file();
+		if(is_array($file_data))
+		{
+			$message = '
+			<h3 align="center">INFO KARYAWAN BARU</h3>
+				<table border="1" width="100%" cellpadding="5">
+					<tr>
+						<td width="30%">Nama Karyawan</td>
+						<td width="70%">'.$this->input->post("nama").'</td>
+                    </tr>
+                    <tr>
+						<td width="30%">NIK</td>
+						<td width="70%">'.$this->input->post("nik").'</td>
+                    </tr>
+                    <tr>
+						<td width="30%">Jabatan</td>
+						<td width="70%">'.$this->input->post("jabatan").'</td>
+					</tr>
+                    <tr>
+						<td width="30%">Tanggal Lahir</td>
+						<td width="70%">'.$this->input->post("tgl_lahir").'</td>
+                    </tr>
+                    <tr>
+						<td width="30%">No. Handphone</td>
+						<td width="70%">'.$this->input->post("hp").'</td>
+					</tr>
+					<tr>
+						<td width="30%">Email</td>
+						<td width="70%">'.$this->input->post("email").'</td>
+                    </tr>
+					<tr>
+						<td width="30%">Alamat</td>
+						<td width="70%">'.$this->input->post("alamat").'</td>
+					</tr>
+				</table>
+			';
+
+			$config = Array(
+		      	'protocol' 	=> 'smtp',
+				'smtp_host' => 'ssl://smtp.googlemail.com',
+		      	'smtp_port' => 465,
+		      	'smtp_user' => 'handrihmw@gmail.com', 
+		      	'smtp_pass' => '313606gmail', 
+		      	'mailtype' 	=> 'html',
+		      	'charset' 	=> 'iso-8859-1',
+		      	'wordwrap' 	=> TRUE
+            );
+            
+		    $this->load->library('email', $config);
+		    $this->email->set_newline("\r\n");
+		    $this->email->from($this->input->post("email"));
+		    $this->email->to('handrihmw@gmail.com');
+		    $this->email->subject($subject);
+	        $this->email->message($message);
+	        $this->email->attach($file_data['full_path']);
+	        if($this->email->send())
+	        {
+	        	if(delete_files($file_data['file_path']))
+	        	{
+	        		$this->session->set_flashdata('message', 'Email notifikasi berhasil terkirim.');
+	        		redirect('admin/notifikasi');
+	        	}
+	        }
+	        else
+	        {
+	        	if(delete_files($file_data['file_path']))
+	        	{
+	        		$this->session->set_flashdata('message', 'Email notifikasi gagal dikirim!');
+	        		redirect('admin/notifikasi');
+	        	}
+	        }
+	    }
+	    else
+	    {
+	    	$this->session->set_flashdata('message', 'Gagal upload data!');
+	        redirect('admin/notifikasi');
+	    }
+	}
+
+	function upload_file()
+	{
+		$config['upload_path']   = 'uploads/';
+		$config['allowed_types'] = 'jpg|jpeg|doc|docx|pdf';
+		$this->load->library('upload', $config);
+		if($this->upload->do_upload('resume'))
+		{
+			return $this->upload->data();			
+		}
+		else
+		{
+			return $this->upload->display_errors();
+		}
+    }
+    
+    // -------------------------------------END NOTIFIKASI-------------------------------------//
    
 }
