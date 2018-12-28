@@ -165,19 +165,19 @@
 		$(document).ready(function () {
 			$('#tgl_kerja').datepicker({
 				locale:'id',
-				format: "dd/mm/yyyy",
+				format: "dd-mm-yyyy",
 				autoclose: true
 			});
 
 			$('#tgl_mulai').datepicker({
 				locale:'id',
-				format: "dd/mm/yyyy",
+				format: "dd-mm-yyyy",
 				autoclose: true
 			});
 
 			$('#tgl_selesai').datepicker({
 				locale:'id',
-				format: "dd/mm/yyyy",
+				format: "dd-mm-yyyy",
 				autoclose: true
 			});
 		}); 

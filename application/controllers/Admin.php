@@ -1877,7 +1877,7 @@ class Admin extends CI_Controller {
 						<td width="30%">Alamat</td>
 						<td width="70%">'.$this->input->post("alamat").'</td>
 					</tr>
-				</table>
+                </table>
 			';
 
 			$config = Array(
@@ -1949,6 +1949,75 @@ class Admin extends CI_Controller {
     public function send_masa_kerja()
 	{
         $karyawan = $this->md_percobaan->tampil_bulan();
+        $no = 1; foreach ($karyawan as $kry);
+		$subject  = 'Info Masa Habis Kontrak - ' .bulan();
+		{
+			$message = '
+			<h3 align="center">INFO MASA KERJA KARYAWAN</h3>        
+                <table border="1" width="100%" cellpadding="2">
+                    <thead style="background-color:#e9ecef;">
+                        <tr style="text-align:center;">
+                            <th>No.</th>
+                            <th>Nama Karyawan</th>
+                            <th>NIK</th>     
+                            <th>Jabatan</th> 
+                            <th>Jenis Percobaan</th> 
+                            <th>Tanggal Mulai</th> 
+							<th>Tanggal Selesai</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="text-align:center;">
+                            <td>'.$no.'</td>
+                            <td>'.$kry->nama_cb.'</td>
+                            <td>'.$kry->nik_cb.'</td>
+                            <td>'.$kry->jabatan_cb.'</td>
+                            <td>'.$kry->jenis_cb.'</td>
+                            <td>'.$kry->tgl_mulai_cb.'</td>
+							<td>'.$kry->tgl_selesai_cb.'</td>
+                        </tr>
+                    </tbody>
+                </table>
+            ';
+            $no++;
+
+			$config = Array(
+		      	'protocol' 	=> 'smtp',
+				'smtp_host' => 'ssl://smtp.googlemail.com',
+		      	'smtp_port' => 465,
+		      	'smtp_user' => 'handrihmw@gmail.com', 
+		      	'smtp_pass' => '313606gmail', 
+		      	'mailtype' 	=> 'html',
+		      	'charset' 	=> 'iso-8859-1',
+		      	'wordwrap' 	=> TRUE
+            );
+            
+		    $this->load->library('email', $config);
+		    $this->email->set_newline("\r\n");
+		    $this->email->from($this->input->post("email"));
+		    $this->email->to('handrihmw@gmail.com');
+		    $this->email->subject($subject, $data);
+	        $this->email->message($message, $data);
+	        if($this->email->send())
+	        {
+	        	{
+	        		$this->session->set_flashdata('message', 'Email notifikasi berhasil terkirim.');
+	        		redirect('admin/masa_kerja');
+	        	}
+	        }
+	        else
+	        {
+	        	{
+	        		$this->session->set_flashdata('message', 'Email notifikasi gagal dikirim!');
+	        		redirect('admin/masa_kerja');
+	        	}
+	        }
+	    }
+    }
+
+    public function send_masa_kerjax()
+	{
+        $karyawan = $this->md_percobaan->tampil_bulan();
         foreach ($karyawan as $kry);
 		$subject  = 'Info Masa Habis Kontrak - ' . $kry->nama_cb;
 		{
@@ -1979,7 +2048,7 @@ class Admin extends CI_Controller {
 						<td width="30%">Tanggal Selesai</td>
 						<td width="70%">'.$kry->tgl_selesai_cb.'</td>
 					</tr>
-				</table>
+                </table>
 			';
 
 			$config = Array(

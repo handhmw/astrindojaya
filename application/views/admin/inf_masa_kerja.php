@@ -27,19 +27,22 @@
                                 <div class="header">
                                     <h5><i class="fa fa-users"></i> <?php echo $judul; ?></h5><br>
 									<div class="alert alert-info alert-dismissible" role="alert">
-									<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									<i class="fa fa-info-circle"></i> <b>INFORMASI</b> <br>
-									<p>Data karyawan dibawah ini adalah data masa kerja berdasarkan tanggal selesai masa percobaan pada bulan <i class="fa fa-calendar"></i> <b><?php echo bulan() ?></b>.</p>
-									<?php
-										if($this->session->flashdata("message"))
-									{
-										echo "
-										<div class='alert alert-success'>
-											".$this->session->flashdata("message")."
-										</div>
-										";
-									}
-									?>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<i class="fa fa-info-circle"></i> <b>INFORMASI</b> <br>
+										<p>Data karyawan dibawah ini adalah data masa kerja berdasarkan tanggal selesai masa percobaan pada bulan <i class="fa fa-calendar"></i> <b><?php echo bulan() ?></b>.</p>
+									</div>
+									<a href="<?php echo base_url();?>admin/send_masa_kerja" class="btn btn-xs btn-primary" role="button" title="Kirim">
+                                    <i class="icon-paper-plane"></i><span> Kirim</span></a>&nbsp;<br>
+										<?php
+											if($this->session->flashdata("message"))
+										{
+											echo "
+											<div class='alert alert-success'>
+												".$this->session->flashdata("message")."
+											</div>
+											";
+										}
+										?>
 								</div>
                                 <div class="body">
                                     <div class="table-responsive">
@@ -53,7 +56,7 @@
                                                     <th>Jenis Percobaan</th> 
                                                     <th>Tanggal Mulai</th> 
 													<th>Tanggal Selesai</th>
-													<th>Aksi</th>
+													<!-- <th>Aksi</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -66,10 +69,10 @@
                                                     <td><?= $kry->jenis_cb ?></td>
                                                     <td><?= $kry->tgl_mulai_cb ?></td>
 													<td><?= $kry->tgl_selesai_cb ?></td>
-													<td style="text-align: center;">
+													<!-- <td style="text-align: center;">
                                                         <a href="<?php echo base_url();?>admin/send_masa_kerja/" class="btn btn-xs btn-primary m-r-5" role="button" title="Kirim">
                                                         <i class="icon-paper-plane"></i>
-                                                    </td>
+                                                    </td> -->
                                                 </tr>
                                                 <?php $no++; endforeach; ?>
                                             </tbody>
