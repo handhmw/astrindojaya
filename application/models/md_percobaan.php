@@ -17,6 +17,13 @@ class Md_percobaan extends CI_Model
 	{
 		$query = $this->db->get('tb_percobaan');
 		return $query->result();
+        }
+        
+        public function tampil_bulan()
+	{
+                $query = $this->db->query("SELECT nama_cb, nik_cb, jabatan_cb, tgl_mulai_cb, jenis_cb, tgl_selesai_cb FROM tb_percobaan 
+                                           WHERE date_format(str_to_date(tgl_selesai_cb, '%d-%m-%Y'), '%m') = MONTH(NOW())");
+                return $query->result();
 	}
 
 	public function simpan()

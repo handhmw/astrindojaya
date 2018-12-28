@@ -1837,12 +1837,12 @@ class Admin extends CI_Controller {
          $data['idn']   = $this->md_master->get_idk_karyawan();
          $data['name']  = $this->session->userdata('name');
  
-         $this->load->view('admin/notifikasi',$data);
+         $this->load->view('admin/inf_notifikasi',$data);
     }
 
     public function send()
 	{
-		$subject = 'Data Karyawan Baru - ' . $this->input->post("nama");
+		$subject   = 'Data Karyawan Baru - ' . $this->input->post("nama");
 		$file_data = $this->upload_file();
 		if(is_array($file_data))
 		{
@@ -1936,7 +1936,88 @@ class Admin extends CI_Controller {
 			return $this->upload->display_errors();
 		}
     }
+
+    public function masa_kerja()
+    {
+         $data['judul'] = 'Info Masa Kerja Karyawan';
+         $data['karyawan'] = $this->md_percobaan->tampil_bulan();
+         $data['name']  = $this->session->userdata('name');
+ 
+         $this->load->view('admin/inf_masa_kerja',$data);
+    }
+
+    public function send_masa_kerja()
+	{
+        $karyawan = $this->md_percobaan->tampil_bulan();
+        foreach ($karyawan as $kry);
+		$subject  = 'Info Masa Habis Kontrak - ' . $kry->nama_cb;
+		{
+			$message = '
+			<h3 align="center">INFO MASA KERJA KARYAWAN</h3>
+                <table border="1" width="100%" cellpadding="5">
+					<tr>
+						<td width="30%">Nama Karyawan</td>
+						<td width="70%">'.$kry->nama_cb.'</td>
+                    </tr>
+                    <tr>
+						<td width="30%">NIK</td>
+						<td width="70%">'.$kry->nik_cb.'</td>
+                    </tr>
+                    <tr>
+						<td width="30%">Jabatan</td>
+						<td width="70%">'.$kry->jabatan_cb.'</td>
+                    </tr>
+                    <tr>
+						<td width="30%">Jenis</td>
+						<td width="70%">'.$kry->jenis_cb.'</td>
+                    </tr>
+                    <tr>
+						<td width="30%">Tanggal Mulai</td>
+						<td width="70%">'.$kry->tgl_mulai_cb.'</td>
+                    </tr>
+                    <tr>
+						<td width="30%">Tanggal Selesai</td>
+						<td width="70%">'.$kry->tgl_selesai_cb.'</td>
+					</tr>
+				</table>
+			';
+
+			$config = Array(
+		      	'protocol' 	=> 'smtp',
+				'smtp_host' => 'ssl://smtp.googlemail.com',
+		      	'smtp_port' => 465,
+		      	'smtp_user' => 'handrihmw@gmail.com', 
+		      	'smtp_pass' => '313606gmail', 
+		      	'mailtype' 	=> 'html',
+		      	'charset' 	=> 'iso-8859-1',
+		      	'wordwrap' 	=> TRUE
+            );
+            
+		    $this->load->library('email', $config);
+		    $this->email->set_newline("\r\n");
+		    $this->email->from($this->input->post("email"));
+		    $this->email->to('handrihmw@gmail.com');
+		    $this->email->subject($subject, $data);
+	        $this->email->message($message, $data);
+	        if($this->email->send())
+	        {
+	        	{
+	        		$this->session->set_flashdata('message', 'Email notifikasi berhasil terkirim.');
+	        		redirect('admin/masa_kerja');
+	        	}
+	        }
+	        else
+	        {
+	        	{
+	        		$this->session->set_flashdata('message', 'Email notifikasi gagal dikirim!');
+	        		redirect('admin/masa_kerja');
+	        	}
+	        }
+	    }
+    }
     
     // -------------------------------------END NOTIFIKASI-------------------------------------//
-   
 }
+
+// Created By: Handri Hermawan (@handrihmw)
+// 'Semoga bisa memahami alur coding yang saya tulis.'

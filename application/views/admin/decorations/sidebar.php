@@ -81,8 +81,8 @@
                             <li>
                                 <a href="#Authentication" class="has-arrow"><i class="icon-bell"></i><span>Notification</span></a>
                                 <ul>
-                                    <li><a href="<?php echo base_url('admin/notifikasi');?>">Email Notification</a></li>
-                                    <li><a href="<?php echo base_url('#');?>">Forgot Password</a></li>
+                                    <li><a href="<?php echo base_url('admin/notifikasi');?>">Info Karyawan Baru</a></li>
+                                    <li><a href="<?php echo base_url('admin/masa_kerja');?>">Info Masa Kerja</a></li>
                                 </ul>
                             </li>
                             <li>
