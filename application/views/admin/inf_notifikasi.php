@@ -104,7 +104,7 @@
 															<div class="file-select-name" id="noFile">No file chosen...</div> 
 																<input type="file" name="resume" id="chooseFile">
 															</div><br>
-															<input type="submit" name="submit" value="Kirim" class="btn btn-xs btn-primary" role="button">
+															<button type="submit" name="submit" class="btn btn-primary"><i class="fa fa-paper-plane-o"></i> Kirim</button>
 														</div>
 													</div>
 												</div>

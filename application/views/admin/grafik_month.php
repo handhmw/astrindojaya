@@ -50,11 +50,11 @@
 					type: 'line',
 				},
 					title: {
-					text: 'Grafik Statistik pengunjung',
+					text: 'Grafik Statistik Resign',
 					x: -20
 				},
 					subtitle: {
-					text: 'Count visitor',
+					text: '2018',
 					x: -20
 				},
 					xAxis: {
@@ -63,7 +63,7 @@
 				},
 					yAxis: {
 					title: {
-						text: 'Total pengunjung'
+						text: 'Total Karyawan'
 					}
 				},
 					series: [{

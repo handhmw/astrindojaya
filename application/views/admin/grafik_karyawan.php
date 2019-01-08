@@ -73,14 +73,15 @@
 						type: 'pie',
 						name: 'Jumlah Karyawan',
 						data: [
-								<?php 
+							<?php 
 								if(count($graph)>0)
+							{
+								foreach ($graph as $data) 
 								{
-								foreach ($graph as $data) {
-								echo "['" .$data->dep_kry . "'," . $data->jumlah ."],\n";
+									echo "['" .$data->dep_kry . "'," . $data->jumlah ."],\n";
 								}
-								}
-								?>
+							}
+							?>
 						]
 					}]
 				});

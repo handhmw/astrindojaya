@@ -219,20 +219,36 @@ class Md_master extends CI_Model
     function statistik_pengunjung()
     {
     
+    // $sql = $this->db->query("select
+    //                         ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=1)AND (YEAR(date)=2018))),0) AS `Januari`,
+    //                         ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=2)AND (YEAR(date)=2018))),0) AS `Februari`,
+    //                         ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=3)AND (YEAR(date)=2018))),0) AS `Maret`,
+    //                         ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=4)AND (YEAR(date)=2018))),0) AS `April`,
+    //                         ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=5)AND (YEAR(date)=2018))),0) AS `Mei`,
+    //                         ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=6)AND (YEAR(date)=2018))),0) AS `Juni`,
+    //                         ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=7)AND (YEAR(date)=2018))),0) AS `Juli`,
+    //                         ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=8)AND (YEAR(date)=2018))),0) AS `Agustus`,
+    //                         ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=9)AND (YEAR(date)=2018))),0) AS `September`,
+    //                         ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=10)AND (YEAR(date)=2018))),0) AS `Oktober`,
+    //                         ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=11)AND (YEAR(date)=2018))),0) AS `November`,
+    //                         ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=12)AND (YEAR(date)=2018))),0) AS `Desember`
+    //                         from tb_counter GROUP BY YEAR(date) 
+    // ");
+    //     return $sql;
     $sql = $this->db->query("select
-                            ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=1)AND (YEAR(date)=2016))),0) AS `Januari`,
-                            ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=2)AND (YEAR(date)=2016))),0) AS `Februari`,
-                            ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=3)AND (YEAR(date)=2016))),0) AS `Maret`,
-                            ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=4)AND (YEAR(date)=2016))),0) AS `April`,
-                            ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=5)AND (YEAR(date)=2016))),0) AS `Mei`,
-                            ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=6)AND (YEAR(date)=2016))),0) AS `Juni`,
-                            ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=7)AND (YEAR(date)=2016))),0) AS `Juli`,
-                            ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=8)AND (YEAR(date)=2016))),0) AS `Agustus`,
-                            ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=9)AND (YEAR(date)=2016))),0) AS `September`,
-                            ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=10)AND (YEAR(date)=2016))),0) AS `Oktober`,
-                            ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=11)AND (YEAR(date)=2016))),0) AS `November`,
-                            ifnull((SELECT count(ip) FROM (tb_counter)WHERE((Month(date)=12)AND (YEAR(date)=2016))),0) AS `Desember`
-                            from tb_counter GROUP BY YEAR(date) 
+                            ifnull((SELECT count(nama_rs) FROM (tb_resign)WHERE((Month(tgl_resign_rs)=1)AND (YEAR(tgl_resign_rs)=2018))),0) AS `Januari`,
+                            ifnull((SELECT count(nama_rs) FROM (tb_resign)WHERE((Month(tgl_resign_rs)=2)AND (YEAR(tgl_resign_rs)=2018))),0) AS `Februari`,
+                            ifnull((SELECT count(nama_rs) FROM (tb_resign)WHERE((Month(tgl_resign_rs)=3)AND (YEAR(tgl_resign_rs)=2018))),0) AS `Maret`,
+                            ifnull((SELECT count(nama_rs) FROM (tb_resign)WHERE((Month(tgl_resign_rs)=4)AND (YEAR(tgl_resign_rs)=2018))),0) AS `April`,
+                            ifnull((SELECT count(nama_rs) FROM (tb_resign)WHERE((Month(tgl_resign_rs)=5)AND (YEAR(tgl_resign_rs)=2018))),0) AS `Mei`,
+                            ifnull((SELECT count(nama_rs) FROM (tb_resign)WHERE((Month(tgl_resign_rs)=6)AND (YEAR(tgl_resign_rs)=2018))),0) AS `Juni`,
+                            ifnull((SELECT count(nama_rs) FROM (tb_resign)WHERE((Month(tgl_resign_rs)=7)AND (YEAR(tgl_resign_rs)=2018))),0) AS `Juli`,
+                            ifnull((SELECT count(nama_rs) FROM (tb_resign)WHERE((Month(tgl_resign_rs)=8)AND (YEAR(tgl_resign_rs)=2018))),0) AS `Agustus`,
+                            ifnull((SELECT count(nama_rs) FROM (tb_resign)WHERE((Month(tgl_resign_rs)=9)AND (YEAR(tgl_resign_rs)=2018))),0) AS `September`,
+                            ifnull((SELECT count(nama_rs) FROM (tb_resign)WHERE((Month(tgl_resign_rs)=10)AND (YEAR(tgl_resign_rs)=2018))),0) AS `Oktober`,
+                            ifnull((SELECT count(nama_rs) FROM (tb_resign)WHERE((Month(tgl_resign_rs)=11)AND (YEAR(tgl_resign_rs)=2018))),0) AS `November`,
+                            ifnull((SELECT count(nama_rs) FROM (tb_resign)WHERE((Month(tgl_resign_rs)=12)AND (YEAR(tgl_resign_rs)=2018))),0) AS `Desember`
+                            from tb_resign GROUP BY YEAR(tgl_resign_rs) 
     ");
         return $sql;
     } 

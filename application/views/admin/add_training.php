@@ -20,7 +20,7 @@
 							<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-angle-double-left"></i></a> Karyawan</h2>
 								<ul class="breadcrumb">                           
 									<li class="breadcrumb-item active">Karyawan</li>
-									<li class="breadcrumb-item active">Karyawan Training</li>
+									<li class="breadcrumb-item active">Tambah Karyawan Training</li>
 								</ul>
 							</div>      
 						</div>
@@ -222,7 +222,7 @@
 					autoclose: true
 				});
 
-				$('#date').mask('00-00-0000',{placeholder:"mm-dd-yyyy"});
+				$('#date').mask('00-00-0000',{placeholder:"dd-mm-yyyy"});
 
 			});
 

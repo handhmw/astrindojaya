@@ -12,7 +12,8 @@
 					<div class="block-header">
 						<div class="row">
 							<div class="col-lg-6 col-md-8 col-sm-12">
-                            <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-angle-double-left"></i></a> Karyawan</h2>
+                            <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth">
+                            <i class="fa fa-angle-double-left"></i></a> Karyawan</h2>
 								<ul class="breadcrumb">                            
 									<li class="breadcrumb-item">Karyawan</li>
 									<li class="breadcrumb-item active">Training Karyawan</li>
@@ -41,7 +42,7 @@
                                     <i class="icon-plus"></i><span> Tambah</span></a>
                                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter" title="Import Data">
                                     <i class="fa fa-upload"></i> Import</button>
-                                    <a href="<?php echo base_url() ?>admin/print_training" class="btn btn-xs btn-default" role="button" title="Print Data">
+                                    <a href="<?php echo base_url() ?>admin/print_training" class="btn btn-xs btn-default" role="button" title="Print Data" target="_blank">
                                     <i class="fa fa-print"></i><span> Print</span></a>
 
                                 </div>
@@ -75,7 +76,7 @@
                                                         <i class="icon-magnifier"></i>&nbsp;
                                                         <a href="<?php echo base_url();?>admin/edit_training/<?php echo $kry->id_tr;?>" class="btn btn-xs btn-primary m-r-5" role="button" title="Edit">
                                                         <i class="icon-pencil"></i>&nbsp;
-                                                        <a href="<?=base_url('report_training/print_training/'.$kry->id_tr)?>" class="btn btn-xs btn-dark m-r-5" role="button" title="Cetak">
+                                                        <a href="<?=base_url('report_training/print_training/'.$kry->id_tr)?>" class="btn btn-xs btn-dark m-r-5" role="button" title="Cetak" target="_blank">
                                                         <i class="fa fa-file-text"></i></a>
                                                         <a href="<?php echo base_url();?>admin/delete_training/<?php echo $kry->id_tr;?>" onclick="return confirm('Apakah Anda Yakin?');" 
                                                         class="btn btn-xs btn-danger m-r-5" role="button" title="Hapus">

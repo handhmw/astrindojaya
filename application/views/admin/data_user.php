@@ -52,12 +52,12 @@
                                     <table class="table table-bordered" width="100%" cellpadding="0" cellspacing="0" id="examples">
                                         <thead style="background-color:#e9ecef;">
                                             <tr style="text-align:center;">
-                                                <th>User ID</th>                                  
-                                                <th>Username</th>  
+                                                <th>Kode User</th>    
                                                 <th>Nama Lengkap</th>               
                                                 <th>Email</th>
+                                                <th>Username</th>
                                                 <th>Password</th> 
-                                                <th>Level</th> 
+                                                <th>Role</th> 
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -65,11 +65,11 @@
                                             <?php foreach ($users as $usr): ?>
                                              <tr>
                                                 <td style="text-align: center;"><?= $usr->id ?></td>
-                                                <td><?= $usr->username ?></td>
                                                 <td><?= $usr->name ?></td>
                                                 <td><?= $usr->email ?></td>
+                                                <td><?= $usr->username ?></td>
                                                 <td><?= $usr->password ?></td>
-                                                <td><?= $usr->level ?></td>
+                                                <td style="text-align:center;"><?= $usr->level ?></td>
                                                 <td style="text-align: center;">
                                                     <a href="<?php echo base_url();?>admin/edit_user/<?php echo $usr->id;?>" class="btn btn-xs btn-primary m-r-5" role="button" title="ubah">
                                                     <i class="icon-pencil"></i>&nbsp;

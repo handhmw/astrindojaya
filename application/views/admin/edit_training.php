@@ -21,10 +21,11 @@
 					<div class="block-header">
 						<div class="row">
 							<div class="col-lg-6 col-md-8 col-sm-12">
-							<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-angle-double-left"></i></a> Karyawan</h2>
+							<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth">
+							<i class="fa fa-angle-double-left"></i></a> Karyawan</h2>
 								<ul class="breadcrumb">                           
 									<li class="breadcrumb-item active">Karyawan</li>
-									<li class="breadcrumb-item active">Karyawan Training</li>
+									<li class="breadcrumb-item active">Edit Karyawan Training</li>
 								</ul>
 							</div>      
 						</div>
@@ -33,7 +34,7 @@
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 col-xl-12">						
 							<div class="card mb-3">
 								<div class="card-header">
-									<h5><i class="fa fa-plus-square"></i> <?php echo $judul; ?></h5>
+									<h5><i class="fa fa-pencil-square-o"></i> <?php echo $judul; ?></h5>
 								</div>
 								<div class="card-body">
 								<?php echo form_open('admin/update_training/'.$kry->id_tr, ['class' => 'form-horizontal', 'method' => 'post']); ?>

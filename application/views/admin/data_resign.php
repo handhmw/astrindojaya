@@ -41,7 +41,7 @@
                                     <i class="icon-plus"></i><span> Tambah</span></a>
                                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter" title="Import Data">
                                     <i class="fa fa-upload"></i> Import</button>
-                                    <a href="<?php echo base_url() ?>admin/print_resign" class="btn btn-xs btn-default" role="button" title="Print Data">
+                                    <a href="<?php echo base_url() ?>admin/print_resign" class="btn btn-xs btn-default" role="button" title="Print Data" target="_blank">
                                     <i class="fa fa-print"></i><span> Print</span></a>
                                   
                                 <div class="body">

@@ -31,7 +31,7 @@
 										<i class="fa fa-info-circle"></i> <b>INFORMASI</b> <br>
 										<p>Data karyawan dibawah ini adalah data masa kerja berdasarkan tanggal selesai masa percobaan pada bulan <i class="fa fa-calendar"></i> <b><?php echo bulan() ?></b>.</p>
 									</div>
-									<a href="<?php echo base_url();?>admin/send_masa_kerja" class="btn btn-xs btn-primary" role="button" title="Kirim">
+									<a href="<?php echo base_url();?>admin/send_masa_kerja" class="btn btn-xs btn-primary" role="button" title="Kirim Email">
                                     <i class="icon-paper-plane"></i><span> Kirim</span></a>&nbsp;<br>
 										<?php
 											if($this->session->flashdata("message"))
@@ -56,7 +56,7 @@
                                                     <th>Jenis Percobaan</th> 
                                                     <th>Tanggal Mulai</th> 
 													<th>Tanggal Selesai</th>
-													<!-- <th>Aksi</th> -->
+													<th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -64,15 +64,15 @@
                                                 <tr>
                                                     <td style="text-align:center;"><?= $no; ?></td>
                                                     <td><?= $kry->nama_cb ?></td>
-                                                    <td><?= $kry->nik_cb ?></td>
+                                                    <td style="text-align:center;"><?= $kry->nik_cb ?></td>
                                                     <td><?= $kry->jabatan_cb ?></td>
                                                     <td><?= $kry->jenis_cb ?></td>
-                                                    <td><?= $kry->tgl_mulai_cb ?></td>
-													<td><?= $kry->tgl_selesai_cb ?></td>
-													<!-- <td style="text-align: center;">
-                                                        <a href="<?php echo base_url();?>admin/send_masa_kerja/" class="btn btn-xs btn-primary m-r-5" role="button" title="Kirim">
-                                                        <i class="icon-paper-plane"></i>
-                                                    </td> -->
+                                                    <td style="text-align:center;"><?= $kry->tgl_mulai_cb ?></td>
+													<td style="text-align:center;"><?= $kry->tgl_selesai_cb ?></td>
+													<td style="text-align: center;">
+                                                        <a href="<?php echo base_url();?>admin/send_masa_kerja/" class="btn btn-xs btn-primary m-r-5" role="button" title="Kirim Email">
+                                                        <i class="icon-envelope"></i>
+                                                    </td>
                                                 </tr>
                                                 <?php $no++; endforeach; ?>
                                             </tbody>

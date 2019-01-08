@@ -45,11 +45,11 @@
                                         <table class="table table-bordered dataTable" cellspacing="0" id="examples">
                                             <thead style="background-color:#e9ecef;">
                                                 <tr style="text-align:center;">
-                                                    <th>NO</th>
-                                                    <th>KODE PENILAI</th>                                  
-                                                    <th>NAMA LENGKAP</th>
+                                                    <th>No.</th>
+                                                    <th>Kode Penilai</th>                                  
+                                                    <th>Nama Penilai</th>
                                                     <th>NIK</th>    
-                                                    <th>JABATAN</th> 
+                                                    <th>Jabatan Penilai</th> 
                                                     <th style="text-align:center;">Aksi</th>
                                                 </tr>
                                             </thead>

@@ -45,18 +45,18 @@
                                         <thead style="background-color:#e9ecef;">
                                             <tr style="text-align:center;">
                                                 <th>Kode Divisi</th>   
-                                                <th>Unik</th>                               
+                                                <th>Kode Unik</th>                               
                                                 <th>Divisi</th>  
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php foreach ($divisi as $dvs_): ?>
-                                            <tr style="text-align: center;">
-                                                <td><?= $dvs_->id ?></td>
-                                                <td><?= $dvs_->unik ?></td>
+                                            <tr>
+                                                <td style="text-align: center;"><?= $dvs_->id ?></td>
+                                                <td style="text-align: center;"><?= $dvs_->unik ?></td>
                                                 <td><?= $dvs_->divisi ?></td>
-                                                <td>
+                                                <td style="text-align: center;">
                                                     <a href="<?php echo base_url();?>admin/edit_divisi/<?php echo $dvs_->id;?>" class="btn btn-xs btn-primary m-r-5" role="button" title="ubah">
                                                     <i class="icon-pencil"></i>&nbsp;
                                                     <a href="<?php echo base_url();?>admin/delete_divisi/<?php echo $dvs_->id;?>"

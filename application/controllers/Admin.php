@@ -29,7 +29,7 @@ class Admin extends CI_Controller {
     }
 
 	public function index()
-	{
+	{  
         $data['jml']      = $this->md_karyawan->get_total_karyawan(); 
         $data['jmlb']     = $this->md_karyawan->get_total_baru();
         $data['mpp']      = $this->md_mpp->tampil();
@@ -38,10 +38,61 @@ class Admin extends CI_Controller {
         $data['perdep']   = $this->md_master->per_dep();
         $data['perarea']  = $this->md_master->per_area();
         $data['perjns']   = $this->md_master->per_jenis();
+
+        // $datagrafik = $this->md_master->statistik_pengunjung();
+        // $data = array ( 
+        //     'datagrafik' => $datagrafik, 
+        // );
+        
+        foreach($this->md_master->statistik_pengunjung()->result_array() as $gf)
+        {
+         $data['grafik'][]=(float)$gf['Januari'];
+         $data['grafik'][]=(float)$gf['Februari'];
+         $data['grafik'][]=(float)$gf['Maret'];
+         $data['grafik'][]=(float)$gf['April'];
+         $data['grafik'][]=(float)$gf['Mei'];
+         $data['grafik'][]=(float)$gf['Juni'];
+         $data['grafik'][]=(float)$gf['Juli'];
+         $data['grafik'][]=(float)$gf['Agustus'];
+         $data['grafik'][]=(float)$gf['September'];
+         $data['grafik'][]=(float)$gf['Oktober'];
+         $data['grafik'][]=(float)$gf['November'];
+         $data['grafik'][]=(float)$gf['Desember'];
+        } 
         
         $this->load->view('admin/index',$data);
     }
 
+    public function get_pie() 
+    { 
+        $data = $this->md_master->get_pie();
+        $responce->cols[] = array( 
+            "id"      => "", 
+            "label"   => "Departemen", 
+            "pattern" => "", 
+            "type"    => "string" 
+        ); 
+        $responce->cols[] = array( 
+            "id"      => "", 
+            "label"   => "Jumlah", 
+            "pattern" => "", 
+            "type"    => "number" 
+        ); 
+        foreach($data as $gp) 
+            { 
+                $responce->rows[]["c"] = array( 
+                    array( 
+                        "v" => "$gp->dep_kry", 
+                        "f" => null 
+                    ) , 
+                    array( 
+                        "v" => (int)$gp->jumlah, 
+                        "f" => null 
+                    ) 
+                ); 
+            } 
+        echo json_encode($responce); 
+    }
     // ===================================GET BY ID START=================================== //
 
     function get_karyawan()
@@ -76,7 +127,7 @@ class Admin extends CI_Controller {
 
     // ===================================CRUD MASTER DATA START=================================== //
     
-    public function departemen()
+    function departemen()
     {
         $data['departemen'] = $this->md_departemen->tampil();
         $data['judul']      = "Master Data Departemen";
@@ -84,7 +135,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/data_departemen', $data);
     }
 
-    public function add_departemen()
+    function add_departemen()
     {
         $data['judul']   = 'Tambah Data Departemen';
         $data['kode']    = $this->md_kode->kode_departemen();
@@ -93,7 +144,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/add_departemen',$data);
     }
 
-    public function save_departemen()
+    function save_departemen()
     {
         $this->form_validation->set_message('is_unique', '{field} sudah terpakai');
         $this->form_validation->set_rules('id', 'Kode Departemen', ['required', 'is_unique[tb_departemen.id]']);
@@ -1167,7 +1218,7 @@ class Admin extends CI_Controller {
      public function edit_resign($id)
      {
          $data['judul']     = 'Edit Karyawan Resign';
-         $data['idk']       = $this->md_master->get_idk_all();
+         $data['idk']       = $this->md_master->get_idk_karyawan();
          $data['dep']       = $this->md_master->get_dept();
          $data['jbt']       = $this->md_master->get_jabatan();
          $data['pgk']       = $this->md_master->get_pangkat();
@@ -1332,27 +1383,27 @@ class Admin extends CI_Controller {
      
     }
 
-    public function grafik_month() {  
+    // public function grafik_month() {  
    
-        $data['judul']     = 'Grafik Permintaan per Month';
-        foreach($this->md_master->statistik_pengunjung()->result_array() as $gf)
-        {
-         $data['grafik'][]=(float)$gf['Januari'];
-         $data['grafik'][]=(float)$gf['Februari'];
-         $data['grafik'][]=(float)$gf['Maret'];
-         $data['grafik'][]=(float)$gf['April'];
-         $data['grafik'][]=(float)$gf['Mei'];
-         $data['grafik'][]=(float)$gf['Juni'];
-         $data['grafik'][]=(float)$gf['Juli'];
-         $data['grafik'][]=(float)$gf['Agustus'];
-         $data['grafik'][]=(float)$gf['September'];
-         $data['grafik'][]=(float)$gf['Oktober'];
-         $data['grafik'][]=(float)$gf['November'];
-         $data['grafik'][]=(float)$gf['Desember'];
-        }
+    //     $data['judul']     = 'Grafik Resign per Tahun';
+    //     foreach($this->md_master->statistik_pengunjung()->result_array() as $gf)
+    //     {
+    //      $data['grafik'][]=(float)$gf['Januari'];
+    //      $data['grafik'][]=(float)$gf['Februari'];
+    //      $data['grafik'][]=(float)$gf['Maret'];
+    //      $data['grafik'][]=(float)$gf['April'];
+    //      $data['grafik'][]=(float)$gf['Mei'];
+    //      $data['grafik'][]=(float)$gf['Juni'];
+    //      $data['grafik'][]=(float)$gf['Juli'];
+    //      $data['grafik'][]=(float)$gf['Agustus'];
+    //      $data['grafik'][]=(float)$gf['September'];
+    //      $data['grafik'][]=(float)$gf['Oktober'];
+    //      $data['grafik'][]=(float)$gf['November'];
+    //      $data['grafik'][]=(float)$gf['Desember'];
+    //     }
          
-        $this->load->view('admin/grafik_month', $data); 
-    }
+    //     $this->load->view('admin/grafik_month', $data); 
+    // }
 
     public function grafik_karyawan()
 	{

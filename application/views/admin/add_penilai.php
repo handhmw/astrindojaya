@@ -20,7 +20,7 @@
 								<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-angle-double-left"></i></a> Dashboard</h2>
 								<ul class="breadcrumb">                          
 									<li class="breadcrumb-item active">Karyawan</li>
-									<li class="breadcrumb-item active">Penilai</li>
+									<li class="breadcrumb-item active">Tambah Penilai</li>
 								</ul>
 							</div>      
 						</div>
@@ -34,7 +34,7 @@
 								<div class="card-body">
 									<?php echo form_open('admin/save_penilai', ['class' => 'form-horizontal', 'method' => 'post']); ?>
 									<div class="form-group row">
-										<label for="" class="col-sm-3 col-form-label">ID penilai</label>
+										<label for="" class="col-sm-3 col-form-label">Kode Penilai</label>
 										<div class="col-sm-6">
 											<input type="text" class="form-control" name="id_penilai" readonly value="<?php echo set_value('id_penilai'); ?><?= $kode; ?>">
 											<?php echo form_error('id_penilai'); ?>

@@ -42,9 +42,9 @@
                                 <i class="icon-plus"></i><span> Tambah</span></a>
                                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter" title="Import Data">
                                 <i class="fa fa-upload"></i> Import</button>
-                                <a href="<?php echo base_url() ?>admin/print_karyawan" class="btn btn-xs btn-default" role="button" title="Print Data">
+                                <a href="<?php echo base_url() ?>admin/print_karyawan" class="btn btn-xs btn-default" role="button" title="Print Data" target="_blank">
                                 <i class="fa fa-print"></i><span> Print</span></a>
-                                <a href="<?=base_url('report_karyawan/report_manual')?>" class="btn btn-xs btn-default" role="button" title="Print Manual">
+                                <a href="<?=base_url('report_karyawan/report_manual')?>" class="btn btn-xs btn-default" role="button" title="Print Manual" target="_blank">
                                 <i class="fa fa-file-text"></i><span> Manual</span></a>
                                   
                                 <div class="body">
@@ -75,7 +75,7 @@
                                                         <i class="icon-magnifier"></i>&nbsp;
                                                         <a href="<?php echo base_url();?>admin/edit_karyawan/<?php echo $kry->id_kry;?>" class="btn btn-xs btn-primary m-r-5" role="button" title="Edit">
                                                         <i class="icon-pencil"></i>&nbsp;
-                                                        <a href="<?=base_url('report_karyawan/print_karyawan/'.$kry->id_kry)?>" class="btn btn-xs btn-dark m-r-5" role="button" title="Cetak">
+                                                        <a href="<?=base_url('report_karyawan/print_karyawan/'.$kry->id_kry)?>" class="btn btn-xs btn-dark m-r-5" role="button" title="Cetak" target="_blank">
                                                         <i class="fa fa-file-text"></i></a>
                                                         <a href="<?php echo base_url();?>admin/delete_karyawan/<?php echo $kry->id_kry;?>" onclick="return confirm('Apakah Anda Yakin?');" 
                                                         class="btn btn-xs btn-danger m-r-5" role="button" title="Hapus">

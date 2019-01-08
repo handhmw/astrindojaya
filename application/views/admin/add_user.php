@@ -42,16 +42,9 @@
     								<?php echo form_open("admin/save_user"); ?>
 									<form method="POST">
 										<div class="form-group row">
-											<label for="id" class="col-sm-3 col-form-label">User ID</label>
+											<label for="id" class="col-sm-3 col-form-label">Kode User</label>
 											<div class="col-sm-6">
 												<input type="text" class="form-control" name="id" value="<?= $kode; ?>" readonly>
-											</div>
-										</div>
-										<div class="form-group row">
-											<label for="name" class="col-sm-3 col-form-label">Username</label>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" name="username" required oninvalid="this.setCustomValidity('Username tidak boleh kosong')" 
-												oninput="setCustomValidity('')">
 											</div>
 										</div>
 										<div class="form-group row">
@@ -69,6 +62,13 @@
 											</div>
 										</div>
 										<div class="form-group row">
+											<label for="name" class="col-sm-3 col-form-label">Username</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" name="username" required oninvalid="this.setCustomValidity('Username tidak boleh kosong')" 
+												oninput="setCustomValidity('')">
+											</div>
+										</div>
+										<div class="form-group row">
 											<label for="password" class="col-sm-3 col-form-label">Password</label>
 											<div class="col-sm-6">
 												<input type="password" class="form-control" name="password" required oninvalid="this.setCustomValidity('Password tidak boleh kosong')" 
@@ -76,7 +76,7 @@
 											</div>
 										</div>
 										<div class="form-group row">
-											<label for="level" class="col-sm-3 col-form-label">Level</label>
+											<label for="level" class="col-sm-3 col-form-label">Role</label>
 											<div class="col-sm-6">
 												<select class="form-control" name="level" id="">
 													<option value="admin">Admin</option>

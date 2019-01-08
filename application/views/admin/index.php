@@ -52,67 +52,34 @@
 							</div>
 						</div>
 						<div class="col-lg-3 col-md-6">
-							<div class="card text-center">
-								<div class="body">
-									<h5>Jumlah Data Karyawan</h5>
-									<div class="sparkline-pie m-t-20">6,4,8,2,5,3</div>
-									<div class="stats-report m-b-30">
-										<div class="stat-item">
-											<h5>PCH</h5>
-											<p class="col-black">8</p>
-										</div>
-										<div class="stat-item">
-											<h5>SLS</h5>
-											<p class="col-black">15</p>
-										</div>
-										<div class="stat-item">
-											<h5>LOG</h5>
-											<p class="col-black">5</p>
-										</div><br>
-										<div class="stat-item">
-											<h5>FIN</h5>
-											<p class="col-black">8</p>
-										</div>
-										<div class="stat-item">
-											<h5>ACC</h5>
-											<p class="col-black">15</p>
-										</div>
-										<div class="stat-item">
-											<h5>QA</h5>
-											<p class="col-black">5</p>
-										</div>
-										<div class="stat-item">
-											<h5>HRG</h5>
-											<p class="col-black">84</p>
-										</div>
-									</div>
+							<div class="card">
+								<div class="header">
+									<h2>Ulang Tahun Bulan Ini</h2>
+								</div>
+								<div class="body todo_list">
+									<table class="table table-responsive" style="font-size:10px;">
+										<?php foreach ($bdy as $kry): ?>
+											<tr>
+												<td><b style=color:#01b2c6><?= $kry->nama_kry ?></b> - <?= $kry->jabatan_kry ?> - <?= $kry->tgl_lahir_kry ?></td>
+											</tr>
+										<?php endforeach; ?>
+									</table>
 								</div>
 							</div>                    
 						</div>
 						<div class="col-lg-6 col-md-12">
 							<div class="card">
 								<div class="header">
-									<h2>Requirement per Departement</h2>
-									<ul class="header-dropdown">
-										<li><a class="tab_btn" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Weekly">W</a></li>
-										<li><a class="tab_btn" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Monthly">M</a></li>
-										<li><a class="tab_btn active" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Yearly">Y</a></li>
-										<li class="dropdown">
-											<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
-											<ul class="dropdown-menu dropdown-menu-right animated bounceIn">
-												<li><a href="javascript:void(0);">Detail</a></li>
-											</ul>
-										</li>
-									</ul>
+									<h2>Karyawan per Departemen</h2>
 								</div>
-								<div class="body">
-									<div id="Salary_Statistics" class="chartist"></div>
+								<div class="body">                            
+									<div id="chart_div" class="ct-chart"></div>
 								</div>
 							</div>
 						</div>                
 					</div>
 					<div class="row clearfix">
-						<div class="col-lg-8 col-md-12">
+						<!-- <div class="col-lg-8 col-md-12">
 							<div class="card">
 								<div class="header">
 									<h2>Requirement per Month</h2>
@@ -129,8 +96,8 @@
 									<div id="total_Salary" class="ct-chart"></div>
 								</div>
 							</div>
-						</div>
-						<div class="col-lg-4 col-md-12">
+						</div> -->
+						<!-- <div class="col-lg-4 col-md-12">
 							<div class="card">
 								<div class="header">
 									<h2>Ulang Tahun Bulan Ini</h2>
@@ -145,7 +112,7 @@
 									</table>
 								</div>
 							</div>
-						</div>    
+						</div>     -->
 						<div class="col-lg-3 col-md-4">
 							<div class="card">
 								<div class="header">
@@ -642,5 +609,117 @@
 					<!-- End Main Content -->
 				</div>
 			<?php include ('decorations/footer.php');?>
-		</body>
+			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+			<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+			<script type="text/javascript"> 
+				google.charts.load('current', {'packages':['corechart']}); 
+				google.charts.setOnLoadCallback(drawChart); 
+				
+				function drawChart() { 
+					var jsonData = $.ajax({ 
+						url      : "<?php echo base_url() . 'admin/get_pie' ?>", 
+						dataType : "json", 
+						async    : false 
+						}).responseText; 
+						
+					var data  = new google.visualization.DataTable(jsonData); 
+					var chart = new google.visualization.PieChart(document.getElementById('chart_div')); 
+					//chart.draw(data); 
+					chart.draw(data, {width: 470, height: 300});
+				}
+			</script> 
+			<script type="text/javascript"> 
+				google.charts.load('current', {'packages':['line']});
+      			google.charts.setOnLoadCallback(drawChart); 
+				
+				function drawChart() {
+
+					var data = new google.visualization.DataTable();
+					data.addColumn('number', 'Bulan');
+					data.addColumn('number', 'Guardians of the Galaxy');
+					data.addColumn('number', 'The Avengers');
+					data.addColumn('number', 'Transformers: Age of Extinction');
+
+					// data.addRows(
+					// 	<?php 
+					// 		if(count($grafik)>0)
+					// 		{
+					// 			foreach ($grafik as $data) 
+					// 			{
+					// 				echo "['" .$data->nama_rs . "'," . $data->tgl_resign_rs ."],\n";
+					// 			}
+					// 		}
+					// 	?>
+					// );
+
+					data.addRows([
+						[1,  37.8, 80.8, 41.8],
+						[2,  30.9, 69.5, 32.4],
+						[3,  25.4,   57, 25.7],
+						[4,  11.7, 18.8, 10.5],
+						[5,  11.9, 17.6, 10.4],
+						[6,   8.8, 13.6,  7.7],
+						[7,   7.6, 12.3,  9.6],
+						[8,  12.3, 29.2, 10.6],
+						[9,  16.9, 42.9, 14.8],
+						[10, 12.8, 30.9, 11.6],
+						[11,  5.3,  7.9,  4.7],
+						[12,  6.6,  8.4,  5.2],
+						[13,  4.8,  6.3,  3.6],
+						[14,  4.2,  6.2,  3.4]
+					]);
+
+					var options = {
+						chart: {
+							//title: 'Box Office Earnings in First Two Weeks of Opening',
+							//subtitle: 'in millions of dollars (USD)'
+						},
+							width: 900,
+							height: 500
+					};
+
+					var chart = new google.charts.Line(document.getElementById('linenya'));
+					chart.draw(data, google.charts.Line.convertOptions(options));
+				}
+			</script>
+
+
+
+
+			<script src="<?php echo base_url();?>assets/highcharts/jquery.min.js" type="text/javascript"></script>
+			<script src="<?php echo base_url();?>assets/highcharts/highcharts.js" type="text/javascript"></script>
+			<script src="<?php echo base_url();?>assets/highcharts/modules/exporting.js" type="text/javascript"></script>
+			<script src="<?php echo base_url();?>assets/highcharts/modules/offline-exporting.js" type="text/javascript"></script>
+			<script type="text/javascript">
+				jQuery(function(){
+					new Highcharts.Chart({
+						chart: {
+						renderTo: 'chart',
+						type: 'line',
+					},
+						title: {
+						text: 'Grafik Statistik Resign',
+						x: -20
+					},
+						subtitle: {
+						text: '2018',
+						x: -20
+					},
+						xAxis: {
+						categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
+									'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des']
+					},
+						yAxis: {
+						title: {
+							text: 'Total Karyawan'
+						}
+					},
+						series: [{
+							name: 'Data dalam Bulan',
+							data: <?php echo json_encode($grafik); ?>
+						}]
+					});
+				}); 
+			</script>
+	</body>
 </html>

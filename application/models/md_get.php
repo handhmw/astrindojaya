@@ -19,6 +19,4 @@ public function funcname($id)
         return false;
     }
 }
-    
-
 }

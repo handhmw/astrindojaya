@@ -20,7 +20,7 @@
 								<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-angle-double-left"></i></a> Percobaan</h2>
 								<ul class="breadcrumb">                            
 									<li class="breadcrumb-item">Karyawan</li>
-									<li class="breadcrumb-item active">Karyawan Percobaan</li>
+									<li class="breadcrumb-item active">Tambah Karyawan Percobaan</li>
 								</ul>
 							</div>      
 						</div>

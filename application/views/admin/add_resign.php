@@ -68,7 +68,7 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Pangkat</label>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="pangkat_" name="nik_rs" value="<?php echo set_value('pangkat_rs'); ?>" readonly>
+											<input type="text" class="form-control" id="pangkat_" name="pangkat_rs" value="<?php echo set_value('pangkat_rs'); ?>" readonly>
 											<?php echo form_error('pangkat_rs'); ?>
 										</div>
 									</div>

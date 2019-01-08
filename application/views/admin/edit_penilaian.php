@@ -20,7 +20,7 @@
 								<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-angle-double-left"></i></a> Dashboard</h2>
 								<ul class="breadcrumb">                          
 									<li class="breadcrumb-item active">Karyawan</li>
-									<li class="breadcrumb-item active">Penilaian Karyawan</li>
+									<li class="breadcrumb-item active">Edit Penilaian Karyawan</li>
 								</ul>
 							</div>      
 						</div>

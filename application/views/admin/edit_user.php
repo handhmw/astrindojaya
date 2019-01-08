@@ -30,15 +30,9 @@
 									<?php foreach ($user as $usr) ?>
 	                                <form action="<?php echo base_url();?>admin/update_user/<?php echo $usr->id; ?>" method="post">
 										<div class="form-group row">
-											<label for="id" class="col-sm-3 col-form-label">User ID</label>
+											<label for="id" class="col-sm-3 col-form-label">Kode User</label>
 											<div class="col-sm-6">
 												<input type="text" type="hidden" class="form-control" name="id" value="<?php echo $usr->id; ?>" readonly >
-											</div>
-										</div>
-										<div class="form-group row">
-											<label for="name" class="col-sm-3 col-form-label">Username</label>
-											<div class="col-sm-6">
-												<input type="text" type="hidden" class="form-control" name="username" value="<?php echo $usr->username; ?>">
 											</div>
 										</div>
 										<div class="form-group row">
@@ -54,13 +48,19 @@
 											</div>
 										</div>
 										<div class="form-group row">
+											<label for="name" class="col-sm-3 col-form-label">Username</label>
+											<div class="col-sm-6">
+												<input type="text" type="hidden" class="form-control" name="username" value="<?php echo $usr->username; ?>">
+											</div>
+										</div>
+										<div class="form-group row">
 											<label for="password" class="col-sm-3 col-form-label">Password</label>
 											<div class="col-sm-6">
 												<input type="password" type="hidden" class="form-control" name="password" value="<?php echo $usr->password; ?>" >
 											</div>
 										</div>
 										<div class="form-group row">
-											<label for="level" class="col-sm-3 col-form-label">Level</label>
+											<label for="level" class="col-sm-3 col-form-label">Role</label>
 											<div class="col-sm-6">
 												<select class="form-control" name="level">
 													<option value="admin" <?php if($usr->level == "admin") { echo "SELECTED"; } ?>>Admin</option>
