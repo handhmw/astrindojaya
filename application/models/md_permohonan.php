@@ -90,6 +90,11 @@ class Md_permohonan extends CI_Model
                 $query = $this->db->get('tb_karyawan_baru');
                 return $query->result_array();
         }
+
+        public function print_id($id_pmhn){
+                $query = $this->db->get_where('tb_karyawan_baru', ['id_pmhn' => $id_pmhn]);
+                return $query->result_array();
+	}
         
         public function val_permohonan(){
                 $this->form_validation->set_message('required',"<p style='font-size:10px; 
@@ -192,5 +197,4 @@ class Md_permohonan extends CI_Model
                 $this->form_validation->set_rules($config);
         }
 }
-
 ?>

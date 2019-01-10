@@ -2,19 +2,16 @@
 
 class Md_resign extends CI_Model
 {
-	public function __construct()
-	{
+	public function __construct(){
 		$this->load->database();
 	}
 
-	public function tampil()
-	{
+	public function tampil(){
 		$query = $this->db->get('tb_resign');
 		return $query->result();
 	}
 
-	public function simpan()
-	{
+	public function simpan(){
 		$data = [
                         'id_rs'            => $this->input->post('id_rs'),
                         'bulan_rs'         => $this->input->post('bulan_rs'),
@@ -32,21 +29,17 @@ class Md_resign extends CI_Model
 		$this->db->insert('tb_resign', $data);
 	}
 
-	public function edit($id_rs)
-	{
+	public function edit($id_rs){
 	        $query = $this->db->get_where('tb_resign', ['id_rs' => $id_rs]);
 		return $query->row();
         }
     
-        public function detail($id_rs)
-	{
+        public function detail($id_rs){
                 return $this->db->get_where('tb_resign', array('id_rs' => $id_rs))->result();
 	}
 
-	public function update()
-	{
+	public function update(){
 		$kondisi = ['id_rs' => $this->input->post('id_rs')];
-		
 		$data = [
                         'id_rs'            => $this->input->post('id_rs'),
                         'bulan_rs'         => $this->input->post('bulan_rs'),
@@ -64,19 +57,21 @@ class Md_resign extends CI_Model
 		$this->db->update('tb_resign', $data, $kondisi);
 	}
 
-	public function hapus($id_rs)
-	{
+	public function hapus($id_rs){
 		$this->db->delete('tb_resign', ['id_rs' => $id_rs]);
         }
 
-        public function print()
-        {
+        public function print(){
                 $query = $this->db->get('tb_resign');
                 return $query->result_array();
         }
+
+        public function print_id($id_rs){
+                $query = $this->db->get_where('tb_resign', ['id_rs' => $id_rs]);
+                return $query->result_array();
+	}
         
-        public function val_resign()
-        {
+        public function val_resign(){
                 $this->form_validation->set_message('required',"<p style='font-size:10px; 
                 margin-top: -10px;' class='text-danger'>". '{field} Tidak Boleh Kosong!'."</p>");
 
@@ -126,5 +121,4 @@ class Md_resign extends CI_Model
                 $this->form_validation->set_rules($config);
         }
 }
-
 ?>

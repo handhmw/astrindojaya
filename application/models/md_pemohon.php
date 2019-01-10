@@ -2,19 +2,16 @@
 
 class Md_pemohon extends CI_Model
 {
-	public function __construct()
-	{
+	public function __construct(){
 		$this->load->database();
 	}
 
-	public function tampil()
-	{
+	public function tampil(){
 		$query = $this->db->get('tb_pemohon');
                 return $query->result();
         }
 
-	public function simpan()
-	{
+	public function simpan(){
 		$data = [
                     'id_pemohon'        => $this->input->post('id_pemohon'),
                     'nama_pemohon'      => $this->input->post('nama_pemohon'),
@@ -26,19 +23,16 @@ class Md_pemohon extends CI_Model
 		$this->db->insert('tb_pemohon', $data);
 	}
 
-	public function edit($id)
-	{
+	public function edit($id){
 	        $query = $this->db->get_where('tb_pemohon', ['id_pemohon' => $id]);
 		return $query->row();
         }
     
-        public function detail($id)
-	{
+        public function detail($id){
                 return $this->db->get_where('tb_pemohon', array('id_pemohon' => $id))->result();
 	}
 
-	public function update()
-	{
+	public function update(){
 		$kondisi = ['id_pemohon' => $this->input->post('id_pemohon')];
 		
 		$data = [
@@ -52,22 +46,11 @@ class Md_pemohon extends CI_Model
 		$this->db->update('tb_pemohon', $data, $kondisi);
 	}
 
-	public function hapus($id)
-	{
+	public function hapus($id){
 		$this->db->delete('tb_pemohon', ['id_pemohon' => $id]);
         }
-
-        public function print($tabel,$id)
-        {
-                $query = $this->db->select()
-                                ->from($tabel)
-                                ->where($id)
-                                ->get();
-                return $query->result();
-        }
         
-        public function val_pemohon()
-        {
+        public function val_pemohon(){
                 $this->form_validation->set_message('required',"<p style='font-size:10px; 
                 margin-top: -10px;' class='text-danger'>". '{field} Tidak Boleh Kosong!'."</p>");
 
@@ -88,5 +71,4 @@ class Md_pemohon extends CI_Model
                 $this->form_validation->set_rules($config);
         }
 }
-
 ?>

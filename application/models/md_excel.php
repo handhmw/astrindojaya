@@ -15,12 +15,10 @@ class Md_excel extends CI_Model {
   
     $this->upload->initialize($config); 
     if($this->upload->do_upload('file')){ 
-
-      
       $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
       return $return;
-    }else{
-     
+    } 
+    else{
       $return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
       return $return;
     }

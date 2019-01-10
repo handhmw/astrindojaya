@@ -2,19 +2,16 @@
 
 class Md_penilaian extends CI_Model
 {
-	public function __construct()
-	{
+	public function __construct(){
 		$this->load->database();
 	}
 
-	public function tampil()
-	{
+	public function tampil(){
 		$query = $this->db->get('tb_penilaian');
                 return $query->result();
         }
 
-	public function simpan()
-	{
+	public function simpan(){
 		$data = [
                     'id_nl'                => $this->input->post('id_nl'),
                     'nama_nl'              => $this->input->post('nama_nl'),
@@ -29,19 +26,16 @@ class Md_penilaian extends CI_Model
 		$this->db->insert('tb_penilaian', $data);
 	}
 
-	public function edit($id_nl)
-	{
+	public function edit($id_nl){
 	        $query = $this->db->get_where('tb_penilaian', ['id_nl' => $id_nl]);
 		return $query->row();
         }
     
-        public function detail($id_nl)
-	{
+        public function detail($id_nl){
                 return $this->db->get_where('tb_penilaian', array('id_nl' => $id_nl))->result();
 	}
 
-	public function update()
-	{
+	public function update(){
 		$kondisi = ['id_nl' => $this->input->post('id_nl')];
 		
 		$data = [
@@ -58,28 +52,21 @@ class Md_penilaian extends CI_Model
 		$this->db->update('tb_penilaian', $data, $kondisi);
 	}
 
-	public function hapus($id_nl)
-	{
+	public function hapus($id_nl){
 		$this->db->delete('tb_penilaian', ['id_nl' => $id_nl]);
         }
 
-        // public function print($tabel,$id_nl)
-        // {
-        //         $query = $this->db->select()
-        //                         ->from($tabel)
-        //                         ->where($id_nl)
-        //                         ->get();
-        //         return $query->result();
-        // }
-
-        public function print()
-        {
+        public function print(){
                 $query = $this->db->get('tb_penilaian');
                 return $query->result_array();
         }
+
+        public function print_id($id_nl){
+                $query = $this->db->get_where('tb_penilaian', ['id_nl' => $id_nl]);
+                return $query->result_array();
+	}
         
-        public function val_penilaian()
-        {
+        public function val_penilaian(){
                 $this->form_validation->set_message('required',"<p style='font-size:10px; 
                 margin-top: -10px;' class='text-danger'>". '{field} Tidak Boleh Kosong!'."</p>");
 
@@ -116,5 +103,4 @@ class Md_penilaian extends CI_Model
                 $this->form_validation->set_rules($config);
         }
 }
-
 ?>

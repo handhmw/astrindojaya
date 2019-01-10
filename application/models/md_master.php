@@ -73,118 +73,98 @@ class Md_master extends CI_Model
 		return $hasil;
     }
     
-    function get_idk()
-    {
+    function get_idk(){
         $this->db->where('pangkat_kry', 'STAFF');
         $this->db->or_where('pangkat_kry', 'OPERATOR');
         $query = $this->db->get('tb_karyawan');
         return $query->result();
     }
 
-    function get_idk_karyawan()
-    {
+    function get_idk_karyawan(){
         $query = $this->db->get('tb_karyawan');
         return $query->result();
     }
 
-    function get_idk_penilai()
-    {
+    function get_idk_penilai(){
         $this->db->where('pangkat_kry', 'MANAGER');
         $query = $this->db->get('tb_karyawan');
         return $query->result();
     }
 
-    function get_idk_pemohon()
-    {
+    function get_idk_pemohon(){
         //$this->db->where('pangkat', 'MANAGER');
         $query = $this->db->get('tb_karyawan');
         return $query->result();
     }
 
-    function get_idp()
-    {
+    function get_idp(){
         // $this->db->where('jabatan_penilai', 'PRODUCT MANAGER');
         // $query = $this->db->get('tb_penilai');
         // return $query->result();
         return $this->db->from('tb_penilai')->get()->result();
     }
 
-    public function get_dept()
-    {
+    public function get_dept(){
         return $this->db->from('tb_departemen')->get()->result();
     }
 
-    public function get_jabatan()
-    {
+    public function get_jabatan(){
         return $this->db->from('tb_jabatan')->get()->result();
     }
 
-    public function get_level()
-    {
+    public function get_level(){
         return $this->db->from('tb_level')->get()->result();
     }
 
-    public function get_divisi()
-    {
+    public function get_divisi(){
         return $this->db->from('tb_divisi')->get()->result();
     }
 
-    public function get_pangkat()
-    {
+    public function get_pangkat(){
         return $this->db->from('tb_pangkat')->get()->result();
     }
 
-    public function get_unit()
-    {
+    public function get_unit(){
         return $this->db->from('tb_unit')->get()->result();
     }
 
-    public function get_agama()
-    {
+    public function get_agama(){
         return $this->db->from('tb_agama')->get()->result();
     }
 
-    public function get_jk()
-    {
+    public function get_jk(){
         return $this->db->from('tb_jk')->get()->result();
     }
 
-    public function get_kerja()
-    {
+    public function get_kerja(){
         return $this->db->from('tb_kerja')->get()->result();
     }
 
-    public function get_nikah()
-    {
+    public function get_nikah(){
         return $this->db->from('tb_nikah')->get()->result();
     }
 
-    public function get_permohonan()
-    {
+    public function get_permohonan(){
         return $this->db->from('tb_permohonan')->get()->result();
     }
 
-    public function get_rekrutmen()
-    {
+    public function get_rekrutmen(){
         return $this->db->from('tb_rekrutmen')->get()->result();
     }
 
-    public function get_pendidikan()
-    {
+    public function get_pendidikan(){
         return $this->db->from('tb_pendidikan')->get()->result();
     }
 
     // Total Row Data
-    public function per_dep()
-    {
+    public function per_dep(){
         $query = $this->db->select('dep_kry, COUNT(dep_kry) as jumlah');
         $query = $this->db->group_by('dep_kry');  
         $query = $this->db->get('tb_karyawan', 10);
         return $query->result();
     }
 
-    public function per_area()
-    {
+    public function per_area(){
         $query = $this->db->select('lokasi_kry, COUNT(lokasi_kry) as jumlah');
         $query = $this->db->join('tb_unit', 'tb_karyawan.lokasi_kry = tb_unit.unit');
         $query = $this->db->group_by('lokasi_kry');  
@@ -192,24 +172,21 @@ class Md_master extends CI_Model
         return $query->result();
     }
 
-    public function per_jenis()
-    {
+    public function per_jenis(){
         $query = $this->db->select('dasar_permohonan_pmhn, COUNT(dasar_permohonan_pmhn) as jumlah');
         $query = $this->db->group_by('dasar_permohonan_pmhn');  
         $query = $this->db->get('tb_karyawan_baru', 10);
         return $query->result();
     }
 
-    public function get_pie()
-    {
+    public function get_pie(){
         $query = $this->db->select('dep_kry, COUNT(dep_kry) as jumlah');
         $query = $this->db->group_by('dep_kry');  
         $query = $this->db->get('tb_karyawan', 10);
         return $query->result();;
     }
 
-    public function get_column()
-    {
+    public function get_column(){
         $query = $this->db->select('dep_kry, COUNT(dep_kry) as jumlah');
         $query = $this->db->group_by('dep_kry');  
         $query = $this->db->get('tb_karyawan', 10);

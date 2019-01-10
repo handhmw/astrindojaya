@@ -2,21 +2,18 @@
 
 class Md_mpp extends CI_Model
 {
-	public function __construct()
-	{
+	public function __construct(){
 		$this->load->database();
         }
 
-	public function tampil()
-	{
+	public function tampil(){
         $this->db->order_by('jabatan_pp', 'ASC');
         $query = $this->db->get('tb_mpp');
         return $query->result();
 
 	}
 
-	public function simpan()
-	{
+	public function simpan(){
 		$data = [
                     'id_pp'             => $this->input->post('id_pp'),
                     'jabatan_pp'        => $this->input->post('jabatan_pp'),
@@ -41,19 +38,16 @@ class Md_mpp extends CI_Model
 		$this->db->insert('tb_mpp', $data);
 	}
 
-	public function edit($id_pp)
-	{
+	public function edit($id_pp){
 		$query = $this->db->get_where('tb_mpp', ['id_pp' => $id_pp]);
 		return $query->row();
     }
     
-    public function detail($id_pp)
-	{
+    public function detail($id_pp){
         return $this->db->get_where('tb_mpp', array('id_pp' => $id_pp))->result();
 	}
     
-	public function update()
-	{
+	public function update(){
 		$kondisi = ['id_pp' => $this->input->post('id_pp')];
 		$data = [
                     'id_pp'             => $this->input->post('id_pp'),
@@ -84,24 +78,21 @@ class Md_mpp extends CI_Model
     //     return $this->db->update('tb_mpp', $data, array('id_pp' => $id_pp));
     // }
 
-	public function hapus($id_pp)
-	{
+	public function hapus($id_pp){
 		$this->db->delete('tb_mpp', ['id_pp' => $id_pp]);
     }
 
-    public function print($tabel,$id)
-    {
+    public function print($tabel,$id){
         $query = $this->db->select()->from($tabel)->where($id)->get();
         return $query->result();
     }
 
-    // public function print($id_pp)
-	// {
-    //     return $this->db->get_where('tb_mpp', array('id_pp' => $id_pp))->result();
-	// }
+    public function print_id($id_pp){
+        $query = $this->db->get_where('tb_mpp', ['id_pp' => $id_pp]);
+        return $query->result_array();
+    }
         
-    public function val_mpp()
-    {
+    public function val_mpp(){
         $this->form_validation->set_message('required',"<p style='font-size:10px; 
         margin-top: -10px;' class='text-danger'>". '{field} Tidak Boleh Kosong!'."</p>");
         $config = [
@@ -177,5 +168,4 @@ class Md_mpp extends CI_Model
             $this->form_validation->set_rules($config);
         }
 }
-
 ?>

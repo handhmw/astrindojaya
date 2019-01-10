@@ -1,70 +1,60 @@
 <?php
 class Md_karyawan extends CI_Model
 {
-	public function __construct()
-	{
+	public function __construct(){
 		$this->load->database();
         }
 
-        public function get_total_karyawan()
-        {
+        public function get_total_karyawan(){
                 $query = $this->db->get('tb_karyawan')->result_array();
                 $query = $this->db->get('tb_karyawan')->num_rows();    
                 return $query;   
         }
 
-        public function get_total_cabang()
-        {
+        public function get_total_cabang(){
                 $query = $this->db->get('tb_unit')->result_array();
                 $query = $this->db->get('tb_unit')->num_rows();    
                 return $query;   
         }
 
-        public function get_total_dep()
-        {
+        public function get_total_dep(){
                 $query = $this->db->get('tb_departemen')->result_array();
                 $query = $this->db->get('tb_departemen')->num_rows();    
                 return $query;   
         }
 
-        public function get_total_baru()
-        {
+        public function get_total_baru(){
                 $query = $this->db->get('tb_karyawan_baru')->result_array();
                 $query = $this->db->get('tb_karyawan_baru')->num_rows();    
                 return $query;   
         }
 
-        public function get_total_resign()
-        {
+        public function get_total_resign(){
                 $query = $this->db->get('tb_resign')->result_array();
                 $query = $this->db->get('tb_resign')->num_rows();    
                 return $query;   
         }
 
-        public function get_total_call()
-        {
+        public function get_total_call(){
                 $query = $this->db->get('tb_karyawan_baru')->result_array();
                 $query = $this->db->get('tb_karyawan_baru')->num_rows();    
                 return $query;   
         }
 
-        public function birthday()
-	{
+        public function birthday(){
                 $query = $this->db->order_by('jabatan_kry', 'ASC');
                 $query = $this->db->query("SELECT nama_kry, jabatan_kry, tgl_lahir_kry FROM tb_karyawan 
                                            WHERE date_format(str_to_date(tgl_lahir_kry, '%d-%m-%Y'), '%m') = MONTH(NOW())");
                 return $query->result();
 	}
 
-	public function tampil()
-	{
+	public function tampil(){
                 $this->db->order_by('pangkat_kry', 'ASC');
                 $query = $this->db->get('tb_karyawan');
                 return $query->result();
 	}
 
-	public function simpan()
-	{
+	public function simpan(){
 		$data = [
                                 'id_kry'                => $this->input->post('id_kry'),
                                 'nama_kry'              => $this->input->post('nama_kry'),
@@ -94,19 +84,16 @@ class Md_karyawan extends CI_Model
 		$this->db->insert('tb_karyawan', $data);
 	}
 
-	public function edit($id_kry)
-	{
+	public function edit($id_kry){
 		$query = $this->db->get_where('tb_karyawan', ['id_kry' => $id_kry]);
 		return $query->row();
         }
     
-         public function detail($id_kry)
-	{
-        return $this->db->get_where('tb_karyawan', array('id_kry' => $id_kry))->result();
+        public function detail($id_kry){
+                return $this->db->get_where('tb_karyawan', array('id_kry' => $id_kry))->result();
 	}
 
-	public function update()
-	{
+	public function update(){
 		$kondisi = ['id_kry' => $this->input->post('id_kry')];
 		
 		$data = [
@@ -138,19 +125,21 @@ class Md_karyawan extends CI_Model
 		$this->db->update('tb_karyawan', $data, $kondisi);
 	}
 
-	public function hapus($id_kry)
-	{
+	public function hapus($id_kry){
 		$this->db->delete('tb_karyawan', ['id_kry' => $id_kry]);
         }
 
-        public function print()
-        {
+        public function print(){
                 $query = $this->db->get('tb_karyawan');
                 return $query->result_array();
         }
+
+        public function print_id($id_kry){
+                $query = $this->db->get_where('tb_karyawan', ['id_kry' => $id_kry]);
+                return $query->result_array();
+	}
         
-        public function val_karyawan()
-        {
+        public function val_karyawan(){
                 $this->form_validation->set_message('required',"<p style='font-size:10px; 
                 margin-top: -10px;' class='text-danger'>". '{field} Tidak Boleh Kosong!'."</p>");
                 $config = [

@@ -71,11 +71,11 @@
                             <li>
                                 <a href="#Report" class="has-arrow"><i class="icon-book-open"></i><span>Report</span></a>
                                 <ul>
-                                    <li><a href="<?=base_url('report_penilaian/print_penilaian')?>"<span> Report Penilaian</span></a></li>
-                                    <li><a href="<?=base_url('report_penilaian/print_percobaan')?>"<span> Report Percobaan</span></a></li>
-                                    <li><a href="<?=base_url('report_penilaian/print_training')?>"<span> Report Training</span></a></li> 
-                                    <li><a href="<?=base_url('report_penilaian/print_resign')?>"<span> Report Resign</span></a></li>
-                                    <li><a href="<?=base_url('report_penilaian/print_mpp')?>"<span> Report Man Power Planning</span></a></li>                                
+                                    <li><a href="<?=base_url('report/print_penilaian')?>" target="_blank"<span> Report Penilaian</span></a></li>
+                                    <li><a href="<?=base_url('report/print_percobaan')?>" target="_blank"<span> Report Percobaan</span></a></li>
+                                    <li><a href="<?=base_url('report/print_training')?>" target="_blank"<span> Report Training</span></a></li> 
+                                    <li><a href="<?=base_url('report/print_resign')?>" target="_blank"<span> Report Resign</span></a></li>
+                                    <li><a href="<?=base_url('report/print_mpp')?>" target="_blank"<span> Report Man Power Planning</span></a></li>                                
                                 </ul>
                             </li>
                             <li>

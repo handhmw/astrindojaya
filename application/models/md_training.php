@@ -2,19 +2,16 @@
 
 class Md_training extends CI_Model
 {
-	public function __construct()
-	{
+	public function __construct(){
 		$this->load->database();
 	}
 
-	public function tampil()
-	{
+	public function tampil(){
 		$query = $this->db->get('tb_training');
 		return $query->result();
 	}
 
-	public function simpan()
-	{
+	public function simpan(){
 		$data = [
                         'id_tr'                => $this->input->post('id_tr'),
                         'nama_pemohon_tr'      => $this->input->post('nama_pemohon_tr'),
@@ -35,19 +32,16 @@ class Md_training extends CI_Model
 		$this->db->insert('tb_training', $data);
 	}
 
-	public function edit($id_tr)
-	{
+	public function edit($id_tr){
 	        $query = $this->db->get_where('tb_training', ['id_tr' => $id_tr]);
 		return $query->row();
         }
     
-        public function detail($id_tr)
-	{
+        public function detail($id_tr){
                 return $this->db->get_where('tb_training', array('id_tr' => $id_tr))->result();
 	}
 
-	public function update()
-	{
+	public function update(){
 		$kondisi = ['id_tr' => $this->input->post('id_tr')];
 		
 		$data = [
@@ -70,26 +64,21 @@ class Md_training extends CI_Model
 		$this->db->update('tb_training', $data, $kondisi);
 	}
 
-	public function hapus($id_tr)
-	{
+	public function hapus($id_tr){
 		$this->db->delete('tb_training', ['id_tr' => $id_tr]);
         }
 
-        // public function print($tabel,$id_tr)
-        // {
-
-        //         $query = $this->db->get_where('tb_training', ['id_tr' => $id_tr]);
-	// 	return $query->result();
-        // }
-
-        public function print()
-        {
+        public function print(){
                 $query = $this->db->get('tb_training');
                 return $query->result_array();
         }
+
+        public function print_id($id_tr){
+                $query = $this->db->get_where('tb_training', ['id_tr' => $id_tr]);
+                return $query->result_array();
+	}
         
-        public function val_training()
-        {
+        public function val_training(){
                 $this->form_validation->set_message('required',"<p style='font-size:10px; 
                 margin-top: -10px;' class='text-danger'>". '{field} Tidak Boleh Kosong!'."</p>");
 
@@ -150,5 +139,4 @@ class Md_training extends CI_Model
                 $this->form_validation->set_rules($config);
         }
 }
-
 ?>

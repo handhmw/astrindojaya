@@ -2,32 +2,27 @@
 
 class Md_percobaan extends CI_Model
 {
-	public function __construct()
-	{
-		$this->load->database();
+	public function __construct(){
+	        $this->load->database();
         }
         
-        public function get_percobaan()
-        {
+        public function get_percobaan(){
                 $query = $this->db->get('tb_percobaan');
                 return $query->result_array();
         }
 
-	public function tampil()
-	{
+	public function tampil(){
 		$query = $this->db->get('tb_percobaan');
 		return $query->result();
         }
         
-        public function tampil_bulan()
-	{
+        public function tampil_bulan(){
                 $query = $this->db->query("SELECT nama_cb, nik_cb, jabatan_cb, tgl_mulai_cb, jenis_cb, tgl_selesai_cb FROM tb_percobaan 
                                            WHERE date_format(str_to_date(tgl_selesai_cb, '%d-%m-%Y'), '%m') = MONTH(NOW())");
                 return $query->result();
         }
 
-	public function simpan()
-	{
+	public function simpan(){
 		$data = [
                         'id_cb'                => $this->input->post('id_cb'),
                         'nama_cb'              => $this->input->post('nama_cb'),
@@ -46,19 +41,16 @@ class Md_percobaan extends CI_Model
 		$this->db->insert('tb_percobaan', $data);
 	}
 
-	public function edit($id_cb)
-	{
+	public function edit($id_cb){
 	        $query = $this->db->get_where('tb_percobaan', ['id_cb' => $id_cb]);
 		return $query->row();
         }
     
-        public function detail($id_cb)
-	{
+        public function detail($id_cb){
                 return $this->db->get_where('tb_percobaan', array('id_cb' => $id_cb))->result();
 	}
 
-	public function update()
-	{
+	public function update(){
 		$kondisi = ['id_cb' => $this->input->post('id_cb')];
 		$data = [
                         'id_cb'                => $this->input->post('id_cb'),
@@ -78,28 +70,21 @@ class Md_percobaan extends CI_Model
 		$this->db->update('tb_percobaan', $data, $kondisi);
 	}
 
-	public function hapus($id_cb)
-	{
+	public function hapus($id_cb){
 		$this->db->delete('tb_percobaan', ['id_cb' => $id_cb]);
         }
 
-        public function print()
-        {
+        public function print(){
                 $query = $this->db->get('tb_percobaan');
                 return $query->result_array();
         }
 
-        // public function print($tabel,$id_cb)
-        // {
-        //         $query = $this->db->select()
-        //                         ->from($tabel)
-        //                         ->where($id_cb)
-        //                         ->get();
-        //         return $query->result();
-        // }
+        public function print_id($id_cb){
+                $query = $this->db->get_where('tb_percobaan', ['id_cb' => $id_cb]);
+                return $query->result_array();
+	}
         
-        public function val_percobaan()
-        {
+        public function val_percobaan(){
                 $this->form_validation->set_message('required',"<p style='font-size:10px; 
                 margin-top: -10px;' class='text-danger'>". '{field} Tidak Boleh Kosong!'."</p>");
 

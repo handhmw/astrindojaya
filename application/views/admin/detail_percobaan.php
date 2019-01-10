@@ -79,7 +79,7 @@
                                     </table>
                                 </div>
                                 <div class="body">
-                                    <a href="<?php echo base_url() ?>admin/cetak_" class="btn btn-xs btn-primary" role="button" title="Print Data">
+                                    <a href="<?php echo site_url();?>report/form_percobaan_id/<?php echo $kry->id_cb;?>" class="btn btn-xs btn-primary" role="button" title="Cetak">
                                     <i class="fa fa-print"></i><span> Print</span></a>
                                     <a href="<?php echo site_url();?>admin/percobaan" class="btn btn-xs btn-danger" role="button">
 									<i class="fa fa-angle-double-left"></i><span> Back</span></a>

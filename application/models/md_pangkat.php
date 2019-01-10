@@ -2,19 +2,16 @@
 
 class Md_pangkat extends CI_Model
 {
-	public function __construct()
-	{
+	public function __construct(){
 		$this->load->database();
 	}
 
-	public function tampil()
-	{
+	public function tampil(){
 		$query = $this->db->get('tb_pangkat');
                 return $query->result();
         }
 
-	public function simpan()
-	{
+	public function simpan(){
 		$data = [
                         'id'         => $this->input->post('id'),
                         'pangkat' => $this->input->post('pangkat')
@@ -23,19 +20,16 @@ class Md_pangkat extends CI_Model
 		$this->db->insert('tb_pangkat', $data);
 	}
 
-	public function edit($id)
-	{
+	public function edit($id){
 	        $query = $this->db->get_where('tb_pangkat', ['id' => $id]);
 		return $query->row();
         }
     
-        public function detail($id)
-	{
+        public function detail($id){
                 return $this->db->get_where('tb_pangkat', array('id' => $id))->result();
 	}
 
-	public function update()
-	{
+	public function update(){
 		$kondisi = ['id' => $this->input->post('id')];
 		$data = [
                         'id'         => $this->input->post('id'),
@@ -45,13 +39,11 @@ class Md_pangkat extends CI_Model
 		$this->db->update('tb_pangkat', $data, $kondisi);
 	}
 
-	public function hapus($id)
-	{
+	public function hapus($id){
 		$this->db->delete('tb_pangkat', ['id' => $id]);
         }
         
-        public function val_pangkat()
-        {
+        public function val_pangkat(){
                 $this->form_validation->set_message('required',"<p style='font-size:10px; 
                 margin-top: -10px;' class='text-danger'>". '{field} Tidak Boleh Kosong!'."</p>");
 

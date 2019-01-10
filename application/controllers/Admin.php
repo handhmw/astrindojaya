@@ -10,7 +10,7 @@ class Admin extends CI_Controller {
                                  'md_penilaian','md_training','md_get','md_penilai',
                                  'md_pemohon','md_mpp'));
         $this->load->library(array('form_validation','session','Pdf'));
-        $this->load->helper(array('url','html','form','text','nominal','tanggal'));
+        $this->load->helper(array('url','html','form','text','nominal','tanggal','tgl_indo'));
         if($this->session->userdata('username')=="") {
             redirect('login');
         }
@@ -27,6 +27,37 @@ class Admin extends CI_Controller {
         session_destroy();
         redirect('login');
     }
+
+    // ============================== HELPER ============================= //
+
+    public function tanggal(){
+        echo shortdate_indo('2017-09-5');
+        echo "<br/>";
+        echo date_indo('2017-09-5');
+        echo "<br/>";
+        echo mediumdate_indo('2017-09-5');
+        echo "<br/>";
+        echo longdate_indo('2017-09-5');
+    }
+
+    public function rupiah($angka){
+	
+        $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+        return $hasil_rupiah;
+     
+    }
+
+    //Mengecek Duplikasi Data Username
+    public function dup_username($post_username) {
+        return $this->md_user->dup_username($post_username);
+    }
+
+    public function dup_nik($post_nik) 
+    {
+        return $this->md_user->dup_nik($post_nik);
+    }
+
+    // ============================== HELPER ============================= //
 
 	public function index()
 	{  
@@ -357,7 +388,6 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('id', 'Kode pangkat', ['required', 'is_unique[tb_pangkat.id]']);
 
         $this->md_pangkat->val_pangkat();
-
         if($this->form_validation->run() === FALSE)
         {
             $this->add_pangkat();
@@ -390,7 +420,6 @@ class Admin extends CI_Controller {
     public function update_pangkat($id)
     {
         $this->md_pangkat->val_pangkat();
-
         if($this->form_validation->run() === FALSE)
         {
             $this->edit_pangkat($id);
@@ -427,7 +456,6 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('id_penilai', 'Kode Karyawan', ['required', 'is_unique[tb_penilai.id_penilai]']);
 
         $this->md_penilai->val_penilai();
-
         if($this->form_validation->run() === FALSE)
         {
             $this->add_penilai();
@@ -499,7 +527,6 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('id_pemohon', 'Kode Karyawan', ['required', 'is_unique[tb_pemohon.id_pemohon]']);
 
         $this->md_pemohon->val_pemohon();
-
         if($this->form_validation->run() === FALSE)
         {
             $this->add_pemohon();
@@ -591,9 +618,9 @@ class Admin extends CI_Controller {
 
         $this->form_validation->set_message('dup_username', 'Username sudah digunakan, silahkan gunakan username lain.');
    
-      if($this->form_validation->run() == FALSE) {
+        if($this->form_validation->run() == FALSE) {
         $this->add_user();
-      } else {
+        } else {
 
         $data = array(
                     'id'           => $this->input->post('id'),
@@ -606,11 +633,7 @@ class Admin extends CI_Controller {
 
         $this->md_user->save_user($data);
         redirect('admin/pengguna');
-      }
-    }
-    //Mengecek Duplikasi Data Username
-    public function dup_username($post_username) {
-        return $this->md_user->dup_username($post_username);
+        }
     }
     
 	public function update_user($id)
@@ -636,33 +659,14 @@ class Admin extends CI_Controller {
 		redirect('admin/pengguna');
     }
 
-    public function print_user()
-    {
-        $data['data'] = $this->md_user->get_user();
-
-        $this->load->view('admin/print_user', $data);
-    }
-
     // ===================================CRUD USER END ======================================== //
 
     // ===================================CRUD KARYAWAN START======================================== //
-
-    public function dup_nik($post_nik) 
-    {
-        return $this->md_user->dup_nik($post_nik);
-    }
 
     public function karyawan()
     {
         $data['karyawan'] = $this->md_karyawan->tampil();
         $data['judul']    = "Data Karayawan";
-
-        // $msg    = $this->uri->segment(3);
-        // $alert  = '';
-        // if($msg == 'success'){
-        //     $alert  = 'Success!!';
-        // }
-        // $data['_alert'] = $alert;
 
         $this->load->view('admin/data_karyawan', $data);
     }
@@ -691,7 +695,6 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('id_kry', 'ID Karyawan', ['required', 'is_unique[tb_karyawan.id_kry]']);
 
         $this->md_karyawan->val_karyawan();
-
         if($this->form_validation->run() === FALSE)
         {
             $this->add_karyawan();
@@ -753,12 +756,6 @@ class Admin extends CI_Controller {
         $where = array('id_kry' => $id_kry);
 
         $this->load->view('admin/detail_karyawan',$data);
-    }
-
-    public function print_karyawan()
-    {
-        $data['karyawan'] = $this->md_karyawan->print();
-        $this->load->view('admin/print_karyawan', $data);
     }
 
     // ===================================CRUD KARYAWAN END======================================== //
@@ -862,110 +859,94 @@ class Admin extends CI_Controller {
         $this->load->view('admin/detail_permohonan',$data);
     }
 
-    public function print_permohonan()
-    {
-        $data['karyawan'] = $this->md_permohonan->print();
-
-        $this->load->view('admin/print_permohonan', $data);
-        
-    }
-
     // ===================================CRUD KARYAWAN BARU END================================== //
 
     // ===================================CRUD PERCOBAAN START=================================== //
     
-     public function percobaan()
-     {
-         $data['karyawan'] = $this->md_percobaan->tampil();
-         $data['judul']    = "Data Karyawan Percobaan";
+    public function percobaan()
+    {
+        $data['karyawan'] = $this->md_percobaan->tampil();
+        $data['judul']    = "Data Karyawan Percobaan";
  
-         $this->load->view('admin/data_percobaan', $data);
-     }
+        $this->load->view('admin/data_percobaan', $data);
+    }
  
-     function detail_percobaan($id_cb)
-     {
-         $data['judul']      = 'DETAIL DATA KARYAWAN';
-         $data['karyawan']   = $this->md_percobaan->detail($id_cb);
-         $where = array('id_cb' => $id_cb);
+    function detail_percobaan($id_cb)
+    {
+        $data['judul']      = 'DETAIL DATA KARYAWAN';
+        $data['karyawan']   = $this->md_percobaan->detail($id_cb);
+        $where = array('id_cb' => $id_cb);
  
-         $this->load->view('admin/detail_percobaan',$data);
-     }
+        $this->load->view('admin/detail_percobaan',$data);
+    }
  
-     public function add_percobaan()
-     {
-         $data['judul']   = 'Tambah Karyawan Percobaan';
-         $data['idk']     = $this->md_master->get_idk_karyawan();
-         $data['dep']     = $this->md_master->get_dept();
-         $data['jbt']     = $this->md_master->get_jabatan();
-         $data['krj']     = $this->md_master->get_kerja();
-         $data['name']    = $this->session->userdata('name');
-         $data['kode']    = $this->md_kode->kode_percobaan();
+    public function add_percobaan()
+    {
+        $data['judul']   = 'Tambah Karyawan Percobaan';
+        $data['idk']     = $this->md_master->get_idk_karyawan();
+        $data['dep']     = $this->md_master->get_dept();
+        $data['jbt']     = $this->md_master->get_jabatan();
+        $data['krj']     = $this->md_master->get_kerja();
+        $data['name']    = $this->session->userdata('name');
+        $data['kode']    = $this->md_kode->kode_percobaan();
  
-         $this->load->view('admin/add_percobaan',$data);
-     }
+        $this->load->view('admin/add_percobaan',$data);
+    }
  
-     public function save_percobaan()
-     {
-         $this->form_validation->set_message('is_unique', '{field} sudah terpakai');
-         $this->form_validation->set_rules('id_cb', 'Kode Karyawan', ['required', 'is_unique[tb_percobaan.id_cb]']);
+    public function save_percobaan()
+    {
+        $this->form_validation->set_message('is_unique', '{field} sudah terpakai');
+        $this->form_validation->set_rules('id_cb', 'Kode Karyawan', ['required', 'is_unique[tb_percobaan.id_cb]']);
  
-         $this->md_percobaan->val_percobaan();
+        $this->md_percobaan->val_percobaan();
  
-         if($this->form_validation->run() === FALSE)
-         {
-             $this->add_percobaan();
-         }
-         else
-         {
-             $this->md_percobaan->simpan();
-             $this->session->set_flashdata('input_sukses','Data Karyawan berhasil di input');
-             redirect('admin/percobaan');
-         }
-     }
+        if($this->form_validation->run() === FALSE)
+        {
+            $this->add_percobaan();
+        }
+        else
+        {
+            $this->md_percobaan->simpan();
+            $this->session->set_flashdata('input_sukses','Data Karyawan berhasil di input');
+            redirect('admin/percobaan');
+        }
+    }
  
-     public function delete_percobaan($id_cb)
-     {
-         $this->md_percobaan->hapus($id_cb);
-         $this->session->set_flashdata('hapus_sukses','Data Karyawan berhasil di hapus');
-         redirect('admin/percobaan');
-     }
+    public function delete_percobaan($id_cb)
+    {
+        $this->md_percobaan->hapus($id_cb);
+        $this->session->set_flashdata('hapus_sukses','Data Karyawan berhasil di hapus');
+        redirect('admin/percobaan');
+    }
  
-     public function edit_percobaan($id_cb)
-     {
-         $data['judul']     = 'Edit Karyawan Percobaan';
-         $data['dep']       = $this->md_master->get_dept();
-         $data['jbt']       = $this->md_master->get_jabatan();
-         $data['krj']       = $this->md_master->get_kerja();
-         $data['name']      = $this->session->userdata('name');;
-         $data['karyawan']  = $this->md_percobaan->edit($id_cb);
+    public function edit_percobaan($id_cb)
+    {
+        $data['judul']     = 'Edit Karyawan Percobaan';
+        $data['dep']       = $this->md_master->get_dept();
+        $data['jbt']       = $this->md_master->get_jabatan();
+        $data['krj']       = $this->md_master->get_kerja();
+        $data['name']      = $this->session->userdata('name');;
+        $data['karyawan']  = $this->md_percobaan->edit($id_cb);
  
-         $this->load->view('admin/edit_percobaan', $data);
-     }
+        $this->load->view('admin/edit_percobaan', $data);
+    }
  
     public function update_percobaan($id_cb)
     {
-         $this->md_percobaan->val_percobaan();
+        $this->md_percobaan->val_percobaan();
  
-         if($this->form_validation->run() === FALSE)
-         {
-             $this->edit_percobaan($id_cb);
-         }
-         else
-         {
-             $this->md_percobaan->update();
-             $this->session->set_flashdata('update_sukses', 'Data karyawan berhasil diperbaharui');
-             redirect('admin/percobaan');
-         }
+        if($this->form_validation->run() === FALSE)
+        {
+            $this->edit_percobaan($id_cb);
+        }
+        else
+        {
+            $this->md_percobaan->update();
+            $this->session->set_flashdata('update_sukses', 'Data karyawan berhasil diperbaharui');
+            redirect('admin/percobaan');
+        }
     }
     
-    public function print_percobaan()
-    {
-        $data['karyawan'] = $this->md_percobaan->print();
-
-        $this->load->view('admin/print_percobaan', $data);
-        
-    }
- 
     // ===================================CRUD PERCOBAAN END=================================== //
 
     // ==================================CRUD PENILAIAN START================================= //
@@ -1051,14 +1032,6 @@ class Admin extends CI_Controller {
             $this->session->set_flashdata('update_sukses', 'Data karyawan berhasil diperbaharui');
             redirect('admin/penilaian');
         }
-    }
-
-    public function print_penilaian()
-    {
-        $data['karyawan'] = $this->md_penilaian->print();
-
-        $this->load->view('admin/print_penilaian', $data);
-        
     }
 
     // ===================================CRUD PENILAI END================================== //
@@ -1147,14 +1120,6 @@ class Admin extends CI_Controller {
          }
      }
 
-    public function print_training()
-    {
-        $data['karyawan'] = $this->md_training->print();
-
-        $this->load->view('admin/print_training', $data);
-        
-    }
- 
      // ===================================CRUD TRAINING END================================== //
 
      // ==================================CRUD RESIGN START================================= //
@@ -1244,14 +1209,6 @@ class Admin extends CI_Controller {
              redirect('admin/resign');
          }
      }
-
-    public function print_resign()
-    {
-        $data['karyawan'] = $this->md_resign->print();
-
-        $this->load->view('admin/print_resign', $data);
-        
-    }
  
      // ===================================CRUD RESIGN END================================== //
      // ===================================CRUD MAN POWER PLANNING START======================================== //
@@ -1354,13 +1311,6 @@ class Admin extends CI_Controller {
         $this->load->view('admin/detail_mpp',$data);
     }
 
-    public function print_mpp()
-    {
-        $data['kry'] = $this->md_mpp->print();
-
-        $this->load->view('admin/print_mpp', $data);
-    }
-
     // ===================================CRUD MAN POWER PLANNING END======================================== //
 
 
@@ -1376,35 +1326,6 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/struktur_cabang',$data);
     }
 
-    public function rupiah($angka){
-	
-        $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
-        return $hasil_rupiah;
-     
-    }
-
-    // public function grafik_month() {  
-   
-    //     $data['judul']     = 'Grafik Resign per Tahun';
-    //     foreach($this->md_master->statistik_pengunjung()->result_array() as $gf)
-    //     {
-    //      $data['grafik'][]=(float)$gf['Januari'];
-    //      $data['grafik'][]=(float)$gf['Februari'];
-    //      $data['grafik'][]=(float)$gf['Maret'];
-    //      $data['grafik'][]=(float)$gf['April'];
-    //      $data['grafik'][]=(float)$gf['Mei'];
-    //      $data['grafik'][]=(float)$gf['Juni'];
-    //      $data['grafik'][]=(float)$gf['Juli'];
-    //      $data['grafik'][]=(float)$gf['Agustus'];
-    //      $data['grafik'][]=(float)$gf['September'];
-    //      $data['grafik'][]=(float)$gf['Oktober'];
-    //      $data['grafik'][]=(float)$gf['November'];
-    //      $data['grafik'][]=(float)$gf['Desember'];
-    //     }
-         
-    //     $this->load->view('admin/grafik_month', $data); 
-    // }
-
     public function grafik_karyawan()
 	{
         $data['judul']     = 'Pie Chart Karyawan';
@@ -1418,12 +1339,6 @@ class Admin extends CI_Controller {
 		$data['graph']     = $this->md_master->get_column();
 		$this->load->view('admin/grafik_dep', $data);
     }
-
-    public function excel()
-	{
-		$this->load->view('admin/excel');
-    }
-    
     // -------------------------------------START UPLOAD DATA-------------------------------------//
 
     public function upload_karyawan(){
@@ -1570,8 +1485,6 @@ class Admin extends CI_Controller {
             redirect('admin/permohonan');
         }  
     }
-
-    
 
     public function upload_percobaan(){
         $fileName = $this->input->post('file', TRUE);
@@ -2065,77 +1978,6 @@ class Admin extends CI_Controller {
 	        }
 	    }
     }
-
-    public function send_masa_kerjax()
-	{
-        $karyawan = $this->md_percobaan->tampil_bulan();
-        foreach ($karyawan as $kry);
-		$subject  = 'Info Masa Habis Kontrak - ' . $kry->nama_cb;
-		{
-			$message = '
-			<h3 align="center">INFO MASA KERJA KARYAWAN</h3>
-                <table border="1" width="100%" cellpadding="5">
-					<tr>
-						<td width="30%">Nama Karyawan</td>
-						<td width="70%">'.$kry->nama_cb.'</td>
-                    </tr>
-                    <tr>
-						<td width="30%">NIK</td>
-						<td width="70%">'.$kry->nik_cb.'</td>
-                    </tr>
-                    <tr>
-						<td width="30%">Jabatan</td>
-						<td width="70%">'.$kry->jabatan_cb.'</td>
-                    </tr>
-                    <tr>
-						<td width="30%">Jenis</td>
-						<td width="70%">'.$kry->jenis_cb.'</td>
-                    </tr>
-                    <tr>
-						<td width="30%">Tanggal Mulai</td>
-						<td width="70%">'.$kry->tgl_mulai_cb.'</td>
-                    </tr>
-                    <tr>
-						<td width="30%">Tanggal Selesai</td>
-						<td width="70%">'.$kry->tgl_selesai_cb.'</td>
-					</tr>
-                </table>
-			';
-
-			$config = Array(
-		      	'protocol' 	=> 'smtp',
-				'smtp_host' => 'ssl://smtp.googlemail.com',
-		      	'smtp_port' => 465,
-		      	'smtp_user' => 'handrihmw@gmail.com', 
-		      	'smtp_pass' => '313606gmail', 
-		      	'mailtype' 	=> 'html',
-		      	'charset' 	=> 'iso-8859-1',
-		      	'wordwrap' 	=> TRUE
-            );
-            
-		    $this->load->library('email', $config);
-		    $this->email->set_newline("\r\n");
-		    $this->email->from($this->input->post("email"));
-		    $this->email->to('handrihmw@gmail.com');
-		    $this->email->subject($subject, $data);
-	        $this->email->message($message, $data);
-	        if($this->email->send())
-	        {
-	        	{
-	        		$this->session->set_flashdata('message', 'Email notifikasi berhasil terkirim.');
-	        		redirect('admin/masa_kerja');
-	        	}
-	        }
-	        else
-	        {
-	        	{
-	        		$this->session->set_flashdata('message', 'Email notifikasi gagal dikirim!');
-	        		redirect('admin/masa_kerja');
-	        	}
-	        }
-	    }
-    }
-    
     // -------------------------------------END NOTIFIKASI-------------------------------------//
 }
 
