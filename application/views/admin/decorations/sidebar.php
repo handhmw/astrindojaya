@@ -4,15 +4,8 @@
                 <img src="<?php echo base_url() ?>assets/images/user.png" class="rounded-circle user-photo" alt="User Profile Picture">
                 <div class="dropdown">
                     <span>Selamat Datang,</span>
-                    <a href="javascript:void(0);" class="dropdown-toggle user-name" data-toggle="dropdown"><strong><?php echo $this->session->userdata('name');?></strong></a>  
-                    <span style="font-size: 12px;"><?php echo tanggal() ?></span>                  
-                    <ul class="dropdown-menu dropdown-menu-right account animated flipInY">
-                        <li><a href="page-profile2.html"><i class="icon-user"></i>My Profile</a></li>
-                        <li><a href="app-inbox.html"><i class="icon-envelope-open"></i>Messages</a></li>
-                        <li><a href="javascript:void(0);"><i class="icon-settings"></i>Settings</a></li>
-                        <li class="divider"></li>
-                        <li><a href="<?php echo site_url('admin/logout');?>"><i class="icon-power"></i>Logout</a></li>
-                    </ul>
+                    <a href="javascript:void(0);" class="dropdown-toggle user-name"><strong><?php echo $this->session->userdata('name');?></strong></a>  
+                    <span style="font-size: 12px;"><?php echo tanggal() ?></span>
                 </div>
                 <hr>
                 <div class="row">

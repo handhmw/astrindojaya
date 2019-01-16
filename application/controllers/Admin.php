@@ -56,6 +56,7 @@ class Admin extends CI_Controller {
 	public function index(){  
         $data['jml']      = $this->md_karyawan->get_total_karyawan(); 
         $data['jmlb']     = $this->md_karyawan->get_total_baru();
+        $data['coba']     = $this->md_percobaan->tampil();
         $data['mpp']      = $this->md_mpp->tampil();
         $data['bdy']      = $this->md_karyawan->birthday();
         $data['karyawan'] = $this->md_karyawan->tampil();

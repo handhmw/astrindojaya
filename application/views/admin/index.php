@@ -54,7 +54,7 @@
 						<div class="col-lg-3 col-md-6">
 							<div class="card">
 								<div class="header">
-									<h2>Ulang Tahun Bulan Ini</h2>
+									<h2><i class="fa fa-calendar"></i> Ulang Tahun <?php echo bulan() ?></h2>
 								</div>
 								<div class="body todo_list">
 									<table class="table table-responsive" style="font-size:10px;">
@@ -67,10 +67,56 @@
 								</div>
 							</div>                    
 						</div>
-						<div class="col-lg-6 col-md-12">
+						<div class="col-lg-6 col-md-6">
 							<div class="card">
 								<div class="header">
-									<h2>Karyawan per Departemen</h2>
+									<h5><i class="fa fa-arrow-circle-up"></i> Visi & Misi Astrindo Senayasa </h5>
+								</div>
+								<div class="body">
+									<h5><u>VISI</u></h5>
+									<p>Meningkatkan kepuasan pelanggan, loyalitas, dan kedekatan hubungan dengan pelanggan dengan cara mendistribusikan produk teknologi informasi yang berkualitas tinggi dan berkelas dunia.</p>
+									<h5><u>MISI</u></h5>
+									<p>Memberikan nilai-nilai terbaik kepada pemangku kepentingan :
+										<br>- Memberikan pertumbuhan bisnis yang baik kepada pemilik merk
+										<br>- Memberikan peluang bisnis kepada mitra kerja
+										<br>- Memberikan pelayanan terbaik kepada pelanggan
+										<br>- Memberikan lingkungan kerja yang baik kepada karyawan</p>
+								</div> 
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6">
+							<div class="card">
+								<div class="header">
+									<h5><i class="fa fa-group"></i> Daftar Karyawan Percobaan </h5>
+								</div>
+								<div class="body">
+								<div class="table-responsive">
+                                        <table class="table table-bordered dataTable" cellspacing="0" id="examples">
+                                            <thead style="background-color:#e9ecef;">
+                                                <tr style="text-align:center;">
+                                                    <th>No.</th>
+                                                    <th>Nama Karyawan</th>
+                                                    <th>Jabatan</th> 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $no = 1; foreach ($coba as $cb): ?>
+                                                <tr style="text-transform: lowercase;">
+                                                    <td style="text-align:center;"><?= $no; ?></td>
+													<td><?= $cb->nama_cb ?></td>
+                                                    <td><?= $cb->jabatan_cb ?></td>
+                                                </tr>
+                                                <?php $no++; endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+								</div> 
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6">
+							<div class="card">
+								<div class="header">
+									<h2><i class="fa fa-building"></i> Karyawan per Departemen</h2>
 								</div>
 								<div class="body">                            
 									<div id="chart_div" class="ct-chart"></div>
@@ -97,36 +143,13 @@
 								</div>
 							</div>
 						</div> -->
-						<!-- <div class="col-lg-4 col-md-12">
-							<div class="card">
-								<div class="header">
-									<h2>Ulang Tahun Bulan Ini</h2>
-								</div>
-								<div class="body todo_list">
-									<table class="table table-responsive" style="font-size:10px;">
-										<?php foreach ($bdy as $kry): ?>
-											<tr>
-												<td><b style=color:#01b2c6><?= $kry->nama_kry ?></b> - <?= $kry->jabatan_kry ?> - <?= $kry->tgl_lahir_kry ?></td>
-											</tr>
-										<?php endforeach; ?>
-									</table>
-								</div>
-							</div>
-						</div>     -->
+						
 						<div class="col-lg-3 col-md-4">
 							<div class="card">
 								<div class="header">
-									<h2>Total Permintaan per Bulan</h2>
-									<ul class="header-dropdown">
-										<li class="dropdown">
-											<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
-											<ul class="dropdown-menu dropdown-menu-right animated bounceIn">
-												<li><a href="javascript:void(0);">Detail</a></li>
-											</ul>
-										</li>
-									</ul>
+									<h2>Permintaan per Bulan</h2>
 								</div>
-								<div class="body todo_list">
+								<div class="body">
 									<table class="table table-bordered">
 										<thead style="background-color:#e9ecef;">
                                             <tr style="text-align:center;">
@@ -151,18 +174,10 @@
 						<div class="col-lg-3 col-md-4">
 							<div class="card">
 								<div class="header">
-									<h2>Total Permintaan per Dept</h2>
-									<ul class="header-dropdown">
-										<li class="dropdown">
-											<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
-											<ul class="dropdown-menu dropdown-menu-right animated bounceIn">
-												<li><a href="javascript:void(0);">Detail</a></li>
-											</ul>
-										</li>
-									</ul>
+									<h2>Permintaan per Dept</h2>
 								</div>
-								<div class="body todo_list">
-									<table class="table table-responsive table-bordered" cellpadding="0" cellspacing="0">
+								<div class="body">
+									<table class="table table-bordered">
                                         <thead style="background-color:#e9ecef;">
                                             <tr style="text-align:center;">
                                                 <th>Departemen</th>                                  
@@ -184,18 +199,10 @@
 						<div class="col-lg-3 col-md-4">
 							<div class="card">
 								<div class="header">
-									<h2>Total Permintaan per Area</h2>
-									<ul class="header-dropdown">
-										<li class="dropdown">
-											<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
-											<ul class="dropdown-menu dropdown-menu-right animated bounceIn">
-												<li><a href="javascript:void(0);">Detail</a></li>
-											</ul>
-										</li>
-									</ul>
+									<h2>Permintaan per Area</h2>
 								</div>
 								<div class="body todo_list">
-									<table class="table table-bordered table-responsive" cellpadding="0" cellspacing="0">
+									<table class="table table-bordered table-responsive">
                                         <thead style="background-color:#e9ecef;">
                                             <tr style="text-align:center;">
                                                 <th>Area</th>                                  
@@ -217,18 +224,10 @@
 						<div class="col-lg-3 col-md-4">
 							<div class="card">
 								<div class="header">
-									<h2>Total Jenis Requirement</h2>
-									<ul class="header-dropdown">
-										<li class="dropdown">
-											<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
-											<ul class="dropdown-menu dropdown-menu-right animated bounceIn">
-												<li><a href="javascript:void(0);">Detail</a></li>
-											</ul>
-										</li>
-									</ul>
+									<h2>Jenis Requirement</h2>
 								</div>
-								<div class="body todo_list">
-									<table class="table table-bordered table-responsive" cellpadding="0" cellspacing="0">
+								<div class="body">
+									<table class="table table-bordered table-responsive">
                                         <thead style="background-color:#e9ecef;">
                                             <tr style="text-align:center;">
                                                 <th>Sumber Kebutuhan</th>                                  
@@ -598,7 +597,7 @@
 						<div class="col-lg-12 col-md-12">
 							<div class="card">
 								<div class="header">
-									<h5><i class="fa fa-chart"></i> Grafik Data Turn Over Karyawan </h5>
+									<h5><i class="fa fa-line-chart"></i> Grafik Data Turn Over Karyawan </h5>
 								</div>
 								<div class="body">
 									<div id="chart"></div>
@@ -629,7 +628,7 @@
 			</script> 
 			<script src="<?php echo base_url();?>assets/highcharts/highcharts.js" type="text/javascript"></script>
 			<script src="<?php echo base_url();?>assets/highcharts/modules/exporting.js" type="text/javascript"></script>
-			<script src="<?php echo base_url();?>assets/highcharts/modules/offline-exporting.js" type="text/javascript"></script> -->
+			<script src="<?php echo base_url();?>assets/highcharts/modules/offline-exporting.js" type="text/javascript"></script>
 			<script type="text/javascript">
 				jQuery(function(){
 					new Highcharts.Chart({
