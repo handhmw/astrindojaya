@@ -75,8 +75,6 @@
                                                         <i class="icon-magnifier"></i>&nbsp;
                                                         <a href="<?php echo base_url();?>admin/edit_penilaian/<?php echo $kry->id_nl;?>" class="btn btn-xs btn-primary m-r-5" role="button" title="Edit">
                                                         <i class="icon-pencil"></i>&nbsp;
-                                                        <a href="<?=base_url('report_penilaian/print_penilaian/'.$kry->id_nl)?>" class="btn btn-xs btn-dark m-r-5" role="button" title="Cetak" target="_blank">
-                                                        <i class="fa fa-file-text"></i></a>
                                                         <a href="<?php echo base_url();?>admin/delete_penilaian/<?php echo $kry->id_nl;?>" onclick="return confirm('Apakah Anda Yakin?');" 
                                                         class="btn btn-xs btn-danger m-r-5" role="button" title="Hapus">
                                                         <i class="icon-trash"></i></a> 

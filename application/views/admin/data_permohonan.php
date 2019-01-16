@@ -28,7 +28,7 @@
                                     <a href="<?php echo base_url();?>admin/add_permohonan" class="btn btn-xs btn-default" role="button" title="Tambah Karyawan">
                                     <i class="icon-plus"></i><span> Tambah</span></a>
                                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter" title="Import Data"><i class="fa fa-upload"></i> Import</button>     
-                                    <a href="<?php echo base_url() ?>admin/print_permohonan" class="btn btn-xs btn-default" role="button" title="Print Data" target="_blank">
+                                    <a href="<?php echo base_url() ?>report/print_permohonan" class="btn btn-xs btn-default" role="button" title="Print Data" target="_blank">
                                     <i class="fa fa-print"></i><span> Print</span></a>                       
                                 </div>
 
@@ -75,8 +75,6 @@
                                                         <i class="icon-magnifier"></i>&nbsp;
                                                         <a href="<?php echo base_url();?>admin/edit_permohonan/<?php echo $kry->id_pmhn;?>" class="btn btn-xs btn-primary m-r-5" role="button" title="Edit">
                                                         <i class="icon-pencil"></i>&nbsp;
-                                                        <a href="<?=base_url('report_permohonan/print_permohonan/'.$kry->id_pmhn)?>" class="btn btn-xs btn-dark m-r-5" role="button" title="Cetak">
-                                                        <i class="fa fa-file-text"></i></a>
                                                         <a href="<?php echo base_url();?>admin/delete_permohonan/<?php echo $kry->id_pmhn;?>" onclick="return confirm('Apakah Anda Yakin?');" 
                                                         class="btn btn-xs btn-danger m-r-5" role="button" title="Hapus">
                                                         <i class="icon-trash"></i></a> 

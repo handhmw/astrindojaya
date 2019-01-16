@@ -138,7 +138,7 @@
                                     </table>
                                 </div>
                                 <div class="body">
-                                    <a href="<?php echo base_url() ?>admin/cetak_" class="btn btn-xs btn-primary" role="button" title="Print Data">
+                                    <a href="<?=base_url('report/print_permohonan_id/'.$kry->id_pmhn)?>" class="btn btn-xs btn-primary" role="button" title="Cetak" target="_blank">
                                     <i class="fa fa-print"></i><span> Print</span></a>
                                     <a href="<?php echo site_url();?>admin/permohonan" class="btn btn-xs btn-danger" role="button">
 									<i class="fa fa-angle-double-left"></i><span> Batal</span></a>

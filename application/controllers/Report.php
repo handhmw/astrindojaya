@@ -104,6 +104,135 @@ class Report extends CI_Controller
                 $pdf->Output('laporan_karyawan'.date("d-m-Y", time()) .'.pdf', 'I');
     }
 
+    public function print_karyawan_id($id_kry){
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        // document informasi
+        $pdf->SetCreator('PT. Astrindo Senayasa');
+        $pdf->SetTitle('Laporan Data Karyawan');
+        $pdf->SetSubject('Data Karyawan');
+        //header Data
+        $pdf->SetHeaderData('logo.jpg',30,'PT. Astrindo Senayasa','Mangga Dua Square Blok G 24, Jalan Gunung Sahari Raya, Pademangan, RT.12/RW.6, Jakarta Utara, Daerah Khusus Ibukota Jakarta.',array(0, 0, 0),array(0, 0, 0));
+        $pdf->SetFooterData(array(255, 255, 255), array(255, 255, 255));
+        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN,'',PDF_FONT_SIZE_MAIN));
+        $pdf->setFooterFont(Array(PDF_FONT_NAME_MAIN,'',PDF_FONT_SIZE_MAIN));
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+        //set margin
+        $pdf->SetMargins(PDF_MARGIN_LEFT,PDF_MARGIN_TOP - 6,PDF_MARGIN_RIGHT);
+        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+        $pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM - 5);
+        //SET Scaling ImagickPixel
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+        //FONT Subsetting
+        $pdf->setFontSubsetting(true);
+        $pdf->SetFont('helvetica','',10,'',true);
+        $pdf->AddPage('P');
+        $i=0;
+            
+        $where = array('id_kry' => $id_kry);
+        $karyawannya = $this->md_karyawan->print_id($id_kry);
+        foreach ($karyawannya as $row)
+
+            $html='<br><br><h3 align="center"> DATA LENGKAP KARYAWAN</h3><br><br><br>
+                <table border="0.5">
+                    <tbody>
+                        <tr>
+                            <td  width="30%"> Nama Karyawan </td>
+                            <td> '.$row['nama_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> NIK </td>
+                            <td> '.$row['nik_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Jabatan </td>
+                            <td> '.$row['jabatan_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Pangkat </td>
+                            <td> '.$row['pangkat_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Divisi </td>
+                            <td> '.$row['divisi_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Departemen </td>
+                            <td> '.$row['dep_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Unit / Cabang </td>
+                            <td> '.$row['lokasi_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Nama Panggilan </td>
+                            <td> '.$row['panggilan_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Identitas </td>
+                            <td> '.$row['identitas_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Jenis Kelamin </td>
+                            <td> '.$row['jk_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Tempat Lahir </td>
+                            <td> '.$row['tempat_lahir_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Tanggal Lahir </td>
+                            <td> '.$row['tgl_lahir_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Kewarganegaraan </td>
+                            <td> '.$row['negara_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Agama </td>
+                            <td> '.$row['agama_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> NPWP </td>
+                            <td> '.$row['npwp_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Alamat </td>
+                            <td> '.$row['alamat_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Telpon Rumah </td>
+                            <td> '.$row['tlp_rumah_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> No. Handphone </td>
+                            <td> '.$row['no_hp_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Tanggal Masuk </td>
+                            <td> '.$row['tgl_masuk_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Status Pekerjaan </td>
+                            <td> '.$row['status_kerja_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Status Pernikahan </td>
+                            <td> '.$row['status_nikah_kry'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Email </td>
+                            <td> '.$row['email_kry'].'</td>
+                        </tr>
+                    </tbody>
+                </table>';
+            
+            $html.='<br><br><p>AST-CRM-HRG-024 Rev. 02 10-03-2017 | '.date("d-m-Y", time()) .'</p>';
+            $pdf->writeHTML($html, true, false, true, false, '');
+            ob_end_clean();
+            $pdf->Output('laporan_perkaryawan'.date("d-m-Y", time()) .'.pdf', 'I');
+    }
+
     // =========================================== PRINT KARYAWAN END =========================================== //
 
     // =========================================== PRINT PERMOHONAN START =========================================== //
@@ -195,6 +324,150 @@ class Report extends CI_Controller
             
             $html.='<p>AST-CRM-HRG-024 Rev. 02 10-03-2017 | '.date("d-m-Y", time()) .'</p>';
             $html.='</table>';
+            $pdf->writeHTML($html, true, false, true, false, '');
+            ob_end_clean();
+            $pdf->Output('laporan_permohonan'.date("d-m-Y", time()) .'.pdf', 'I');
+    }
+
+    public function print_permohonan_id($id_pmhn){
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        // document informasi
+        $pdf->SetCreator('PT. Astrindo Senayasa');
+        $pdf->SetTitle('Laporan Data Karyawan');
+        $pdf->SetSubject('Permohonan Karyawan');
+        //header Data
+        $pdf->SetHeaderData('logo.jpg',30,'PT. Astrindo Senayasa','Mangga Dua Square Blok G 24, Jalan Gunung Sahari Raya, Pademangan, RT.12/RW.6, Jakarta Utara, Daerah Khusus Ibukota Jakarta.',array(0, 0, 0),array(0, 0, 0));
+        $pdf->SetFooterData(array(255, 255, 255), array(255, 255, 255));
+        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN,'',PDF_FONT_SIZE_MAIN));
+        $pdf->setFooterFont(Array(PDF_FONT_NAME_MAIN,'',PDF_FONT_SIZE_MAIN));
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+        //set margin
+        $pdf->SetMargins(PDF_MARGIN_LEFT,PDF_MARGIN_TOP - 6,PDF_MARGIN_RIGHT);
+        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+        $pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM - 5);
+        //SET Scaling ImagickPixel
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+        //FONT Subsetting
+        $pdf->setFontSubsetting(true);
+        $pdf->SetFont('helvetica','',10,'',true);
+        $pdf->AddPage('P');
+        $i=0;
+            
+        $where = array('id_pmhn' => $id_pmhn);
+        $permohonannya = $this->md_permohonan->print_id($id_pmhn);
+        foreach ($permohonannya as $row)
+
+            $html='<br><br><h3 align="center"> DATA PERMOHONAN KARYAWAN</h3><br><br><br>
+                <table border="0.5">
+                    <tbody>
+                        <tr>
+                            <td colspan="1"><b> A. DATA PEMOHON</b></td>
+                        </tr>
+                        <tr>
+                            <td width="35%"> Departemen </td>
+                            <td> '.$row['dep_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Nama Pemohon </td>
+                            <td> '.$row['nama_pemohon_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Jabatan Pemohon </td>
+                            <td> '.$row['jabatan_pemohon_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td colspan="1"><b> B. KLASIFIKASI KEBUTUHAN</b></td>
+                        </tr>
+                        <tr>
+                            <td> Jabatan </td>
+                            <td> '.$row['jabatan_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Lokasi </td>
+                            <td> '.$row['lokasi_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Waktu </td>
+                            <td> '.$row['waktu_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Status </td>
+                            <td> '.$row['status_kerja_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Jumlah </td>
+                            <td> '.$row['jumlah_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Tanggal </td>
+                            <td> '.$row['tanggal_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Dasar Permohonan </td>
+                            <td> '.$row['dasar_permohonan_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Sumber Rekrutmen </td>
+                            <td> '.$row['sumber_rekrutmen_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Ringkasan Tugas </td>
+                            <td> '.$row['ringkasan_tugas_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <th colspan="1"><b> C. PERSYARATAN</b></th>
+                        </tr>
+                        <tr>
+                            <td> Gajih </td>
+                            <td> '.$row['gajih_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Jenis Kelamin </td>
+                            <td> '.$row['jk_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Pendidikan </td>
+                            <td> '.$row['pendidikan_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Jurusan </td>
+                            <td> '.$row['jurusan_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Pengalaman Kerja </td>
+                            <td> '.$row['pengalaman_kerja_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Bidang </td>
+                            <td> '.$row['bidang_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Syarat Lainnya </td>
+                            <td> '.$row['syarat_lain_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td> Keterampilan </td>
+                            <td> '.$row['keterampilan_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td colspan="1"><b> D. TANGGAL BERGABUNG</b></td>
+                        </tr>
+                        <tr>
+                            <td> Tanggal Bergabung </td>
+                            <td> '.$row['tgl_bergabung_pmhn'].'</td>
+                        </tr>
+                        <tr>
+                            <td colspan="1"><b> E. LAMPIRAN</b></td>
+                        </tr>
+                        <tr>
+                            <td> Office Equipment </td>
+                            <td> '.$row['office_equipment_pmhn'].'</td>
+                        </tr>
+                    </tbody>
+                </table>';
+            
+            $html.='<br><br><p>AST-CRM-HRG-024 Rev. 02 10-03-2017 | '.date("d-m-Y", time()) .'</p>';
             $pdf->writeHTML($html, true, false, true, false, '');
             ob_end_clean();
             $pdf->Output('laporan_permohonan'.date("d-m-Y", time()) .'.pdf', 'I');
@@ -927,7 +1200,7 @@ class Report extends CI_Controller
                     <td></td>
                 </tr>
                 <tr>
-                    <td colspan="3"> Grand Total</td>
+                    <td colspan="1"> Grand Total</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -2215,7 +2488,7 @@ class Report extends CI_Controller
                     <td></td>
                 </tr>
                 <tr>
-                    <td colspan="3"> Grand Total</td>
+                    <td colspan="1"> Grand Total</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -2314,7 +2587,7 @@ class Report extends CI_Controller
                         <td></td>
                     </tr>
                     <tr>
-                        <td width="30%"> <b>A. DATA PERMINTANGAN TRAINING</b> </td>
+                        <td width="30%"> <b>A. DATA PERMINTAAN TRAINING</b> </td>
                     </tr>
                     <tr>
                         <td width="30%">    1. Judul Training</td>
@@ -2506,6 +2779,283 @@ class Report extends CI_Controller
                         <td width="30%"> 2. Pembayaran Tanggal</td>
                         <td width="1%">:</td>
                         <td>.....................................................................</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td width="30%">Catatan: <br style="font-size: 6px;"> 
+                        - Pengujian formulir training ke HRD paling lambat 2 minggu sebelum pelaksanaan. <br style="font-size: 6px;"> 
+                        - Melampirkan brosur/leaflet training yang akan diikuti. <br style="font-size: 6px;"> 
+                        - (*) Coret salah satu.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>';
+
+        $html.='<p>AST-CRM-HRG-024 Rev. 02 10-03-2017 | '.date("d-m-Y", time()) .'</p>';
+        $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 0, 0, true, '', true);
+        $pdf->Output('form_training'.date("d-m-Y", time()) .'.pdf','I');
+    }
+
+    public function form_training_id($id_tr){
+        
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        // document informasi
+        $pdf->SetCreator('PT. Astrindo Senayasa');
+        $pdf->SetTitle('Laporan Data Karyawan');
+        $pdf->SetSubject('Karyawan Training');
+        //header Data
+        $pdf->SetHeaderData('logo.jpg',30,'PT. Astrindo Senayasa','Mangga Dua Square Blok G 24, Jalan Gunung Sahari Raya, Pademangan, RT.12/RW.6, Jakarta Utara, Daerah Khusus Ibukota Jakarta.',array(0, 0, 0),array(0, 0, 0));
+        $pdf->SetFooterData(array(255, 255, 255), array(255, 255, 255));
+        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN,'',PDF_FONT_SIZE_MAIN));
+        $pdf->setFooterFont(Array(PDF_FONT_NAME_MAIN,'',PDF_FONT_SIZE_MAIN));
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+        //set margin
+        $pdf->SetMargins(PDF_MARGIN_LEFT,PDF_MARGIN_TOP - 6,PDF_MARGIN_RIGHT);
+        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+        $pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM - 5);
+        //SET Scaling ImagickPixel
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+        //FONT Subsetting
+        $pdf->setFontSubsetting(true);
+        $pdf->SetFont('helvetica','',8,'',true);
+        $pdf->AddPage('P');
+        
+        $where = array('id_tr' => $id_tr);
+        $trainingnya = $this->md_training->print_id($id_tr);
+        foreach ($trainingnya as $row)
+
+        $html='
+        <div>
+            <h1 align="center">FORM PENGAJUAN TRAINING</h1>
+            <table>
+                <tbody>
+                    <tr>
+                        <td width="30%"> <b>A. PEMOHON</b> </td>
+                    </tr>
+                    <tr>
+                        <td width="30%">    1. Nama Pemohon </td>
+                        <td width="1%">:</td>
+                        <td>'.$row['nama_pemohon_tr'].'</td>
+                    </tr>
+                    <tr>
+                        <td width="30%">    2. NIK </td>
+                        <td width="1%">:</td>
+                        <td>'.$row['nik_pemohon_tr'].'</td>
+                    </tr>
+                    <tr>
+                        <td width="30%">    3. Jabatan </td>
+                        <td width="1%">:</td>
+                        <td>'.$row['jabatan_pemohon_tr'].'</td>
+                    </tr>
+                    <tr>
+                        <td width="30%">    4. Departemen</td>
+                        <td width="1%">:</td>
+                        <td>'.$row['dep_pemohon_tr'].'</td>
+                    </tr>
+                    <tr>
+                        <td width="30%">    5. Tanggal Permohonan </td>
+                        <td width="1%">:</td>
+                        <td>'.$row['tgl_permohonan_tr'].'</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td width="30%"> <b>A. DATA PERMINTAAN TRAINING</b> </td>
+                    </tr>
+                    <tr>
+                        <td width="30%">    1. Judul Training</td>
+                        <td width="1%">:</td>
+                        <td>'.$row['judul_training_tr'].'</td>
+                    </tr>
+                    <tr>
+                        <td width="30%">    2. Penyelenggara</td>
+                        <td width="1%">:</td>
+                        <td>'.$row['penyelenggara_tr'].'</td>
+                    </tr>
+                    <tr>
+                        <td width="30%">    3. Waktu Pelaksanaan</td>
+                        <td width="1%">:</td>
+                        <td>'.$row['tgl_pelaksanaan_tr'].'</td>
+                    </tr>
+                    <tr>
+                        <td width="30%">    4. Tempat Pelaksanaan</td>
+                        <td width="1%">:</td>
+                        <td>'.$row['tempat_pelaksanaan_tr'].'</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td width="30%"> <b>C. BIAYA TRAINING</b> </td>
+                    </tr>
+                    <tr>
+                        <td width="30%">    1. Biaya</td>
+                        <td width="1%">:</td>
+                        <td>'.$row['biaya_tr'].'</td>
+                    </tr>
+                    <tr>
+                        <td width="30%">    2. Cara Pembayaran</td>
+                        <td width="1%">:</td>
+                        <td>'.$row['pembayaran_tr'].'</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td align="center">Tanda Tangan Pemohon</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td align="center">(........................................)</td>
+                    </tr>
+                    <tr>
+                        <td> Tanggal :</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td width="30%"> <b>D. KEPUTUSAN MANAJEMEN</b> </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td align="center">Atasan Pemohon</td>
+                        <td></td>
+                        <td align="center">HRD Manager</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td align="center">(........................................)</td>
+                        <td></td>
+                        <td align="center">(......................................)</td>
+                    </tr>
+                    <tr>
+                        <td> Tanggal :</td>
+                        <td width="20%"></td>
+                        <td> Tanggal :</td>
+                    </tr>
+                    <tr>
+                        <td> Setuju/Tidak Setuju(*)</td>
+                        <td width="20%"></td>
+                        <td> Setuju/Tidak Setuju(*)</td>
+                    </tr>
+                    <tr>
+                        <td> Komentar : </td>
+                        <td width="20%"></td>
+                        <td> Komentar : </td>
+                    </tr>
+                    <tr>
+                        <td>...................................................................</td>
+                        <td></td>
+                        <td>...................................................................</td>
+                    </tr>
+                    <tr>
+                        <td>...................................................................</td>
+                        <td></td>
+                        <td>...................................................................</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td align="center">General Manager</td>
+                        <td width="1%"></td>
+                        <td align="center">Direktur / BOD</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td align="center">(........................................)</td>
+                        <td></td>
+                        <td align="center">(......................................)</td>
+                    </tr>
+                    <tr>
+                        <td> Tanggal :</td>
+                        <td width="20%"></td>
+                        <td> Tanggal :</td>
+                    </tr>
+                    <tr>
+                        <td> Setuju/Tidak Setuju(*)</td>
+                        <td width="20%"></td>
+                        <td> Setuju/Tidak Setuju(*)</td>
+                    </tr>
+                    <tr>
+                        <td> Komentar : </td>
+                        <td width="20%"></td>
+                        <td> Komentar : </td>
+                    </tr>
+                    <tr>
+                        <td>...................................................................</td>
+                        <td></td>
+                        <td>...................................................................</td>
+                    </tr>
+                    <tr>
+                        <td>...................................................................</td>
+                        <td></td>
+                        <td>...................................................................</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td width="30%"> <b>D. PROSES DI HRD</b> </td>
+                    </tr>
+                    <tr>
+                        <td width="30%"> 1. Diterima di HRD</td>
+                        <td width="1%">:</td>
+                        <td>'.$row['tgl_terima_tr'].'</td>
+                    </tr>
+                    <tr>
+                        <td width="30%"> 2. Pembayaran Tanggal</td>
+                        <td width="1%">:</td>
+                        <td>'.$row['tgl_bayar_tr'].'</td>
                     </tr>
                     <tr>
                         <td></td>
@@ -3566,6 +4116,211 @@ class Report extends CI_Controller
                 </tr>
             </table>
         </div>';
+
+        $html.='<p>AST-CRM-HRG-024 Rev. 02 10-03-2017 | '.date("d-m-Y", time()) .'</p>';
+        $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 0, 0, true, '', true);
+        $pdf->Output('form_penilaian'.date("d-m-Y", time()) .'.pdf','I');
+    }
+
+    public function form_penilaian_id($id_nl)
+    {
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        // document informasi
+        $pdf->SetCreator('PT. Astrindo Senayasa');
+        $pdf->SetTitle('Laporan Data Karyawan');
+        $pdf->SetSubject('Karyawan penilaian');
+        //header Data
+        $pdf->SetHeaderData('logo.jpg',30,'PT. Astrindo Senayasa','Mangga Dua Square Blok G 24, Jalan Gunung Sahari Raya, Pademangan, RT.12/RW.6, Jakarta Utara, Daerah Khusus Ibukota Jakarta.',array(0, 0, 0),array(0, 0, 0));
+        $pdf->SetFooterData(array(255, 255, 255), array(255, 255, 255));
+        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN,'',PDF_FONT_SIZE_MAIN));
+        $pdf->setFooterFont(Array(PDF_FONT_NAME_MAIN,'',PDF_FONT_SIZE_MAIN));
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+        //set margin
+        $pdf->SetMargins(PDF_MARGIN_LEFT,PDF_MARGIN_TOP - 6,PDF_MARGIN_RIGHT);
+        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+        $pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM - 5);
+        //SET Scaling ImagickPixel
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+        //FONT Subsetting
+        $pdf->setFontSubsetting(true);
+        $pdf->SetFont('helvetica','',6,'',true);
+        $pdf->AddPage('P');
+
+        $where = array('id_nl' => $id_nl);
+        $penilaiannya = $this->md_penilaian->print_id($id_nl);
+        foreach ($penilaiannya as $row)
+        
+            $html=
+            '<div>
+                <h1 align="center">FORM PENILAIAN TAHUNAN KARYAWAN</h1>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td width="20%"> Nama Lengkap </td>
+                            <td width="1%">:</td>
+                            <td>'.$row['nama_nl'].'</td>
+                        </tr>
+                        <tr>
+                            <td width="20%"> NIK </td>
+                            <td width="1%">:</td>
+                            <td>'.$row['nik_nl'].'</td>
+                        </tr>
+                        <tr>
+                            <td width="20%"> Departemen</td>
+                            <td width="1%">:</td>
+                            <td>'.$row['dep_nl'].'</td>
+                        </tr>
+                        <tr>
+                            <td width="20%"> Tanggal Masuk </td>
+                            <td width="1%">:</td>
+                            <td>'.$row['tgl_masuk_nl'].'</td>
+                        </tr>
+                        <tr>
+                            <td width="20%"> Jabatan </td>
+                            <td width="1%">:</td>
+                            <td>'.$row['jabatan_nl'].'</td>
+                        </tr>
+                        <tr>
+                            <td width="20%"> Penilai (Atasan Langsung)</td>
+                            <td width="1%">:</td>
+                            <td>'.$row['nama_penilai_nl'].'</td>
+                        </tr>
+                        <tr>
+                            <td width="20%"> Jabatan Penilai</td>
+                            <td width="1%">:</td>
+                            <td>'.$row['jabatan_penilai_nl'].'</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><b>PETUNJUK PENILAIAN</b></p>
+                <p>Nilai dibawah ini digunakan untuk Penilaian Karyawan:</p>
+                <table>
+                    <tr>
+                        <td style="width:20px" align="center">4</td>
+                        <td style="width:600px"> <b>Sangat Baik :</b> Secara keseluruhan kinerja Karyawan istimewa dan melampaui standard/target yang diberikan. Berjasa memberi nilai tambah suatu hasil nilai kerja, menghasilkan karya yang meningkatkan produktifitas/kualitas secara nyata.</td>
+                    </tr>
+                    <tr>
+                        <td style="width:20px" align="center">3</td>
+                        <td style="width:600px"> <b>Baik :</b>  Kinerja Karyawan sesuai/sedikit di atas standard/target yang ditetapkan. Target terlampaui. Bisa diandalkan dan diberi tanggung jawab lebih.</td>
+                    </tr>
+                    <tr>
+                        <td style="width:20px" align="center">2</td>
+                        <td style="width:600px"> <b>Cukup :</b> Kinerja Karyawan sedikit di bawah standard. Beberapa target tidak tercapai. Masih memerlukan bantuan/arahan/bimbingan.</td>
+                    </tr>
+                    <tr>
+                        <td style="width:20px" align="center">1</td>
+                        <td style="width:600px"> <b>Sangat Kurang :</b> Kinerja Karyawan di bawah standard, hampir tidak memenuhi semua standard/target kerja. Membutuhkan bantuan/bimbingan/arahan yang sangat intensif.</td>
+                    </tr>
+                    <tr>
+                        <td style="width:20px" align="center">-1</td>
+                        <td style="width:600px"> <b>Buruk :</b> Kinerja karyawan jauh di bawah standard, tidak memenuhi semua standard/target kerja. Kinerja karyawan perlu di tinjau kembali.</td>
+                    </tr>
+                </table>
+
+                <p><b>A. General Kriteria</b></p>
+                <p style="font-size: 6px;">Dibawah ini adalah beberapa hal yang harus diperhatikan oleh semua karyawan. Berikan penilaian Anda sebagai Karyawan lalu diskusikan dengan Ataan Anda
+                sampai menghasilkan nilai akhir yang disetujui kedua belah pihak. Atasan memberikan umpan balik bila ada. Bobot bagian ini adalah 40%.</p>
+
+                <table border="0.5">
+                    <tr>
+                        <td width="20px" align="center" rowspan="2"><b>No</b></td>
+                        <td width="510px" align="center" rowspan="2"><br><b>General Kriteria</b></td>
+                        <td width="90px" align="center" colspan="2"><b>Nilai</b></td>   
+                    </tr>
+                    <tr>
+                        <td align="center" valign="middle">Karyawan</td>
+                        <td align="center" >Atasan <br>Langsung</td>
+                    </tr>
+                    <tr>
+                        <td align="center">1</td>
+                        <td> <b>INTEGRITAS</b><br> Kejujuran dalam melaksanakan tugas & tanggung jawab termasuk didalamnya kosistensi & tidak melakukan kecurangan yang dapat merugikan  perusahaan <i><br style="font-size: 6px;"> 
+                        Sebutkan 3 implementasi yang telah dilakukan untuk hal tersebut diatas.</i> <br> 1. <br> 2. <br> 3.</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td align="center">2</td>
+                        <td> <b>KOMUNIKASI</b><br> Kemampuan untuk menyampaikan berbagai hal yang menyangkut pekerjaan & berinteraksi secara jelas serta dapat dipahami oleh semua pihak <i><br style="font-size: 6px;">
+                        Sebutkan 3 implementasi yang telah dilakukan untuk hal tersebut diatas.</i> <br> 1. <br> 2. <br> 3.</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" align="center">3</td>
+                        <td> <b>KEMAMPUAN MEMECAHKAN MASALAH & MEMBUAT KEPUTUSAN</b><br> a. menganalisa, menangani, dan memecahkan masalah-masalah sulit <i><br style="font-size: 6px;"> 
+                        Sebutkan 3 implementasi yang telah dilakukan untuk hal tersebut diatas.</i>. <br> a.1. <br> a.2. <br> a.3.</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td> b. membuat keputusan <br>
+                        Sebutkan 3 implementasi yang telah dilakukan untuk hal tersebut diatas.<br> b.1. <br> b.2. <br> b.3.</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" align="center">4</td>
+                        <td> <b>KERJASAMA</b><br> a. kemampuan untuk kerjasama dengan intern dept <i><br style="font-size: 6px;"> 
+                        Sebutkan 3 implementasi yang telah dilakukan untuk hal tersebut diatas.</i> <br> a.1. <br> a.2. <br> a.3.</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td> b. kemampuan untuk kerjasama dengan intra dept <i><br style="font-size: 6px;"> 
+                        Sebutkan 3 implementasi yang telah dilakukan untuk hal tersebut diatas.</i> <br> b.1. <br> b.2. <br> b.3.</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td align="center">5</td>
+                        <td> <b>INISIATIF</b><br> Melakukan pengembangan terhadap hal-hal yang sudah menjadi lebih efektif & efisien <i><br style="font-size: 6px;"> 
+                        Sebutkan 3 implementasi yang telah dilakukan untuk hal tersebut diatas.</i> <br> 1. <br> 2. <br> 3.</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" align="center">6</td>
+                        <td> <b>INOVASI</b><br> Mencipatakan ide-ide baru yang belum pernah ada sebelumnya <i><br style="font-size: 6px;"> 
+                        Sebutkan 3 implementasi yang telah dilakukan untuk hal tersebut diatas.</i> <br> a.1. <br> a.2. <br> a.3.</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td> b. pelaksanaan atas ide baru <i><br style="font-size: 6px;"> 
+                        Sebutkan 3 implementasi yang telah dilakukan untuk hal tersebut diatas.</i> <br> b.1. <br> b.2. <br> b.3.</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td align="center">7</td>
+                        <td> <b>DISIPLIN</b><br> Penilaian dilakukan terhadap perilaku Karyawan dalam memenuhi standar yang ditetapkan Perusahaan
+                        sebagaimana tercantum dalam peraturan Perusahaan maupun aturan lain yang berlaku di Perusahaan, Misal: penilaian mengenai hari
+                        produktif dan ketepatan waktu yang ditunjukan Karyawan berdasarkan catatan waktu, kepatuhan terhadap peraturan Perusahaan. <i><br style="font-size: 6px;"> 
+                        Sebutkan 3 implementasi yang telah dilakukan untuk hal tersebut diatas.</i> <br> 1. <br> 2. <br> 3. </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td align="center">8</td>
+                        <td> <b>LAPORAN</b><br> Menyampaikan laporan kerjasama secara: <i><br style="font-size: 6px;"> 
+                        Sebutkan 3 implementasi yang telah dilakukan untuk hal tersebut diatas.</i> <br> 1. <br> 2. <br> 3. </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><b> Total Nilai:</b></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><b> Rata-Rata Nilai:</b></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>';
 
         $html.='<p>AST-CRM-HRG-024 Rev. 02 10-03-2017 | '.date("d-m-Y", time()) .'</p>';
         $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 0, 0, true, '', true);
