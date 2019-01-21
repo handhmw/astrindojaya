@@ -80,6 +80,7 @@
 											<div class="col-sm-6">
 												<select class="form-control" name="level" id="">
 													<option value="admin">Admin</option>
+													<option value="manager">Manager</option>
 													<option value="staff">Staff</option>
 												</select>
 											</div>

@@ -271,5 +271,62 @@ class Md_kode extends CI_Model
                 $kodejadi = "MPP-".$kodemax; 
             return $kodejadi;  
         }
+
+        public function kode_cuti(){
+            $this->db->select('RIGHT(tb_cuti.id_ct,4) as kode', FALSE);
+            $this->db->order_by('id_ct','DESC');    
+            $this->db->limit(1);    
+            
+            $query = $this->db->get('tb_cuti');   
+            
+            if($query->num_rows() <> 0){         
+                $data = $query->row();      
+                $kode = intval($data->kode) + 1;    
+            }
+            else {          
+                $kode = 1;    
+            }
+                $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); 
+                $kodejadi = "CT-".$kodemax; 
+            return $kodejadi;  
+        }
+
+        public function kode_izin(){
+            $this->db->select('RIGHT(tb_izin.id_izn,4) as kode', FALSE);
+            $this->db->order_by('id_izn','DESC');    
+            $this->db->limit(1);    
+            
+            $query = $this->db->get('tb_izin');   
+            
+            if($query->num_rows() <> 0){         
+                $data = $query->row();      
+                $kode = intval($data->kode) + 1;    
+            }
+            else {          
+                $kode = 1;    
+            }
+                $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); 
+                $kodejadi = "IZN-".$kodemax; 
+            return $kodejadi;  
+        }
+
+        public function kode_sakit(){
+            $this->db->select('RIGHT(tb_sakit.id_skt,4) as kode', FALSE);
+            $this->db->order_by('id_skt','DESC');    
+            $this->db->limit(1);    
+            
+            $query = $this->db->get('tb_sakit');   
+            
+            if($query->num_rows() <> 0){         
+                $data = $query->row();      
+                $kode = intval($data->kode) + 1;    
+            }
+            else {          
+                $kode = 1;    
+            }
+                $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); 
+                $kodejadi = "SKT-".$kodemax; 
+            return $kodejadi;  
+        }
     }
 ?>

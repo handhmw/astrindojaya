@@ -12,6 +12,3 @@
 <script src="<?php echo base_url() ?>assets/bundles/datatablescripts.bundle.js"></script>
 <script src="<?php echo base_url() ?>assets/vendor/jquery-datatable/buttons/dataTables.buttons.min.js"></script>
 <script src="<?php echo base_url() ?>assets/js/pages/tables/jquery-datatable.js"></script>
-<script>
-    $('#examples').DataTable();
-</script>

@@ -72,6 +72,47 @@ class Md_master extends CI_Model
 		}
 		return $hasil;
     }
+
+    function get_pjs_bykode($id_kry){
+		$hsl = $this->db->query("SELECT * FROM tb_karyawan WHERE id_kry='$id_kry'");
+		if($hsl->num_rows()>0){
+			foreach ($hsl->result() as $data) {
+				$hasil = array(
+					'id_kry'     => $data->id_kry,
+                    'nama_kry' 	 => $data->nama_kry,
+                    'divisi_kry' => $data->divisi_kry,
+				);
+			}
+		}
+		return $hasil;
+    }
+
+    function get_cuti_bykode($id_kry){
+		$hsl=$this->db->query("SELECT * FROM tb_karyawan WHERE id_kry='$id_kry'");
+		if($hsl->num_rows()>0){
+			foreach ($hsl->result() as $data) {
+				$hasil = array(
+					'id_kry'     => $data->id_kry,
+					'nama_kry'   => $data->nama_kry,
+					'divisi_kry' => $data->divisi_kry,
+				);
+			}
+		}
+		return $hasil;
+	}
+
+    function get_pjs(){
+        $this->db->where('pangkat_kry', 'MANAGER');
+        $query = $this->db->get('tb_karyawan');
+        return $query->result();
+    }
+
+    function search_nama($nama_kry){
+		$this->db->like('nama_kry', $nama_kry , 'both');
+		$this->db->order_by('nama_kry', 'ASC');
+		$this->db->limit(10);
+		return $this->db->get('tb_karyawan')->result();
+	}
     
     function get_idk(){
         $this->db->where('pangkat_kry', 'STAFF');
@@ -80,8 +121,18 @@ class Md_master extends CI_Model
         return $query->result();
     }
 
+    function get_karyawan(){
+        $query = $this->db->get('tb_karyawan');
+        return $query->result();
+    }
+
     function get_idk_karyawan(){
         $query = $this->db->get('tb_karyawan');
+        return $query->result();
+    }
+
+    function get_idk_karyawan_baru(){
+        $query = $this->db->get('tb_karyawan_baru');
         return $query->result();
     }
 

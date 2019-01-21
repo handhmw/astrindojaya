@@ -64,6 +64,7 @@
 											<div class="col-sm-6">
 												<select class="form-control" name="level">
 													<option value="admin" <?php if($usr->level == "admin") { echo "SELECTED"; } ?>>Admin</option>
+													<option value="manager" <?php if($usr->level == "manager") { echo "SELECTED"; } ?>>Manager</option>
 													<option value="staff" <?php if($usr->level == "staff") { echo "SELECTED"; } ?>>Staff</option>
 												</select>
 											</div>

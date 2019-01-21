@@ -17,7 +17,7 @@ class Login extends CI_Controller {
     public function cek_login() {
         $data = array(
             'username' => $this->input->post('username', TRUE),
-             'password' => md5($this->input->post('password', TRUE))
+            'password' => md5($this->input->post('password', TRUE))
             );
 
         $hasil = $this->md_user->cek_user($data);
@@ -33,6 +33,9 @@ class Login extends CI_Controller {
             }
             if ($this->session->userdata('level')=='admin') {
                 redirect('admin/index');
+            }
+            elseif ($this->session->userdata('level')=='manager') {
+                redirect('manager/index');
             }
             elseif ($this->session->userdata('level')=='staff') {
                 redirect('staff/index');

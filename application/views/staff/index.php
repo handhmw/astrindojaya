@@ -1,42 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Maintenance</title>
-</head>
 
 <?php include ('decorations/header.php');?>
-
 <body class="theme-cyan">
+	<div id="wrapper">
+    <?php include ('decorations/navbar.php');?>
+    	<?php include ('decorations/sidebar.php');?>
 			<!-- Start Main Content -->
-			<div id="wrapper">
-				<div class="vertical-align-wrap">
-					<div class="vertical-align-middle maintenance">
-
-					<div class="text-center">
-						<article>
-							<h1>Assalamualaikum, <?php echo $this->session->userdata('name');?>.</h1>
-							<div>
-								<p>Mohon maaf halaman yang anda akses belum bisa digunakan karena masih dalam proses pengembangan.
-								<br>Untuk info lebih lanjut bisa hubungi divisi developer kami.</p>
-								<p>&mdash; The Team</p>
-							</div>
-						</article>
-						<div class="margin-top-30">
-							<a href="<?php echo site_url('staff/logout');?>" class="btn btn-default"><i class="fa fa-arrow-left"></i> <span>Go Back</span></a>
-							<a href="<?php echo site_url('staff/logout');?>" class="btn btn-info"><i class="fa fa-home"></i> <span>Home</span></a>
+			<div id="main-content">
+				<div class="container-fluid">
+					<div class="block-header">
+						<div class="row">
+							<div class="col-lg-6 col-md-8 col-sm-12">
+								<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-angle-double-left"></i></a> Dashboard</h2>
+								<ul class="breadcrumb">                            
+								</ul>
+							</div>      
 						</div>
 					</div>
+					<div class="row clearfix">
+						<div class="col-lg-6 col-md-6">
+							<div class="card">
+								<div class="header">
+									<h2><i class="fa fa-calendar"></i> Ulang Tahun <?php echo bulan() ?></h2>
+								</div>
+								<div class="body todo_list">
+									<table class="table table-responsive" style="font-size:10px;">
+										<?php foreach ($bdy as $kry): ?>
+											<tr>
+												<td><b style=color:#01b2c6><?= $kry->nama_kry ?></b> - <?= $kry->jabatan_kry ?> - <?= $kry->tgl_lahir_kry ?></td>
+											</tr>
+										<?php endforeach; ?>
+									</table>
+								</div>
+							</div>                    
+						</div>
+						<div class="col-lg-6 col-md-6">
+							<div class="card">
+								<div class="header">
+									<h5><i class="fa fa-arrow-circle-up"></i> Visi & Misi Astrindo Senayasa </h5>
+								</div>
+								<div class="body">
+									<h5><u>VISI</u></h5>
+									<p>Meningkatkan kepuasan pelanggan, loyalitas, dan kedekatan hubungan dengan pelanggan dengan cara mendistribusikan produk teknologi informasi yang berkualitas tinggi dan berkelas dunia.</p>
+									<h5><u>MISI</u></h5>
+									<p>Memberikan nilai-nilai terbaik kepada pemangku kepentingan :
+										<br>- Memberikan pertumbuhan bisnis yang baik kepada pemilik merk
+										<br>- Memberikan peluang bisnis kepada mitra kerja
+										<br>- Memberikan pelayanan terbaik kepada pelanggan
+										<br>- Memberikan lingkungan kerja yang baik kepada karyawan</p>
+								</div> 
+							</div>
+						</div>            
 					</div>
-				</div>
-</div>
-			<!-- End Main Content -->
-    
-</div>
-
-
-</body>
-<!-- Mirrored from thememakker.com/templates/lucid/hr/html/light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 03:23:51 GMT -->
+			<?php include ('decorations/footer.php');?> 
+	</body>
 </html>

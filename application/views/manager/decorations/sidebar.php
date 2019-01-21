@@ -29,35 +29,45 @@
                 <div class="tab-pane animated fadeIn active" id="hr_menu">
                     <nav class="sidebar-nav">
                         <ul class="main-menu metismenu">
-                            <li class="active"><a href="<?php echo base_url('staff/index');?>"><i class="icon-home"></i><span>Dashboard</span></a></li>
+                            <li class="active"><a href="<?php echo base_url('manager/index');?>"><i class="icon-home"></i><span>Dashboard</span></a></li>
                             <li>
                                 <a href="" class="has-arrow"><i class="icon-envelope-letter"></i><span>Permohonan</span></a>
                                 <ul>
-                                    <li><a href="<?php echo base_url('staff/cuti');?>">Permohonan Cuti</a></li>
-                                    <li><a href="<?php echo base_url('staff/izin');?>">Permohonan Izin</a></li>
-                                    <li><a href="<?php echo base_url('staff/sakit');?>">Permohonan Sakit</a></li>
-                                    <li><a href="<?php echo base_url('staff/resign');?>">Permohonan Resign</a></li>
+                                    <li><a href="<?php echo base_url('manager/cuti');?>">Permohonan Cuti</a></li>
+                                    <li><a href="<?php echo base_url('manager/izin');?>">Permohonan Izin</a></li>
+                                    <li><a href="<?php echo base_url('manager/sakit');?>">Permohonan Sakit</a></li>
+                                    <li><a href="<?php echo base_url('manager/resign');?>">Permohonan Resign</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#Report" class="has-arrow"><i class="icon-book-open"></i><span>Report</span></a>
+                                <ul>
+                                    <li><a href="<?=base_url('report/print_penilaian')?>" target="_blank"<span> Report Penilaian</span></a></li>
+                                    <li><a href="<?=base_url('report/print_percobaan')?>" target="_blank"<span> Report Percobaan</span></a></li>
+                                    <li><a href="<?=base_url('report/print_training')?>" target="_blank"<span> Report Training</span></a></li> 
+                                    <li><a href="<?=base_url('report/print_resign')?>" target="_blank"<span> Report Resign</span></a></li>
+                                    <li><a href="<?=base_url('report/print_mpp')?>" target="_blank"<span> Report Man Power Planning</span></a></li>                                
                                 </ul>
                             </li>
                             <li>
                                 <a href="" class="has-arrow"><i class="icon-bell"></i><span>Notification</span></a>
                                 <ul>
-                                    <li><a href="<?php echo base_url('staff/notifikasi');?>">Info Karyawan Baru</a></li>
-                                    <li><a href="<?php echo base_url('staff/masa_kerja');?>">Info Masa Kerja</a></li>
+                                    <li><a href="<?php echo base_url('manager/notifikasi');?>">Info Karyawan Baru</a></li>
+                                    <li><a href="<?php echo base_url('manager/masa_kerja');?>">Info Masa Kerja</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="" class="has-arrow"><i class="icon-bar-chart"></i><span>Struktur</span></a>
                                 <ul>
-                                    <li><a href="<?php echo base_url('staff/struktur_pusat');?>"></i>Struktur Pusat</a></li>
-                                    <li><a href="<?php echo base_url('staff/struktur_cabang');?>"></i>Struktur Cabang</a></li>     
-                                    <li><a href="<?php echo base_url('staff/grafik_dep');?>"></i>Grafik per Departemen</a></li>
-                                    <li><a href="<?php echo base_url('staff/grafik_month');?>"></i>Grafik per Month</a></li> 
-                                    <li><a href="<?php echo base_url('staff/grafik_karyawan');?>"></i>Pie Chart Karyawan</a></li>                              
+                                    <li><a href="<?php echo base_url('manager/struktur_pusat');?>"></i>Struktur Pusat</a></li>
+                                    <li><a href="<?php echo base_url('manager/struktur_cabang');?>"></i>Struktur Cabang</a></li>     
+                                    <li><a href="<?php echo base_url('manager/grafik_dep');?>"></i>Grafik per Departemen</a></li>
+                                    <li><a href="<?php echo base_url('manager/grafik_month');?>"></i>Grafik per Month</a></li> 
+                                    <li><a href="<?php echo base_url('manager/grafik_karyawan');?>"></i>Pie Chart Karyawan</a></li>                              
                                 </ul>
                             </li>
                             <li><a href=""><i class="icon-info"></i>Help</a></li>
-                            <li><a href="<?php echo site_url('staff/logout');?>"><i class="icon-logout"></i>Logout</a></li>
+                            <li><a href="<?php echo site_url('manager/logout');?>"><i class="icon-logout"></i>Logout</a></li>
                         </ul>
                     </nav>
                 </div>     

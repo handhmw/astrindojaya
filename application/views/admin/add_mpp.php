@@ -118,7 +118,7 @@
 							<div class="form-group row">
 								<label for="" class="col-sm-3 col-form-label">Jabatan Pemohon</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" id="jabatan_" name="jabatan_pmh_pp" value="<?php echo set_value('jabatan_pmh_pp'); ?>" readonly>
+									<input type="text" class="form-control" id="jabatan_" name="jabatan_pmh_pp" value="<?php echo set_value('jabatan_pmh_pp'); ?>">
 									<?php echo form_error('jabatan_pmh_pp'); ?>
 								</div>
 							</div>

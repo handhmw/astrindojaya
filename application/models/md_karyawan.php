@@ -52,8 +52,8 @@ class Md_karyawan extends CI_Model
                 $this->db->order_by('pangkat_kry', 'ASC');
                 $query = $this->db->get('tb_karyawan');
                 return $query->result();
-	}
-
+        }
+    
 	public function simpan(){
 		$data = [
                                 'id_kry'                => $this->input->post('id_kry'),

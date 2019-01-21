@@ -23,6 +23,24 @@ class Admin extends CI_Controller {
         redirect('login');
     }
 
+    public function status_kerja(){
+		$status = $this->md_master->get_kerja();
+		switch ($status) {
+	        case 'TETAP':
+	            $color = "#D9534F";
+	            break;
+	        case 'KONTRAK':
+	            $color = "#5CB85C";
+	            break;
+	        case 'MAGANG':
+	            $color = "#5CB85C";
+	            break;
+	        default:
+	            $color = "#D9534F";
+	            break;
+        }
+    }
+
     // ============================== HELPER ============================= //
 
     public function tanggal(){
@@ -811,7 +829,7 @@ class Admin extends CI_Controller {
  
     public function add_percobaan(){
         $data['judul']   = 'Tambah Karyawan Percobaan';
-        $data['idk']     = $this->md_master->get_idk_karyawan();
+        $data['idk']     = $this->md_master->get_idk_karyawan_baru();
         $data['dep']     = $this->md_master->get_dept();
         $data['jbt']     = $this->md_master->get_jabatan();
         $data['krj']     = $this->md_master->get_kerja();

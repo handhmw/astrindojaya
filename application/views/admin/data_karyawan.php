@@ -2,6 +2,17 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
+    <style type="text/css">
+        .label-danger {
+            background: #f44336;
+        }
+        .label-success {
+            background: #59CEA7 !important;
+        }
+        .label-warning {
+            background: #009688;
+        }
+    </style>
 <body class="theme-cyan">
     <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
@@ -57,19 +68,36 @@
                                                     <th>Nama Karyawan</th>                            
                                                     <th>Jabatan</th>                                    
                                                     <th>Pangkat</th>
-                                                    <th>Divisi</th> 
+                                                    <th>Status</th> 
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $no = 1; foreach ($karyawan as $kry): ?>
+                                                <?php $no = 1; 
+                                                    foreach ($karyawan as $kry):
+                                                    $status = $kry->status_kerja_kry;
+                                                    switch ($status) {
+                                                        case 'TETAP':
+                                                            $color = "#ff591e";
+                                                            break;
+                                                        case 'KONTRAK':
+                                                            $color = "#5c86b8";
+                                                            break;
+                                                        case 'MAGANG':
+                                                            $color = "#5CB85C";
+                                                            break;
+                                                        default:
+                                                            $color = "#D9534F";
+                                                            break;
+                                                    }
+                                                ?>
                                                 <tr>
                                                     <td style="text-align:center;"><?= $no; ?></td>
                                                     <td><?= $kry->nik_kry ?></td>
                                                     <td><?= $kry->nama_kry ?></td>
                                                     <td><?= $kry->jabatan_kry ?></td>
                                                     <td><?= $kry->pangkat_kry?></td>
-                                                    <td><?= $kry->divisi_kry ?></td>
+                                                    <td style="text-align: center;"><?='<font color="'.$color.'">'.$kry->status_kerja_kry.'</font>';?></td>
                                                     <td style="text-align: center;">
                                                         <a href="<?php echo base_url();?>admin/detail_karyawan/<?php echo $kry->id_kry;?>" class="btn btn-xs btn-success m-r-5" role="button" title="Detail">
                                                         <i class="icon-magnifier"></i>&nbsp;

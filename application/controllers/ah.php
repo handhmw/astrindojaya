@@ -1,4 +1,4 @@
-<tbody>
+<!-- <tbody>
                         <tr>
                             <td  width="40%"> Nama Karyawan </td>
                             <td> '.$row['nama_kry'].'</td>
@@ -87,4 +87,10 @@
                             <td> Email </td>
                             <td> '.$row['email_kry'].'</td>
                         </tr>
-                    </tbody>
+                    </tbody> -->
+
+    <?php 
+    
+    
+
+    ?>

@@ -53,7 +53,7 @@
 											<select class="form-control" id="kodeku_">
 												<option disabled selected >--Pilih Karyawan--</option>
 												<?php foreach($idk as $id_) { ?>
-													<option value="<?php echo $id_->id_kry;?>"><?php echo $id_->nama_kry;?></option>
+													<option value="<?php echo $id_->id_pmhn;?>"><?php echo $id_->nama_pmhn;?></option>
 												<?php } ?>
 											</select>
 										</div>
