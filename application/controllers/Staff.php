@@ -5,7 +5,7 @@ class Staff extends CI_Controller {
         parent::__construct();
         $this->load->library(array('PHPExcel','PHPExcel/IOFactory'));
         $this->load->model(array('md_user','md_excel','md_master','md_karyawan','md_divisi','md_kode',
-                                 'md_cuti','md_percobaan','md_sakit','md_izin'));
+                                 'md_cuti','md_percobaan','md_sakit','md_izin','md_lembur','md_dinas'));
         $this->load->library(array('form_validation','session','Pdf'));
         $this->load->helper(array('url','html','form','text','nominal','tanggal','tgl_indo'));
         if($this->session->userdata('username')=="") {
@@ -62,7 +62,18 @@ class Staff extends CI_Controller {
         $this->load->view('staff/index',$data);
     }
 
+    public function struktur_pusat(){
+        $data['judul']     = 'Struktur Organisasi Pusat';
+		$this->load->view('staff/struktur_pusat',$data);
+	}
+
+	public function struktur_cabang(){
+        $data['judul']     = 'Struktur Organisasi Cabang';
+		$this->load->view('staff/struktur_cabang',$data);
+    }
+
     // ====================================================== CUTI START ============================= //
+   
     public function cuti(){
         $data['cuti']   = $this->md_cuti->tampil();
         $data['judul']  = "Permohonan Cuti";
@@ -139,7 +150,7 @@ class Staff extends CI_Controller {
 
     public function save_izin(){
         $this->form_validation->set_message('is_unique', '{field} sudah terpakai');
-        $this->form_validation->set_rules('id_izn', 'Kode Cuti', ['required', 'is_unique[tb_izin.id_izn]']);
+        $this->form_validation->set_rules('id_izn', 'Kode Izin', ['required', 'is_unique[tb_izin.id_izn]']);
         $this->md_izin->val_izin();
 
         if($this->form_validation->run() === FALSE)
@@ -172,92 +183,47 @@ class Staff extends CI_Controller {
 
         $this->load->view('staff/data_sakit', $data);
     }
-    
-    // public function add_sakit(){
-    //     $data['judul']  = 'Tambah Data Sakit';
-    //     $data['pjs']    = $this->md_master->get_pjs();
-    //     $data['kode']   = $this->md_kode->kode_sakit();
-    //     $data['name']   = $this->session->userdata('name');
-
-    //     $this->load->view('staff/add_sakit', $data);
-    // }
 
     public function add_sakit(){
-        
-        $data['judul']  = 'Tambah Data Sakit';
+		$data['judul']  = 'Tambah Data Sakit';
         $data['pjs']    = $this->md_master->get_pjs();
         $data['kode']   = $this->md_kode->kode_sakit();
         $data['name']   = $this->session->userdata('name');
 		
 		$this->load->view('staff/add_sakit', $data);
-	}
-
-    // public function save_sakit(){
+    }
     
-    //     $this->form_validation->set_message('is_unique', '{field} sudah terpakai');
-    //     $this->form_validation->set_rules('id_skt', 'Kode sakit', ['required', 'is_unique[tb_sakit.id_skt]']);
-    //     $this->md_sakit->val_sakit();
+	public function save_sakit(){
+        $data = array();
+        $this->form_validation->set_message('is_unique', '{field} sudah terpakai');
+        $this->form_validation->set_rules('id_skt', 'Kode Sakit', ['required', 'is_unique[tb_sakit.id_skt]']);
+        $this->md_sakit->val_sakit();
 
-    //     if($this->form_validation->run() === FALSE)
-    //     {
-    //         $this->add_sakit();
-    //     }
-    //     else
-    //     {
-    //         $this->md_sakit->simpan();
-    //         $this->session->set_flashdata('input_sukses','Data jabatan berhasil di input');
-    //         redirect('staff/sakit');
-    //     }
-
-    //     if($this->input->post('submit')){ 
-	// 		$upload = $this->md_sakit->upload();
-			
-	// 		if($upload['result'] == "success"){
-	// 			$this->md_sakit->simpan($upload);
-	
-	// 			redirect('staff/sakit'); 
-	// 			$data['message'] = $upload['error'];
-	// 		}
-	// 	}
-    // }
-
-    public function save_sakit(){
-		$data = array();
-		
+        if($this->form_validation->run() === FALSE){
+            $this->add_sakit();
+        }
 		if($this->input->post('submit')){ 
 			$upload = $this->md_sakit->upload();
-			
 			if($upload['result'] == "success"){
 				$this->md_sakit->simpan($upload);
 	
-				redirect('staff/add_sakit'); 
+				redirect('staff/sakit'); 
 				$data['message'] = $upload['error'];
 			}
-		}
-		
-		$this->load->view('staff/sakit', $data);
-	}
+        }
+        else{
+            $this->md_sakit->simpan($upload);
+            $this->session->set_flashdata('input_sukses','Data jabatan berhasil di input');
+            redirect('staff/sakit');
+        }
+    }
 
-    function detail_sakit($id){
+    public function detail_sakit($id){
         $data['judul']  = 'Detail Permohonan Sakit';
         $data['sakit']   = $this->md_sakit->detail($id);
         $where = array('id_skt' => $id);
 
         $this->load->view('staff/detail_sakit',$data);
-    }
-
-    function upload_sakit(){
-		$config['upload_path']   = 'uploads/';
-		$config['allowed_types'] = 'jpg|jpeg|doc|docx|pdf';
-		$this->load->library('upload', $config);
-		if($this->upload->do_upload('lampiran_skt'))
-		{
-			return $this->upload->data();			
-		}
-		else
-		{
-			return $this->upload->display_errors();
-		}
     }
 
     // ====================================================== SAKIT END ============================= //
@@ -285,7 +251,7 @@ class Staff extends CI_Controller {
         else
         {
             $this->md_resign->simpan();
-            $this->session->set_flashdata('input_sukses','Data jabatan berhasil di input');
+            $this->session->set_flashdata('input_sukses','Data Resign berhasil di input');
             redirect('staff/resign');
         }
     }
@@ -299,4 +265,95 @@ class Staff extends CI_Controller {
     }
 
     // ====================================================== RESIGN START ============================= //
+    // ====================================================== LEMBUR START ============================= //
+   
+    public function lembur(){
+        $data['lembur'] = $this->md_lembur->tampil();
+        $data['judul']  = "Permohonan Lembur";
+
+        $this->load->view('staff/data_lembur', $data);
+    } 
+
+    public function add_lembur(){
+        $data['judul']  = 'Tambah Data Lembur';
+        $data['pjs']    = $this->md_master->get_pjs();
+        $data['kode']   = $this->md_kode->kode_lembur();
+        $data['name']   = $this->session->userdata('name');
+
+        $this->load->view('staff/add_lembur', $data);
+    }
+
+    public function save_lembur(){
+        $this->form_validation->set_message('is_unique', '{field} sudah terpakai');
+        $this->form_validation->set_rules('id_ot', 'Kode Lembur', ['required', 'is_unique[tb_lembur.id_ot]']);
+        $this->md_lembur->val_lembur();
+
+        if($this->form_validation->run() === FALSE)
+        {
+            $this->add_lembur();
+        }
+        else
+        {
+            $this->md_lembur->simpan();
+            $this->session->set_flashdata('input_sukses','Data Lembur berhasil di input');
+            redirect('staff/lembur');
+        }
+    }
+
+    function detail_lembur($id){
+        $data['judul']  = 'Detail Permohonan Lembur';
+        $data['lembur'] = $this->md_lembur->detail($id);
+        $where = array('id_ot' => $id);
+
+        $this->load->view('staff/detail_lembur',$data);
+    }
+    
+    // ====================================================== LEMBUR END ============================= //
+
+    // ====================================================== DINAS START ============================= //
+   
+    public function dinas(){
+        $data['dinas'] = $this->md_dinas->tampil();
+        $data['judul'] = "Permohonan Perjalanan Dinas";
+
+        $this->load->view('staff/data_dinas', $data);
+    } 
+
+    public function add_dinas(){
+        $data['judul']  = 'Tambah Data Perjalanan Dinas';
+        $data['pjs']    = $this->md_master->get_pjs();
+        $data['kode']   = $this->md_kode->kode_dinas();
+        $data['name']   = $this->session->userdata('name');
+
+        $this->load->view('staff/add_dinas', $data);
+    }
+
+    public function save_dinas(){
+        $this->form_validation->set_message('is_unique', '{field} sudah terpakai');
+        $this->form_validation->set_rules('id_dns', 'Kode Dinas', ['required', 'is_unique[tb_dinas.id_dns]']);
+        $this->md_dinas->val_dinas();
+
+
+        if($this->form_validation->run() === FALSE)
+        {
+            $this->add_dinas();
+        }
+        else
+        {
+            $this->md_dinas->simpan();
+            $this->session->set_flashdata('input_sukses','Data Lembur berhasil di input');
+            redirect('staff/dinas');
+        }
+    }
+
+    function detail_dinas($id){
+        $data['judul']  = 'Detail Permohonan Perjalanan Dinas';
+        $data['dinas'] = $this->md_dinas->detail($id);
+        $where = array('id_dns' => $id);
+
+        $this->load->view('staff/detail_dinas',$data);
+    }
+    
+    // ====================================================== LEMBUR END ============================= //
+
 }

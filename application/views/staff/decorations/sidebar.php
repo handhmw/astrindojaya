@@ -36,7 +36,8 @@
                                     <li><a href="<?php echo base_url('staff/cuti');?>">Permohonan Cuti</a></li>
                                     <li><a href="<?php echo base_url('staff/izin');?>">Permohonan Izin</a></li>
                                     <li><a href="<?php echo base_url('staff/sakit');?>">Permohonan Sakit</a></li>
-                                    <li><a href="<?php echo base_url('staff/resign');?>">Permohonan Resign</a></li>
+                                    <li><a href="<?php echo base_url('staff/lembur');?>">Permohonan Lembur</a></li>
+                                    <li><a href="<?php echo base_url('staff/dinas');?>">Permohonan Dinas</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -50,10 +51,7 @@
                                 <a href="" class="has-arrow"><i class="icon-bar-chart"></i><span>Struktur</span></a>
                                 <ul>
                                     <li><a href="<?php echo base_url('staff/struktur_pusat');?>"></i>Struktur Pusat</a></li>
-                                    <li><a href="<?php echo base_url('staff/struktur_cabang');?>"></i>Struktur Cabang</a></li>     
-                                    <li><a href="<?php echo base_url('staff/grafik_dep');?>"></i>Grafik per Departemen</a></li>
-                                    <li><a href="<?php echo base_url('staff/grafik_month');?>"></i>Grafik per Month</a></li> 
-                                    <li><a href="<?php echo base_url('staff/grafik_karyawan');?>"></i>Pie Chart Karyawan</a></li>                              
+                                    <li><a href="<?php echo base_url('staff/struktur_cabang');?>"></i>Struktur Cabang</a></li>                             
                                 </ul>
                             </li>
                             <li><a href=""><i class="icon-info"></i>Help</a></li>

@@ -5,7 +5,7 @@ class Manager extends CI_Controller {
         parent::__construct();
         $this->load->library(array('PHPExcel','PHPExcel/IOFactory'));
         $this->load->model(array('md_user','md_excel','md_master','md_karyawan','md_divisi','md_kode',
-                                 'md_cuti'));
+                                 'md_cuti','md_dinas','md_sakit','md_percobaan','md_mpp','md_izin','md_lembur'));
         $this->load->library(array('form_validation','session','Pdf'));
         $this->load->helper(array('url','html','form','text','nominal','tanggal','tgl_indo'));
         if($this->session->userdata('username')=="") {
@@ -51,11 +51,39 @@ class Manager extends CI_Controller {
         $this->load->view('manager/index',$data);
     }
 
+    public function izin(){
+        $data['izin']   = $this->md_izin->tampil();
+        $data['judul']  = "Permohonan Izin";
+
+        $this->load->view('manager/data_izin', $data);
+    }
+
     public function cuti(){
         $data['cuti']   = $this->md_cuti->tampil();
-        $data['judul']  = "Peresetujuan Cuti";
+        $data['judul']  = "Permohonan Cuti";
 
         $this->load->view('manager/data_cuti', $data);
+    } 
+
+    public function sakit(){
+        $data['sakit']  = $this->md_sakit->tampil();
+        $data['judul']  = "Permohonan Sakit";
+
+        $this->load->view('manager/data_sakit', $data);
+    } 
+
+    public function lembur(){
+        $data['lembur'] = $this->md_lembur->tampil();
+        $data['judul']  = "Permohonan Lembur";
+
+        $this->load->view('manager/data_lembur', $data);
+    } 
+
+    public function dinas(){
+        $data['dinas']  = $this->md_dinas->tampil();
+        $data['judul']  = "Permohonan Perjalanan Dinas";
+
+        $this->load->view('manager/data_dinas', $data);
     } 
 
     public function delete_cuti($id){

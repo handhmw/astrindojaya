@@ -14,7 +14,7 @@
 							<div class="col-lg-6 col-md-8 col-sm-12">
 								<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-angle-double-left"></i></a> Dashboard</h2>
 								<ul class="breadcrumb">                            
-									<li class="breadcrumb-item">Persetujuan</li>
+									<li class="breadcrumb-item">Permohonan</li>
 									<li class="breadcrumb-item active">Cuti</li>
 								</ul>
 							</div>      

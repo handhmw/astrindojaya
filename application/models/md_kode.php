@@ -328,5 +328,43 @@ class Md_kode extends CI_Model
                 $kodejadi = "SKT-".$kodemax; 
             return $kodejadi;  
         }
+
+        public function kode_lembur(){
+            $this->db->select('RIGHT(tb_lembur.id_ot,4) as kode', FALSE);
+            $this->db->order_by('id_ot','DESC');    
+            $this->db->limit(1);    
+            
+            $query = $this->db->get('tb_lembur');   
+            
+            if($query->num_rows() <> 0){         
+                $data = $query->row();      
+                $kode = intval($data->kode) + 1;    
+            }
+            else {          
+                $kode = 1;    
+            }
+                $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); 
+                $kodejadi = "OT-".$kodemax; 
+            return $kodejadi;  
+        }
+
+        public function kode_dinas(){
+            $this->db->select('RIGHT(tb_dinas.id_dns,4) as kode', FALSE);
+            $this->db->order_by('id_dns','DESC');    
+            $this->db->limit(1);    
+            
+            $query = $this->db->get('tb_dinas');   
+            
+            if($query->num_rows() <> 0){         
+                $data = $query->row();      
+                $kode = intval($data->kode) + 1;    
+            }
+            else {          
+                $kode = 1;    
+            }
+                $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); 
+                $kodejadi = "DNS-".$kodemax; 
+            return $kodejadi;  
+        }
     }
 ?>

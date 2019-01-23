@@ -36,7 +36,8 @@
                                     <li><a href="<?php echo base_url('manager/cuti');?>">Permohonan Cuti</a></li>
                                     <li><a href="<?php echo base_url('manager/izin');?>">Permohonan Izin</a></li>
                                     <li><a href="<?php echo base_url('manager/sakit');?>">Permohonan Sakit</a></li>
-                                    <li><a href="<?php echo base_url('manager/resign');?>">Permohonan Resign</a></li>
+                                    <li><a href="<?php echo base_url('manager/lembur');?>">Permohonan Lembur</a></li>
+                                    <li><a href="<?php echo base_url('manager/dinas');?>">Permohonan Dinas</a></li>
                                 </ul>
                             </li>
                             <li>

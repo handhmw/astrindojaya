@@ -1,4 +1,4 @@
-<!doiznype html>
+<!doctype html>
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
@@ -15,7 +15,7 @@
 								<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-angle-double-left"></i></a> Permohonan</h2>
 								<ul class="breadcrumb">                           
 									<li class="breadcrumb-item">Permohonan Izin</li>
-									<li class="breadcrumb-item aiznive">Data Permohonan</li>
+									<li class="breadcrumb-item active">Data Permohonan</li>
 								</ul>
 							</div>      
 						</div>
@@ -55,7 +55,7 @@
                                                     <th>Alasan</th> 
                                                     <th>Nama PJS</th>
                                                     <th>Status</th>
-                                                    <th style="text-align:center;">Aksi</th>
+                                                    <th>Detail</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -98,10 +98,12 @@
                                 </div>
                             </div>
                         </div>
+
 					</div>
 				</div>
 			</div>
 			<!-- End Main Content -->
-        <?php include ('decorations/footer.php');?>
+
+            <?php include ('decorations/footer.php');?>
     </body>
 </html>

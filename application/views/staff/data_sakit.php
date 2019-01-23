@@ -59,7 +59,7 @@
                                                     <th>Nama PJS</th>
                                                     <th>Lampiran</th>
                                                     <th>Status</th>
-                                                    <th style="text-align:center;">Aksi</th>
+                                                    <th>Detail</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -84,15 +84,15 @@
                                                 <tr>
                                                     <td style="text-align:center;"><?= $no; ?></td>
                                                     <td><?= $skt->nama_skt ?></td>
-                                                    <td><?= $skt->nik_skt ?></td>
+                                                    <td style="text-align:center;"><?= $skt->nik_skt ?></td>
                                                     <td><?= $skt->jabatan_skt ?></td>
-                                                    <td><?= $skt->tgl_awal_skt ?></td>
-                                                    <td><?= $skt->tgl_akhir_skt?></td>
-                                                    <td><?= $skt->jml_skt ?></td>
+                                                    <td style="text-align:center;"><?= $skt->tgl_awal_skt ?></td>
+                                                    <td style="text-align:center;"><?= $skt->tgl_akhir_skt?></td>
+                                                    <td style="text-align:center;"><?= $skt->jml_skt ?> Hari</td>
                                                     <td><?= $skt->penyakit_skt ?></td>
                                                     <td><?= $skt->keterangan_skt ?></td>
                                                     <td><?= $skt->pjs_skt ?></td>
-                                                    <td><?= $skt->lampiran_skt ?></td>
+                                                    <td><img src="<?=base_url('uploads/images/'.$skt->lampiran_skt)?>" style="width:100px; height:50"></td>
                                                     <td style="text-align: center;"><?='<font color="'.$color.'">'.$skt->status_skt.'</font>';?></td>
                                                     <td style="text-align: center;">
                                                         <a href="<?php echo base_url();?>staff/detail_sakit/<?php echo $skt->id_skt;?>" class="btn btn-xs btn-success m-r-5" role="button" title="Detail">

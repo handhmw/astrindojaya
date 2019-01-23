@@ -15,7 +15,7 @@
 								<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-angle-double-left"></i></a> Dashboard</h2>
 								<ul class="breadcrumb">                            
 									<li class="breadcrumb-item">Permohonan</li>
-									<li class="breadcrumb-item active">Izin</li>
+									<li class="breadcrumb-item active">Perjalanan Dinas</li>
 								</ul>
 							</div>      
 						</div>
@@ -30,8 +30,8 @@
                                 <div class="body">
                                     <table class="table table-bordered" width="100%" cellpadding="0" cellspacing="0">
                                         <tbody>
-                                            <?php foreach ($izin as $row): 
-                                            $status = $row->status_izn;
+                                            <?php foreach ($dinas as $row): 
+                                            $status = $row->status_dns;
                                                 switch ($status) {
                                                     case 'Disetujui':
                                                         $color = "#2ecc71";
@@ -48,45 +48,65 @@
                                                 }   
                                             ?>
                                             <tr>
-                                                <td width="20%"> Kode izin </td>
-                                                <td><?= $row->id_izn ?></td>
+                                                <td width="20%"> Kode Dinas </td>
+                                                <td><?= $row->id_dns ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td> Jenis Tujuan </td>
+                                                <td><?= $row->jenis_dns ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td> Kepentingan Dinas </td>
+                                                <td><?= $row->kepentingan_dns ?></td>
                                             </tr>
                                             <tr>
                                                 <td> Nama Pemohon </td>
-                                                <td><?= $row->nama_izn ?></td>
+                                                <td><?= $row->nama_dns ?></td>
                                             </tr>
                                             <tr>
-                                                <td> Jenis Izin </td>
-                                                <td><?= $row->jenis_izn ?></td>
+                                                <td> Total Tujuan </td>
+                                                <td><?= $row->total_dns ?> Lokasi</td>
                                             </tr>
                                             <tr>
-                                                <td> Tanggal Permintaan</td>
-                                                <td><?= $row->tgl_minta_izn ?></td>
+                                                <td> Tanggal Awal</td>
+                                                <td><?= $row->tgl_awal_dns ?></td>
                                             </tr>
                                             <tr>
                                                 <td> Tanggal Selesai</td>
-                                                <td><?= $row->tgl_akhir_izn ?></td>
+                                                <td><?= $row->tgl_akhir_dns ?></td>
                                             </tr>
                                             <tr>
-                                                <td> Alasan izin </td>
-                                                <td><?= $row->alasan_izn ?></td>
+                                                <td> Tujuan </td>
+                                                <td><?= $row->tujuan_dns ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td> Pembayaran Awal </td>
+                                                <td>Rp. <?= $row->pembayaran_dns ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td> Tanggal Pembayaran </td>
+                                                <td><?= $row->tgl_bayar_dns ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td> Keterangan </td>
+                                                <td><?= $row->keterangan_dns ?></td>
                                             </tr>
                                             <tr>
                                                 <td> Nama PJS </td>
-                                                <td><?= $row->pjs_izn ?></td>
+                                                <td><?= $row->pjs_dns ?></td>
                                             </tr>
                                             <tr>
                                                 <td> Status Permohonan </td>
-                                                <td><?='<font color="'.$color.'">'.$row->status_izn.'</font>';?></td>
+                                                <td><?='<font color="'.$color.'">'.$row->status_dns.'</font>';?></td>
                                             </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="body">
-                                    <a href="<?php echo base_url() ?>report/print_izin" class="btn btn-xs btn-primary" role="button" title="Print Data">
+                                    <a href="<?php echo base_url() ?>report/print_dinas" class="btn btn-xs btn-primary" role="button" title="Print Data">
                                     <i class="fa fa-print"></i><span> Print</span></a>
-                                    <a href="<?php echo site_url();?>staff/izin" class="btn btn-xs btn-danger" role="button">
+                                    <a href="<?php echo site_url();?>staff/dinas" class="btn btn-xs btn-danger" role="button">
 									<i class="fa fa-angle-double-left"></i><span> Back</span></a>
                                 </div>
                             </div>

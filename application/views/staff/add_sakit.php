@@ -27,7 +27,8 @@
 									<h5><i class="fa fa-plus-square-o"></i> <?php echo $judul; ?></h5>
 								</div>	
 								<div class="card-body">
-									<?php echo form_open('staff/save_sakit', ['class' => 'form-horizontal', 'method' => 'post']); ?>
+		
+									<?php echo form_open("staff/save_sakit", array('enctype'=>'multipart/form-data')); ?>
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Kode Permohonan</label>
 										<div class="col-sm-6">
@@ -87,8 +88,8 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Keterangan Lain</label>
 										<div class="col-sm-6">
-											<textarea class="form-control" rows="5" cols="30" name="keterangan_ct" value="<?php echo set_value('keterangan_ct'); ?>"><?php echo set_value('keterangan_ct'); ?></textarea>
-											<?php echo form_error('keterangan_ct'); ?>
+											<textarea class="form-control" rows="5" cols="30" name="keterangan_skt" value="<?php echo set_value('keterangan_skt'); ?>"><?php echo set_value('keterangan_skt'); ?></textarea>
+											<?php echo form_error('keterangan_skt'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -104,7 +105,7 @@
 										</div>
 									</div>
 									<div class="form-group row">
-										<label for="" class="col-sm-3 col-form-label">Status</label>
+										<label class="col-sm-3 col-form-label">Status</label>
 										<div class="col-sm-6">
 											<input type="text" class="form-control" name="status_skt"  value="Pending" readonly>
 											<?php echo form_error('status_skt'); ?>
@@ -120,11 +121,12 @@
 													<input type="file" name="lampiran_skt" id="chooseFile">
 												</div>
 											</div>
+											<!-- <input type="file" name="lampiran_skt"> -->
 										</div>
 									</div>
 									<div class="form-group row">
 										<div class="col-sm-6">
-											<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+											<button type="submit" name="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
 											<a href="<?php echo site_url();?>staff/sakit" class="btn btn-xs btn-danger" role="button">
 											<i class="fa fa-angle-double-left"></i><span> Batal</span></a>
 										</div>

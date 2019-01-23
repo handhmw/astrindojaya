@@ -89,7 +89,7 @@
                                             </tr>
                                             <tr>
                                                 <td> Lampiran</td>
-                                                <td><?= $row->lampiran_skt ?></td>
+                                                <td><img src="<?=base_url('uploads/images/'.$row->lampiran_skt)?>" style="width:100px; height:50"></td>
                                             </tr>
                                             <tr>
                                                 <td> Status Permohonan </td>

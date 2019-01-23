@@ -15,7 +15,7 @@
 								<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-angle-double-left"></i></a> Dashboard</h2>
 								<ul class="breadcrumb">                            
 									<li class="breadcrumb-item">Permohonan</li>
-									<li class="breadcrumb-item active">Izin</li>
+									<li class="breadcrumb-item active">Lembur</li>
 								</ul>
 							</div>      
 						</div>
@@ -30,8 +30,8 @@
                                 <div class="body">
                                     <table class="table table-bordered" width="100%" cellpadding="0" cellspacing="0">
                                         <tbody>
-                                            <?php foreach ($izin as $row): 
-                                            $status = $row->status_izn;
+                                            <?php foreach ($lembur as $row): 
+                                            $status = $row->status_ot;
                                                 switch ($status) {
                                                     case 'Disetujui':
                                                         $color = "#2ecc71";
@@ -48,45 +48,37 @@
                                                 }   
                                             ?>
                                             <tr>
-                                                <td width="20%"> Kode izin </td>
-                                                <td><?= $row->id_izn ?></td>
+                                                <td width="20%"> Kode lembur </td>
+                                                <td><?= $row->id_ot ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td> Tanggal Permohonan</td>
+                                                <td><?= $row->tanggal_ot ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td> Waktu Permohonan</td>
+                                                <td><?= $row->waktu_ot ?></td>
                                             </tr>
                                             <tr>
                                                 <td> Nama Pemohon </td>
-                                                <td><?= $row->nama_izn ?></td>
+                                                <td><?= $row->nama_ot ?></td>
                                             </tr>
                                             <tr>
-                                                <td> Jenis Izin </td>
-                                                <td><?= $row->jenis_izn ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td> Tanggal Permintaan</td>
-                                                <td><?= $row->tgl_minta_izn ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td> Tanggal Selesai</td>
-                                                <td><?= $row->tgl_akhir_izn ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td> Alasan izin </td>
-                                                <td><?= $row->alasan_izn ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td> Nama PJS </td>
-                                                <td><?= $row->pjs_izn ?></td>
+                                                <td> Keterangan </td>
+                                                <td><?= $row->keterangan_ot ?></td>
                                             </tr>
                                             <tr>
                                                 <td> Status Permohonan </td>
-                                                <td><?='<font color="'.$color.'">'.$row->status_izn.'</font>';?></td>
+                                                <td><?='<font color="'.$color.'">'.$row->status_ot.'</font>';?></td>
                                             </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="body">
-                                    <a href="<?php echo base_url() ?>report/print_izin" class="btn btn-xs btn-primary" role="button" title="Print Data">
+                                    <a href="<?php echo base_url() ?>report/print_lembur" class="btn btn-xs btn-primary" role="button" title="Print Data">
                                     <i class="fa fa-print"></i><span> Print</span></a>
-                                    <a href="<?php echo site_url();?>staff/izin" class="btn btn-xs btn-danger" role="button">
+                                    <a href="<?php echo site_url();?>staff/lembur" class="btn btn-xs btn-danger" role="button">
 									<i class="fa fa-angle-double-left"></i><span> Back</span></a>
                                 </div>
                             </div>

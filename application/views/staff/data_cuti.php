@@ -56,7 +56,7 @@
                                                     <th>Informasi</th>
                                                     <th>Nama PJS</th>
                                                     <th>Status</th>
-                                                    <th style="text-align:center;">Aksi</th>
+                                                    <th>Detail</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

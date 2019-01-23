@@ -33,17 +33,17 @@
                                             <?php foreach ($cuti as $row): 
                                             $status = $row->status_ct;
                                             switch ($status) {
-                                                case 'Disetuui':
-                                                    $color = "#ff591e";
+                                                case 'Disetujui':
+                                                    $color = "#2ecc71";
                                                     break;
                                                 case 'Pending':
-                                                    $color = "#5c86b8";
+                                                    $color = "#f5b041";
                                                     break;
                                                 case 'Ditolak':
-                                                    $color = "#5CB85C";
+                                                    $color = "#e74c3c";
                                                     break;
                                                 default:
-                                                    $color = "#D9534F";
+                                                    $color = "#17202a";
                                                     break;
                                             }    
                                             ?>

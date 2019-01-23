@@ -47,7 +47,7 @@
 
 									<?php echo form_open('manager/update_cuti/'.$cuti->id_ct, ['class' => 'form-horizontal', 'method' => 'post']); ?>
 									<div class="form-group row">
-										<label for="" class="col-sm-3 col-form-label">Kode MPP</label>
+										<label for="" class="col-sm-3 col-form-label">Kode Cuti</label>
 										<div class="col-sm-6">
 											<input type="text" class="form-control" name="id_ct" readonly value="<?php echo set_value('id_ct', $cuti->id_ct); ?>" readonly>
 											<?php echo form_error('id_ct'); ?>
@@ -116,7 +116,7 @@
 									<div class="form-group row">
 										<div class="col-sm-6">
 											<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
-											<a href="<?php echo site_url();?>manager/mpp" class="btn btn-xs btn-danger" role="button">
+											<a href="<?php echo site_url();?>manager/cuti" class="btn btn-xs btn-danger" role="button">
                                     		<i class="fa fa-angle-double-left"></i><span> Batal</span></a>
 											</div>
 										</div>

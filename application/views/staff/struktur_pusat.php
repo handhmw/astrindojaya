@@ -2,41 +2,34 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-
 <body class="theme-cyan">
-
-<div id="wrapper">
-
+	<div id="wrapper">
     <?php include ('decorations/navbar.php');?>
-
     	<?php include ('decorations/sidebar.php');?>
-
 			<!-- Start Main Content -->
 			<div id="main-content">
 				<div class="container-fluid">
 					<div class="block-header">
 						<div class="row">
 							<div class="col-lg-6 col-md-8 col-sm-12">
-								<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a> Dashboard</h2>
-								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index-2.html"><i class="icon-home"></i></a></li>                            
+								<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-angle-double-left"></i></a> Struktur</h2>
+								<ul class="breadcrumb">                           
 									<li class="breadcrumb-item">Struktur</li>
 									<li class="breadcrumb-item active">Struktur Pusat</li>
 								</ul>
 							</div>      
 						</div>
 					</div>
-
 					<div class="row clearfix">
 						<div class="col-lg-12 col-md-12 show" id="Struktur">
 							<div class="card">
 								<div class="header">
-									<h2>Struktur Organisasi</h2>
+									<h5><i class="fa fa-line-chart"></i> <?php echo $judul; ?></h5>
 								</div>
 								<div class="body">
 									<ul class="nav nav-tabs-new2">
 										<li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#All">All</a></li>
-										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Accounting">Accounting</a></li>
+										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Accounting">Akuntansi</a></li>
 										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Audit">Audit</a></li>
 										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Finance">Finance</a></li>
 										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Hrg">HRG</a></li>
@@ -55,7 +48,7 @@
 											<div class="col-lg-12">
 												<div class="card scroll" style="overflow-y:hidden; overflow-x:scroll; background-color: rgb(255, 255, 255);">
 													<div class="header">
-														<h2>Struktur All <small>Kantor Pusat PT. Astrindo Senayasa</small></h2>
+														<h2>Struktur Keseluruhan <small>Kantor Pusat PT. Astrindo Senayasa</small></h2>
 													</div>
 													<div class="body tree">
 														<ul style='width:200%;'>
@@ -671,8 +664,8 @@
 													</div>
 												</div>
 											</div>
-											<button type="button" class="btn btn-success">Download PDF</button>
-											<button type="button" class="btn btn-primary">Download Excel</button>
+											<button type="button" class="btn btn-success"><i class="fa fa-file-pdf-o"></i> Download PDF</button>
+											<button type="button" class="btn btn-primary"><i class="fa fa-file-excel-o"></i> Download Excel</button>
 										</div>
 										<div class="tab-pane" id="Oprt">
 										<div class="row clearfix">
@@ -1010,11 +1003,7 @@
 				</div>
 			</div>
 			<!-- End Main Content -->
-    
-</div>
-
-<?php include ('decorations/footer.php');?>
-
-</body>
-<!-- Mirrored from thememakker.com/templates/lucid/hr/html/light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 03:23:51 GMT -->
+		</div>
+	<?php include ('decorations/footer.php');?>
+	</body>
 </html>
