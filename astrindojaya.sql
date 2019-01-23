@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2018 at 09:04 AM
--- Server version: 10.1.29-MariaDB
--- PHP Version: 7.2.0
+-- Generation Time: Jan 23, 2019 at 11:30 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -137,6 +137,32 @@ INSERT INTO `tb_counter` (`ip`, `date`, `hits`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_cuti`
+--
+
+CREATE TABLE `tb_cuti` (
+  `id_ct` varchar(20) NOT NULL,
+  `nama_ct` varchar(50) NOT NULL,
+  `divisi_ct` varchar(50) NOT NULL,
+  `tgl_ct` varchar(15) NOT NULL,
+  `jenis_ct` varchar(30) NOT NULL,
+  `alasan_ct` varchar(100) NOT NULL,
+  `informasi_ct` varchar(100) NOT NULL,
+  `pjs_ct` varchar(50) NOT NULL,
+  `status_ct` enum('Disetujui','Pending','Ditolak') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_cuti`
+--
+
+INSERT INTO `tb_cuti` (`id_ct`, `nama_ct`, `divisi_ct`, `tgl_ct`, `jenis_ct`, `alasan_ct`, `informasi_ct`, `pjs_ct`, `status_ct`) VALUES
+('CT-0001', 'HERMAWAN', 'MARKETING', '12-06-2019', 'CUTI TAHUNAN', 'NIKAH', 'NIKAH', 'DANI', 'Disetujui'),
+('CT-0003', 'sas', 'asa', '17-01-2019', 'UPL. Tidak Dibayar - 3 Hari', 'sasa', 'asas', 'MARCO WIJAYA', 'Pending');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_departemen`
 --
 
@@ -165,6 +191,36 @@ INSERT INTO `tb_departemen` (`id`, `departemen`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_dinas`
+--
+
+CREATE TABLE `tb_dinas` (
+  `id_dns` varchar(20) NOT NULL,
+  `jenis_dns` varchar(50) NOT NULL,
+  `kepentingan_dns` varchar(70) NOT NULL,
+  `nama_dns` varchar(50) NOT NULL,
+  `total_dns` int(10) NOT NULL,
+  `tgl_awal_dns` varchar(10) NOT NULL,
+  `tgl_akhir_dns` varchar(10) NOT NULL,
+  `tujuan_dns` varchar(100) NOT NULL,
+  `pembayaran_dns` varchar(100) NOT NULL,
+  `tgl_bayar_dns` varchar(10) NOT NULL,
+  `keterangan_dns` varchar(100) NOT NULL,
+  `pjs_dns` varchar(50) NOT NULL,
+  `status_dns` enum('Pending','Disetujui','Ditolak') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_dinas`
+--
+
+INSERT INTO `tb_dinas` (`id_dns`, `jenis_dns`, `kepentingan_dns`, `nama_dns`, `total_dns`, `tgl_awal_dns`, `tgl_akhir_dns`, `tujuan_dns`, `pembayaran_dns`, `tgl_bayar_dns`, `keterangan_dns`, `pjs_dns`, `status_dns`) VALUES
+('DNS-00-1', 'Domestik', 'Perjalanan Dinas', 'Handri', 2, '12-08-2019', '22-10-2019', 'Bangkok', '61', '21-09-2019', 'ada', 'MARCO WIJAYA', 'Pending'),
+('DNS-002', 'Domestik', 'Perjalanan Non Dinas', 'Heru', 1, '20-08-2019', '21-09-2019', 'Bangkok', '12000', '23-07-2019', 'Dinas', 'Gery', 'Disetujui');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_divisi`
 --
 
@@ -181,6 +237,31 @@ CREATE TABLE `tb_divisi` (
 INSERT INTO `tb_divisi` (`id`, `unik`, `divisi`) VALUES
 ('DVS-0001', 'OPT', 'OPERATIONAL'),
 ('DVS-0002', 'SLS', 'SALES & MARKETING');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_izin`
+--
+
+CREATE TABLE `tb_izin` (
+  `id_izn` varchar(20) NOT NULL,
+  `jenis_izn` varchar(100) NOT NULL,
+  `tgl_minta_izn` varchar(10) NOT NULL,
+  `tgl_akhir_izn` varchar(10) NOT NULL,
+  `nama_izn` varchar(50) NOT NULL,
+  `alasan_izn` varchar(100) NOT NULL,
+  `pjs_izn` varchar(50) NOT NULL,
+  `status_izn` enum('Disetujui','Pending','Ditolak') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_izin`
+--
+
+INSERT INTO `tb_izin` (`id_izn`, `jenis_izn`, `tgl_minta_izn`, `tgl_akhir_izn`, `nama_izn`, `alasan_izn`, `pjs_izn`, `status_izn`) VALUES
+('IZN-0001', 'JENIS', '12-08-2019', '20-08-2019', 'NAMA', 'ALASAN', 'NAMANYA', 'Pending'),
+('IZN-0004', 'Ayah Ibu Mertua Saudara Meninggal Dunia [2 Hari] - Sisa 1 Hari', '12-01-2019', '23-02-2019', 'samaanman', 'asaa', 'DINDA', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -281,16 +362,9 @@ CREATE TABLE `tb_karyawan` (
 --
 
 INSERT INTO `tb_karyawan` (`id_kry`, `nama_kry`, `nik_kry`, `jabatan_kry`, `pangkat_kry`, `divisi_kry`, `dep_kry`, `lokasi_kry`, `panggilan_kry`, `identitas_kry`, `jk_kry`, `tempat_lahir_kry`, `tgl_lahir_kry`, `negara_kry`, `agama_kry`, `npwp_kry`, `alamat_kry`, `tlp_rumah_kry`, `no_hp_kry`, `tgl_masuk_kry`, `status_kerja_kry`, `status_nikah_kry`, `email_kry`) VALUES
-('1', 'SUPRIYATNA', '140901 ', 'MARKETING COMMUNICATION EVENT', 'MANAGER', 'OPERATIONAL', 'AUDIT', 'PUSAT', 'nama', '3276060303770000', 'LAKI-LAKI', 'DEPOK', '29-Mar-77', 'INDONESIA', 'ISLAM', '70.913.495.1-412.000', 'JL.MARGONDA RAYA GG.KERAMAT BATAS RT.003 RW.007 KEL.KEMIRIMUKA KEC.BEJI DEPOK', 'telpon', '087750500441', '1-Sep-14', 'KARYAWAN TETAP', 'MENIKAH', 'handrihmw@gmail.com'),
-('2', 'MARIA HENDRADJAJA', '061201 ', 'MARKETING COMMUNICATION MANAGE', 'MANAGER', 'OPERATIONAL', 'PURCHASING', 'PUSAT', 'nama', '3173047103810011', 'LAKI-LAKI', 'JAKARTA', '31-Mar-81', 'INDONESIA', 'KATOLIK', '59.410.545.4-033.000', 'GG. BETET DALAM NO.20 RT.009 RW.002 TANAH SEREAL-TAMBORA JAKARTA BARAT', 'telpon', '0818-901109', '18-Dec-06', 'MAGANG', 'SINGLE', 'ria@astrindo.co.id'),
-('3', 'YENI APRIANI', '070503 ', 'SALES EXECUTIVE', 'STAFF', 'SALES & MARKETING', 'SALES', 'Pusat', 'nama', '3201196704880001', 'F', 'JAKARTA', '10-Apr-88', 'INDONESIA', 'ISLAM', '81.172.229.7-004.000', 'JATINEGARA LIO, KAMPUNG LIO NO.34 RT.04 RW.04 JATINEGARA CAKUNG JAKARTA TIMUR DKI JAKARTA', 'telpon', '0812-61344557', '7-Apr-10', 'KARYAWAN TETAP', 'MENIKAH', 'yenni.apriani@astrindo.co.id'),
-('4', 'MARLIANA', '130102 ', 'ACCOUNT EXECUTIVE MANAGER', 'MANAGER', 'SALES & MARKETING', 'SALES', 'Pusat', 'nama', '3173046603880006', 'F', 'JAKARTA', '26-Mar-88', 'INDONESIA', 'PROTESTANT', '34.209.136.0-033.000', 'TANAH SEREAL XVIII KRAMAT JALAN 1 NO 14 RT 002/ RW 07 JAKARTA BARAT', 'telpon', '0856-7000225', '21-Jan-13', 'KARYAWAN TETAP', 'MENIKAH', 'marliana@astrindo.co.id'),
-('6', 'MARCO WIJAYA', '160601 ', 'PRODUCT MANAGER', 'MANAGER', 'SALES & MARKETING', 'MARKETING', 'Pusat', 'nama', '3173042608920011', 'M', 'JAKARTA', '12/11/1992', 'INDONESIA', 'PROTESTANT', '70.048.108.8-033.000', 'JL TSS SETIAMASA IV RT 007 RW 001 KEL DURI SELATAN KEC TAMBORA JAKARTA BARAT', 'telpon', '0812-97284078', '1-Jun-16', 'KARYAWAN TETAP', 'SINGLE', 'marco.wijaya@astrindo.co.id'),
-('7', 'FAIZAL REZA', '140801 ', 'AUDIT STAFF', 'STAFF', 'OPERATIONAL', 'AUDIT', 'Pusat', 'nama', '3276042206820001', 'M', 'JAKARTA', '22-Jun-82', 'INDONESIA', 'ISLAM', '68.545.046.2-412.000', 'JL. RAYA PD.GEDE GG.GORDA RT.03 RW.01 NO.3 KEL.LUBANG BUAYA KEC.CIPAYUNG JAKARTA TIMUR', 'telpon', '0821-14663042', '4-Aug-14', 'KARYAWAN TETAP', 'MENIKAH', 'faizal.reza@astrindo.co.id'),
-('8', 'MESNA MARISI MAGDALENA', '140706 ', 'A/R STAFF', 'STAFF', 'OPERATIONAL', 'FINANCE', 'Pusat', 'nama', '3175024211880005', 'F', 'JAKARTA', '12/11/2018', 'INDONESIA', 'PROTESTANT', '45.107.733.3-003.000', 'JL. KAYU MAS TENGAH NO.77 RT.11 RW.10 KEL. PULO GADUNG KEC. PULO GADUNG JAKARTA TIMUR', 'telpon', '0877-75521287', '10-Jul-14', 'KARYAWAN TETAP', 'SINGLE', 'finance-jkt2@astrindo.co.id'),
-('EMP-0009', 'HANDRI', '189009', 'MARKETING COMMUNICATION', 'MANAGER', 'OPERATIONAL', 'MARKETING', 'PUSAT', 'da', '12', 'LAKI-LAKI', 'as', '06-11-2018', 'sa', 'KRISTEN', '12', 'as', '12', '087750500441', '05-11-2018', 'KARYAWAN KONTRAK', 'MENIKAH', 'handrihmw@gmail.com'),
-('EMP-0010', 'SUTEJO', '14322', 'ADMIN SALES', 'STAFF', 'SALES & MARKETING', 'PURCHASING', 'CABANG SEMARANG', 'TEJO', '1', 'LAKI-LAKI', 'Q', '26-11-2018', 'Q', 'KRISTEN', '1', 'Q', '1', '1', '20-11-2018', 'KARYAWAN TETAP', 'MENIKAH', 'Q@mail.com'),
-('EMP-0011', 'HERA', '43432', 'ADMIN TECHNICAL SUPPORT', 'SUPERVISOR', 'OPERATIONAL', 'MARKETING', 'CABANG SEMARANG', 'HERA', '321244332345554', 'PEREMPUAN', 'JAKARTA', '29-10-1975', 'INDONESIA', 'KRISTEN', '32123332111', 'JAKARTA', '02188273737', '087652524244', '15-05-2018', 'KARYAWAN TETAP', 'MENIKAH', 'hera@mail.com');
+('6', 'MARCO WIJAYA', '160601 ', 'PRODUCT MANAGER', 'MANAGER', 'SALES & MARKETING', 'MARKETING', 'PUSAT', 'nama', '3173042608920011', 'LAKI-LAKI', 'JAKARTA', '33842', 'INDONESIA', 'PROTESTANT', '70.048.108.8-033.000', 'JL TSS SETIAMASA IV RT 007 RW 001 KEL DURI SELATAN KEC TAMBORA JAKARTA BARAT', 'telpon', '0812-97284078', '42522', 'KONTRAK', 'SINGLE', 'marco.wijaya@astrindo.co.id'),
+('EMP-0007', 'DINDA', '23212', 'MARKETING COMMUNICATION', 'STAFF', 'OPERATIONAL', 'FINANCE', 'CABANG SEMARANG', 'DINDA', '3212093938667728', 'PEREMPUAN', 'BANDUNG', '02-01-1988', 'INDONESIA', 'ISLAM', '3212333211123', 'ADA', '1', '0876355256262', '04-09-2018', 'TETAP', 'SINGLE', 'DINDA@gmail.com'),
+('EMP-0008', 'SANDRA', '43243', 'CORPORATE ACCOUNT EXECUTIVE', 'STAFF', 'OPERATIONAL', 'IT', 'CABANG BANJARMASIN', 'SANDRA', '3212093938667728', 'PEREMPUAN', 'BANDUNG', '11-01-1992', 'INDONESIA', 'KRISTEN', '3212333211123', 'ADA', '1', '09876665446765', '09-09-2018', 'MAGANG', 'MENIKAH', 'san@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -302,8 +376,8 @@ CREATE TABLE `tb_karyawan_baru` (
   `id_pmhn` varchar(20) NOT NULL,
   `dep_pmhn` varchar(30) NOT NULL,
   `nama_pemohon_pmhn` varchar(30) NOT NULL,
-  `jabatan_pemohon_pmhn` varchar(30) NOT NULL,
-  `jabatan_pmhn` varchar(20) NOT NULL,
+  `jabatan_pemohon_pmhn` varchar(50) NOT NULL,
+  `jabatan_pmhn` varchar(50) NOT NULL,
   `lokasi_pmhn` varchar(30) NOT NULL,
   `waktu_pmhn` varchar(20) NOT NULL,
   `status_kerja_pmhn` varchar(20) NOT NULL,
@@ -330,9 +404,7 @@ CREATE TABLE `tb_karyawan_baru` (
 --
 
 INSERT INTO `tb_karyawan_baru` (`id_pmhn`, `dep_pmhn`, `nama_pemohon_pmhn`, `jabatan_pemohon_pmhn`, `jabatan_pmhn`, `lokasi_pmhn`, `waktu_pmhn`, `status_kerja_pmhn`, `jumlah_pmhn`, `tanggal_pmhn`, `dasar_permohonan_pmhn`, `sumber_rekrutmen_pmhn`, `ringkasan_tugas_pmhn`, `gajih_pmhn`, `jk_pmhn`, `usia_pmhn`, `pendidikan_pmhn`, `jurusan_pmhn`, `pengalaman_kerja_pmhn`, `bidang_pmhn`, `syarat_lain_pmhn`, `keterampilan_pmhn`, `tgl_bergabung_pmhn`, `office_equipment_pmhn`) VALUES
-('NEW-0004', 'MARKETING SUPPORT', 'Q', 'Q', 'MARKETING COMMUNICAT', 'CABANG SEMARANG', '22-11-2018', 'KARYAWAN KONTRAK', '1', '29-11-2018', 'PERGANTIAN KARYAWAN RESIGN', 'DALAM PERUSAHAAN', 'Q', 'Q', 'LAKI-LAKI', 1, 'Q', 'Q', 'Q', 'Q', 'Q', 'Q', '28-11-2018', 'Q'),
-('NEW-0005', 'IT', 'A', 'A', 'RECEPTIONIST', 'CABANG SEMARANG', '03-12-2018', 'MAGANG', '1', '13-11-2018', 'RENCANA / ANGGARAN TAHUNAN', 'LUAR PERUSAHAAN', 'A', 'A', 'LAKI-LAKI', 1, 'S2', 'A', 'A', 'A', 'A', 'A', '04-12-2018', 'A'),
-('NEW-0006', 'MARKETING', 'XXX', 'XXX', 'FINANCE AP', 'CABANG SEMARANG', '06-12-2018', 'KARYAWAN KONTRAK', '1', '04-12-2018', 'PERGANTIAN KARYAWAN RESIGN', 'DALAM PERUSAHAAN', 'X', 'XXX', 'LAKI-LAKI', 1, 'S1', 'XXX', 'X', 'XXX', 'X', 'X', '02-12-2018', 'X');
+('NEW-0007', 'HR/GA', 'KRISNAWATI', 'ACCOUNTING', 'ADMIN TECHNICAL SUPP', 'CABANG MAKASSAR', '09-01-2019', 'KARYAWAN KONTRAK', '1', '12-12-2018', 'PERGANTIAN KARYAWAN RESIGN', 'SOCIAL MEDIA', '-', '65000000', 'LAKI-LAKI', 23, 'S1', 'AKUNTANSI', '-', 'AKUNTANSI', '-', '-', '07-01-2019', '-');
 
 -- --------------------------------------------------------
 
@@ -350,9 +422,31 @@ CREATE TABLE `tb_kerja` (
 --
 
 INSERT INTO `tb_kerja` (`id`, `status_kerja`) VALUES
-('1', 'KARYAWAN TETAP'),
-('2', 'KARYAWAN KONTRAK'),
+('1', 'TETAP'),
+('2', 'KONTRAK'),
 ('3', 'MAGANG');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_lembur`
+--
+
+CREATE TABLE `tb_lembur` (
+  `id_ot` varchar(20) NOT NULL,
+  `tanggal_ot` varchar(10) NOT NULL,
+  `waktu_ot` varchar(30) NOT NULL,
+  `nama_ot` varchar(50) NOT NULL,
+  `keterangan_ot` varchar(100) NOT NULL,
+  `status_ot` enum('Disetujui','Pending','Ditolak') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_lembur`
+--
+
+INSERT INTO `tb_lembur` (`id_ot`, `tanggal_ot`, `waktu_ot`, `nama_ot`, `keterangan_ot`, `status_ot`) VALUES
+('OT-0001', '12-07-2019', '10 Jam', 'Alexa', 'Nambah Gajih', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -389,9 +483,7 @@ INSERT INTO `tb_mpp` (`id_pp`, `jabatan_pp`, `dep_pp`, `area_pp`, `status_pp`, `
 ('MPP-0003', 'ADMIN SERVICE & IT SUPPORT', 'PURCHASING', '', 'N', 1, 1, 'DARTO', 'MARKETING COMMUNICATION', '15-11-2018', '27-11-2018', '27-11-2018', '26-11-2018', '3', 1, '20-11-2018', 'LUAR PERUSAHAAN', 'Q'),
 ('MPP-0004', 'MARKETING COMMUNICATION', 'IT', '', 'R', 1, 2, 'TAYO', 'MARKETING COMMUNICATION', '29-11-2018', '28-11-2018', '29-11-2018', '28-11-2018', '21', 2, '22-11-2018', 'DALAM PERUSAHAAN', 'ADA'),
 ('MPP-0005', 'CORPORATE ACCOUNT EXECUTIVE', 'PURCHASING', '', 'N', 3, 2, 'FERRY', 'ADMIN SERVICE & IT SUPPORT', '14-06-2018', '22-01-2018', '22-06-2017', '21-06-2017', '25', 2, '28-11-2018', 'DALAM PERUSAHAAN', 'ADA'),
-('MPP-0006', 'DESIGN GRAPHIC', 'MARKETING', '', 'R', 2, 1, 'HERU', 'ADMIN SALES', '20-06-2018', '18-07-2018', '23-08-2018', '11-09-2018', '32', 1, '29-11-2018', 'DALAM PERUSAHAAN', 'ADA'),
-('MPP-0007', 'FINANCE', 'FINANCE', '', 'N', 1, 1, 'SERA', 'ADMIN TECHNICAL SUPPORT', '21-06-2018', '17-07-2018', '16-08-2018', '10-09-2018', '33', 1, '07-11-2018', 'DALAM PERUSAHAAN', 'ADA'),
-('MPP-0008', 'CORPORATE ACCOUNT EXECUTIVE', 'HR/GA', '910', 'N', 2, 1, 'DEMUSASHI', 'ADMIN LOGISTIK', '12-06-2018', '22-06-2017', '21-02-2018', '21-05-2018', '2121', 1, '04-12-2018', 'DALAM PERUSAHAAN', 'ADA');
+('MPP-0006', 'ADMIN SALES', 'PURCHASING', '500', 'SS', 1, 1, 'SANDRA', 'SS', '15-01-2019', '21-01-2019', '20-01-2019', '09-01-2019', '1', 1, '18-01-2019', 'LUAR PERUSAHAAN', 'SS');
 
 -- --------------------------------------------------------
 
@@ -443,16 +535,18 @@ CREATE TABLE `tb_pemohon` (
   `id_pemohon` varchar(30) NOT NULL,
   `nama_pemohon` varchar(50) NOT NULL,
   `nik_pemohon` varchar(20) NOT NULL,
-  `jabatan_pemohon` varchar(50) NOT NULL
+  `jabatan_pemohon` varchar(50) NOT NULL,
+  `dep_pemohon` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_pemohon`
 --
 
-INSERT INTO `tb_pemohon` (`id_pemohon`, `nama_pemohon`, `nik_pemohon`, `jabatan_pemohon`) VALUES
-('ADJ-0002', 'MARCO WIJAYA', '160601 ', 'PRODUCT MANAGER'),
-('ADJ-0004', 'MARLIANA SARI', '130102 ', 'ACCOUNT EXECUTIVE MANAGER');
+INSERT INTO `tb_pemohon` (`id_pemohon`, `nama_pemohon`, `nik_pemohon`, `jabatan_pemohon`, `dep_pemohon`) VALUES
+('ADJ-0002', 'MARCO WIJAYA', '160601 ', 'PRODUCT MANAGER', 'OPERATIONAL'),
+('ADJ-0004', 'MARLIANA SARI', '130102 ', 'ACCOUNT EXECUTIVE MANAGER', 'QA'),
+('ADJ-0005', 'YENI APRIANI', '070503 ', 'SALES EXECUTIVE', 'SALES');
 
 -- --------------------------------------------------------
 
@@ -485,7 +579,7 @@ CREATE TABLE `tb_penilai` (
   `id_penilai` varchar(20) NOT NULL,
   `nama_penilai` varchar(50) NOT NULL,
   `nik_penilai` varchar(20) NOT NULL,
-  `jabatan_penilai` varchar(50) NOT NULL
+  `jabatan_penilai` varchar(70) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -494,7 +588,8 @@ CREATE TABLE `tb_penilai` (
 
 INSERT INTO `tb_penilai` (`id_penilai`, `nama_penilai`, `nik_penilai`, `jabatan_penilai`) VALUES
 ('VER-0002', 'SUPRIYATNA', '140901 ', 'RECEPTIONIST'),
-('VER-0003', 'HANDRI', '189009', 'ADMIN SERVICE & IT SUPPORT');
+('VER-0003', 'HANDRI', '189009', 'ADMIN SERVICE & IT SUPPORT'),
+('VER-0004', 'MARLIANA', '130102 ', 'ACCOUNT EXECUTIVE MANAGER');
 
 -- --------------------------------------------------------
 
@@ -520,7 +615,8 @@ CREATE TABLE `tb_penilaian` (
 INSERT INTO `tb_penilaian` (`id_nl`, `nama_nl`, `nik_nl`, `dep_nl`, `tgl_masuk_nl`, `jabatan_nl`, `nama_penilai_nl`, `jabatan_penilai_nl`) VALUES
 ('ASM-0003', 'TAYO', '140801 ', 'AUDIT', '4-Aug-14', 'ACCOUNTING', 'MARLIANA', 'ACCOUNT EXECUTIVE MANAGER'),
 ('ASM-0004', 'MESNA MARISI MAGDALENA', '140706 ', 'FINANCE', '10-Jul-14', 'A/R STAFF', 'YENI APRIANI', 'SALES EXECUTIVE'),
-('ASM-0005', 'Q', '1', 'AUDIT', '22-11-2018', 'ACCOUNTING', 'Q', 'ACCOUNTING');
+('ASM-0005', 'Q', '1', 'AUDIT', '22-11-2018', 'ACCOUNTING', 'Q', 'ACCOUNTING'),
+('ASM-0006', 'SUTEJO', '14322', 'PURCHASING', '20-11-2018', 'ADMIN SALES', 'SUPRIYATNA', 'RECEPTIONIST');
 
 -- --------------------------------------------------------
 
@@ -548,9 +644,7 @@ CREATE TABLE `tb_percobaan` (
 --
 
 INSERT INTO `tb_percobaan` (`id_cb`, `nama_cb`, `nik_cb`, `dep_cb`, `jabatan_cb`, `tgl_masuk_cb`, `jenis_cb`, `tgl_mulai_cb`, `tgl_selesai_cb`, `percobaan_cb`, `catatan_hr_cb`, `catatan_atasan_cb`) VALUES
-('TRY-0001', 'AADD', '1', 'AUDIT', 'ACCOUNTING', '28-11-2018', 'KARYAWAN KONTRAK', '21-11-2018', '21-11-2018', 1, 'B', 'B'),
-('TRY-0002', 'QWERTY', '23', 'PURCHASING', 'ACCOUNTING', '22-11-2018', 'KARYAWAN TETAP', '22-11-2018', '22-11-2018', 2, 'A', 'A'),
-('TRY-0003', 'A', '1', 'A', 'ADS', '04-12-2018', 'KARYAWAN TETAP', '08-10-2018', '04-12-2018', 2, 'A', 'A');
+('TRY-0003', 'IKA HERAWATI', '19876', 'AUDIT', 'ACCOUNTING', '04-12-2018', 'KARYAWAN TETAP', '08-10-2018', '10-01-2019', 2, 'LULUS', 'LULUS');
 
 -- --------------------------------------------------------
 
@@ -602,10 +696,10 @@ CREATE TABLE `tb_rekrutmen` (
 INSERT INTO `tb_rekrutmen` (`id`, `rekrutmen`) VALUES
 (1, 'DALAM PERUSAHAAN'),
 (2, 'LUAR PERUSAHAAN'),
-(3, 'Social Media'),
-(4, 'Job Portal'),
-(5, 'Referensi'),
-(6, 'Job Fair');
+(3, 'SOCIAL MEDIA'),
+(4, 'JOB PORTAL'),
+(5, 'REFERENSI'),
+(6, 'JOB FAIR');
 
 -- --------------------------------------------------------
 
@@ -632,8 +726,38 @@ CREATE TABLE `tb_resign` (
 --
 
 INSERT INTO `tb_resign` (`id_rs`, `bulan_rs`, `nama_rs`, `pangkat_rs`, `jabatan_rs`, `dep_rs`, `tgl_masuk_rs`, `tgl_resign_rs`, `masa_bulan_rs`, `masa_tahun_rs`, `keterangan_rs`) VALUES
-('RSG-0001', '09-2018', 'ALBERTO', 'STAFF', 'MARKETING COMMUNICATION MANAGER', 'LOGISTIK', '12-06-2018', '08-11-2018', '1', '2', 'BAIK'),
-('RSG-0002', '11-2018', 'MARIA HENDRADJAJA', 'MANAGER', 'MARKETING COMMUNICATION MANAGE', 'PURCHASING', '18-Dec-06', '14-11-2018', '23', '2', 'wfdewf');
+('RSG-0001', '09-2018', 'ALBERTO', 'STAFF', 'MARKETING COMMUNICATION MANAGER', 'LOGISTIK', '13-06-2018', '2018-09-10', '1', '2', 'ADA'),
+('RSG-0002', '11-2018', 'MARIA HENDRADJAJA', 'MANAGER', 'ACCOUNTING', 'PURCHASING', '08-06-1905', '2018-09-23', '23', '2', 'ADA'),
+('RSG-0003', '03-01-2019', 'DINDA', 'STAFF', 'MARKETING COMMUNICATION', 'FINANCE', '04-09-2018', '2018-01-16', '1', '21', 'ada'),
+('RSG-0004', '31-12-2018', 'SANDRA', 'STAFF', 'CORPORATE ACCOUNT EXECUTIVE', 'IT', '09-09-2018', '2018-11-12', '1', '2', 'ada');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_sakit`
+--
+
+CREATE TABLE `tb_sakit` (
+  `id_skt` varchar(20) NOT NULL,
+  `nama_skt` varchar(50) NOT NULL,
+  `nik_skt` varchar(10) NOT NULL,
+  `jabatan_skt` varchar(50) NOT NULL,
+  `tgl_awal_skt` varchar(10) NOT NULL,
+  `tgl_akhir_skt` varchar(10) NOT NULL,
+  `jml_skt` int(5) NOT NULL,
+  `penyakit_skt` varchar(50) NOT NULL,
+  `keterangan_skt` varchar(100) NOT NULL,
+  `pjs_skt` varchar(50) NOT NULL,
+  `status_skt` enum('Disetujui','Pending','Ditolak') NOT NULL,
+  `lampiran_skt` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_sakit`
+--
+
+INSERT INTO `tb_sakit` (`id_skt`, `nama_skt`, `nik_skt`, `jabatan_skt`, `tgl_awal_skt`, `tgl_akhir_skt`, `jml_skt`, `penyakit_skt`, `keterangan_skt`, `pjs_skt`, `status_skt`, `lampiran_skt`) VALUES
+('SKT-0001', 'Jokowi', '1234', 'Calon Presiden', '12-06-2019', '17-10-2019', 10, 'Lupa', 'Masih Calon', 'MARCO WIJAYA', 'Pending', 'react.png');
 
 -- --------------------------------------------------------
 
@@ -663,9 +787,7 @@ CREATE TABLE `tb_training` (
 --
 
 INSERT INTO `tb_training` (`id_tr`, `nama_pemohon_tr`, `nik_pemohon_tr`, `jabatan_pemohon_tr`, `dep_pemohon_tr`, `tgl_permohonan_tr`, `judul_training_tr`, `penyelenggara_tr`, `tgl_pelaksanaan_tr`, `tempat_pelaksanaan_tr`, `biaya_tr`, `pembayaran_tr`, `tgl_terima_tr`, `tgl_bayar_tr`) VALUES
-('TRY-0002', 'Q', '2', 'MARKETING COMMUNICATION', 'QA', '19/12/2018', 'Q', 'Q', '04/12/2018', 'Q', '3', 'D', 'D', 'D'),
-('TRY-0003', 'TAYO', '1', 'ACCOUNTING', 'AUDIT', '11/10/2018', 'ASASASAS', 'SASASASAS', '19/10/2018', 'ASASASAS', '12', 'ASASAS', '25/10/2018', '19/10/2018'),
-('TRY-AST-0001', 'KAKAKADEK', '18094', 'PRODUCT MANAGER', 'PURCHASING', '11/10/2018', 'AD', 'AD', '19/10/2018', 'AD', '10000000', 'AD', '25/10/2018', '19/10/2018');
+('TRY-0003', 'SULAIMAN', '16534', 'PRODUCT MANAGER', 'PURCHASING', '16-10-2018', 'ADA APA DENGAN VANESSA', 'PENGUASA', '24-10-2018', 'SURABAYA', '1200000000', 'TRANSFER', '21-11-2018', '16-10-2018');
 
 -- --------------------------------------------------------
 
@@ -703,7 +825,7 @@ CREATE TABLE `tb_user` (
   `name` varchar(50) NOT NULL,
   `email` varchar(60) DEFAULT NULL,
   `password` varchar(40) DEFAULT NULL,
-  `level` enum('admin','staff') DEFAULT NULL
+  `level` enum('admin','manager','staff') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -711,9 +833,9 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id`, `username`, `name`, `email`, `password`, `level`) VALUES
-('USR-AST-0001', 'admin', 'Handri Hermawan', 'satu@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'admin'),
-('USR-AST-0002', 'member', 'Ika Herawati', 'lima@mail.com', 'aa08769cdcb26674c6706093503ff0a3', 'staff'),
-('USR-AST-0003', 'anin', 'Anindia', 'anin@mail.com', 'd9e7fa791825a4d7b41a58bcbecfd471', 'staff');
+('USR-0001', 'admin', 'Handri Hermawan', 'satu@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'admin'),
+('USR-0002', 'member', 'Ika Herawati', 'lima@mail.com', 'aa08769cdcb26674c6706093503ff0a3', 'staff'),
+('USR-0003', 'manager', 'Adrian', 'adrian@astrindo.co.id', '1d0258c2440a8d19e716292b231e3190', 'manager');
 
 --
 -- Indexes for dumped tables
@@ -732,16 +854,34 @@ ALTER TABLE `tb_all_mpp`
   ADD PRIMARY KEY (`id_allmpp`);
 
 --
+-- Indexes for table `tb_cuti`
+--
+ALTER TABLE `tb_cuti`
+  ADD PRIMARY KEY (`id_ct`);
+
+--
 -- Indexes for table `tb_departemen`
 --
 ALTER TABLE `tb_departemen`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tb_dinas`
+--
+ALTER TABLE `tb_dinas`
+  ADD PRIMARY KEY (`id_dns`);
+
+--
 -- Indexes for table `tb_divisi`
 --
 ALTER TABLE `tb_divisi`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_izin`
+--
+ALTER TABLE `tb_izin`
+  ADD PRIMARY KEY (`id_izn`);
 
 --
 -- Indexes for table `tb_jabatan`
@@ -774,6 +914,12 @@ ALTER TABLE `tb_karyawan_baru`
 --
 ALTER TABLE `tb_kerja`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_lembur`
+--
+ALTER TABLE `tb_lembur`
+  ADD PRIMARY KEY (`id_ot`);
 
 --
 -- Indexes for table `tb_mpp`
@@ -840,6 +986,12 @@ ALTER TABLE `tb_rekrutmen`
 --
 ALTER TABLE `tb_resign`
   ADD PRIMARY KEY (`id_rs`);
+
+--
+-- Indexes for table `tb_sakit`
+--
+ALTER TABLE `tb_sakit`
+  ADD PRIMARY KEY (`id_skt`);
 
 --
 -- Indexes for table `tb_training`
