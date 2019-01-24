@@ -35,7 +35,7 @@
                                             <strong>Sukses!</strong> <?php echo $notif; ?>
                                         </div>
                                     <?php endif;?>
-                                    <h5><i class="fa fa-users"></i> <?php echo $judul; ?></h5><br>
+                                    <h5><i class="fa fa-paper-plane-o"></i> <?php echo $judul; ?></h5><br>
                                     <a href="<?php echo base_url();?>manager/add_lembur" class="btn btn-xs btn-default" role="button" title="Tambah Karyawan">
                                     <i class="icon-plus"></i><span> Tambah</span></a>
                                     <a href="<?php echo base_url() ?>report/print_lembur" class="btn btn-xs btn-default" role="button" title="Print Data" target="_blank">
@@ -84,7 +84,7 @@
                                                     <td style="text-align: center;">
                                                         <a href="<?php echo base_url();?>manager/detail_lembur/<?php echo $ot->id_ot;?>" class="btn btn-xs btn-success m-r-5" role="button" title="Detail">
                                                         <i class="icon-magnifier"></i>&nbsp;
-                                                        <a href="<?php echo base_url();?>manager/edit_lembur/<?php echo $ct->id_ct;?>" class="btn btn-xs btn-primary m-r-5" role="button" title="Edit">
+                                                        <a href="<?php echo base_url();?>manager/edit_lembur/<?php echo $ot->id_ot;?>" class="btn btn-xs btn-primary m-r-5" role="button" title="Edit">
                                                         <i class="icon-pencil"></i>
                                                     </td>
                                                 </tr>

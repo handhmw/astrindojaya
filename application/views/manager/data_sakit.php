@@ -35,7 +35,7 @@
                                             <strong>Sukses!</strong> <?php echo $notif; ?>
                                         </div>
                                     <?php endif;?>
-                                    <h5><i class="fa fa-users"></i> <?php echo $judul; ?></h5><br>
+                                    <h5><i class="fa fa-paper-plane-o"></i> <?php echo $judul; ?></h5><br>
                                     <a href="<?php echo base_url();?>manager/add_sakit" class="btn btn-xs btn-default" role="button" title="Tambah Karyawan">
                                     <i class="icon-plus"></i><span> Tambah</span></a>
                                     <a href="<?php echo base_url() ?>report/print_sakit" class="btn btn-xs btn-default" role="button" title="Print Data" target="_blank">
@@ -91,12 +91,13 @@
                                                     <td><?= $skt->penyakit_skt ?></td>
                                                     <td><?= $skt->keterangan_skt ?></td>
                                                     <td><?= $skt->pjs_skt ?></td>
-                                                    <td><img src="<?=base_url('uploads/images/'.$skt->lampiran_skt)?>" style="width:100px; height:50"></td>
+                                                    <td><?= $skt->lampiran_skt ?></td>
+                                                    <!-- <td><img src="<?=base_url('uploads/images/'.$skt->lampiran_skt)?>" style="width:100px; height:50"></td> -->
                                                     <td style="text-align: center;"><?='<font color="'.$color.'">'.$skt->status_skt.'</font>';?></td>
                                                     <td style="text-align: center;">
                                                         <a href="<?php echo base_url();?>manager/detail_sakit/<?php echo $skt->id_skt;?>" class="btn btn-xs btn-success m-r-5" role="button" title="Detail">
                                                         <i class="icon-magnifier"></i>&nbsp;
-                                                        <a href="<?php echo base_url();?>manager/edit_sakit/<?php echo $ct->id_ct;?>" class="btn btn-xs btn-primary m-r-5" role="button" title="Edit">
+                                                        <a href="<?php echo base_url();?>manager/edit_sakit/<?php echo $skt->id_skt;?>" class="btn btn-xs btn-primary m-r-5" role="button" title="Edit">
                                                         <i class="icon-pencil"></i>
                                                     </td>
                                                 </tr>

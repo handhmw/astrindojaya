@@ -24,7 +24,7 @@
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 col-xl-12">						
 							<div class="card mb-3">
 								<div class="card-header">
-									<h5><i class="fa fa-plus-square-o"></i> <?php echo $judul; ?></h5>
+									<h5><i class="fa fa-plus-square"></i> <?php echo $judul; ?></h5>
 								</div>	
 								<div class="card-body">
 									<?php echo form_open('staff/save_dinas', ['class' => 'form-horizontal', 'method' => 'post']); ?>

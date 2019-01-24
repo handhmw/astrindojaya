@@ -35,7 +35,7 @@
                                             <strong>Sukses!</strong> <?php echo $notif; ?>
                                         </div>
                                     <?php endif;?>
-                                    <h5><i class="fa fa-users"></i> <?php echo $judul; ?></h5><br>
+                                    <h5><i class="fa fa-paper-plane-o"></i> <?php echo $judul; ?></h5><br>
                                     <a href="<?php echo base_url();?>staff/add_izin" class="btn btn-xs btn-default" role="button" title="Tambah Karyawan">
                                     <i class="icon-plus"></i><span> Tambah</span></a>
                                     <a href="<?php echo base_url() ?>report/print_izin" class="btn btn-xs btn-default" role="button" title="Print Data" target="_blank">

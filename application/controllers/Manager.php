@@ -51,39 +51,56 @@ class Manager extends CI_Controller {
         $this->load->view('manager/index',$data);
     }
 
+    // ====================================================== IZIN START ============================= //
+
     public function izin(){
-        $data['izin']   = $this->md_izin->tampil();
-        $data['judul']  = "Permohonan Izin";
+        $data['izin']  = $this->md_izin->tampil();
+        $data['judul'] = "Permohonan Izin";
 
         $this->load->view('manager/data_izin', $data);
     }
+
+    public function edit_izin($id){
+        $data['judul']  = 'Edit Permohonan Izin';
+        $data['kode']   = $this->md_kode->kode_izin();
+        $data['name']   = $this->session->userdata('name');
+        $data['izin']   = $this->md_izin->edit($id);
+
+        $this->load->view('manager/edit_izin', $data);
+    }
+
+    public function update_izin($id){
+        $this->md_izin->val_izin();
+
+        if($this->form_validation->run() === FALSE)
+        {
+            $this->edit_izin($id);
+        }
+        else
+        {
+            $this->md_izin->update();
+            $this->session->set_flashdata('update_sukses', 'Data Izin berhasil diperbaharui');
+            redirect('manager/izin');
+        }
+    }
+
+    function detail_izin($id){
+        $data['judul']  = 'Detail Permohonan Izin';
+        $data['izin']   = $this->md_izin->detail($id);
+        $where = array('id_izn' => $id);
+
+        $this->load->view('manager/detail_izin',$data);
+    }
+
+    // ====================================================== IZIN END ============================= //
+
+    // ====================================================== CUTI START ============================= //
 
     public function cuti(){
         $data['cuti']   = $this->md_cuti->tampil();
         $data['judul']  = "Permohonan Cuti";
 
         $this->load->view('manager/data_cuti', $data);
-    } 
-
-    public function sakit(){
-        $data['sakit']  = $this->md_sakit->tampil();
-        $data['judul']  = "Permohonan Sakit";
-
-        $this->load->view('manager/data_sakit', $data);
-    } 
-
-    public function lembur(){
-        $data['lembur'] = $this->md_lembur->tampil();
-        $data['judul']  = "Permohonan Lembur";
-
-        $this->load->view('manager/data_lembur', $data);
-    } 
-
-    public function dinas(){
-        $data['dinas']  = $this->md_dinas->tampil();
-        $data['judul']  = "Permohonan Perjalanan Dinas";
-
-        $this->load->view('manager/data_dinas', $data);
     } 
 
     public function delete_cuti($id){
@@ -123,4 +140,135 @@ class Manager extends CI_Controller {
 
         $this->load->view('manager/detail_cuti',$data);
     }
+    
+    // ====================================================== CUTI END ============================= //
+
+    // ====================================================== SAKIT START ============================= //
+
+    public function sakit(){
+        $data['sakit']  = $this->md_sakit->tampil();
+        $data['judul']  = "Permohonan Sakit";
+
+        $this->load->view('manager/data_sakit', $data);
+    } 
+
+    public function edit_sakit($id){
+        $data['judul']  = 'Edit Permohonan Sakit';
+        $data['kode']   = $this->md_kode->kode_sakit();
+        $data['name']   = $this->session->userdata('name');
+        $data['sakit']  = $this->md_sakit->edit($id);
+
+        $this->load->view('manager/edit_sakit', $data);
+    }
+
+    public function update_sakit($id){
+        $this->md_sakit->val_sakit();
+
+        if($this->form_validation->run() === FALSE)
+        {
+            $this->edit_sakit($id);
+        }
+        else
+        {
+            $this->md_sakit->update();
+            $this->session->set_flashdata('update_sukses', 'Data Sakit berhasil diperbaharui');
+            redirect('manager/sakit');
+        }
+    }
+
+    function detail_sakit($id){
+        $data['judul']  = 'Detail Permohonan Sakit';
+        $data['sakit']   = $this->md_sakit->detail($id);
+        $where = array('id_skt' => $id);
+
+        $this->load->view('manager/detail_izin',$data);
+    }
+
+    // ====================================================== SAKIT END ============================= //
+
+    // ====================================================== LEMBUR START ============================= //
+
+    public function lembur(){
+        $data['lembur'] = $this->md_lembur->tampil();
+        $data['judul']  = "Permohonan Lembur";
+
+        $this->load->view('manager/data_lembur', $data);
+    } 
+
+    public function edit_lembur($id){
+        $data['judul']  = 'Edit Permohonan Lembur';
+        $data['kode']   = $this->md_kode->kode_lembur();
+        $data['name']   = $this->session->userdata('name');
+        $data['lembur']  = $this->md_lembur->edit($id);
+
+        $this->load->view('manager/edit_lembur', $data);
+    }
+
+    public function update_lembur($id){
+        $this->md_lembur->val_lembur();
+
+        if($this->form_validation->run() === FALSE)
+        {
+            $this->edit_lembur($id);
+        }
+        else
+        {
+            $this->md_lembur->update();
+            $this->session->set_flashdata('update_sukses', 'Data Lembur berhasil diperbaharui');
+            redirect('manager/lembur');
+        }
+    }
+
+    function detail_lembur($id){
+        $data['judul']  = 'Detail Permohonan Lembur';
+        $data['lembur']  = $this->md_lembur->detail($id);
+        $where = array('id_ot' => $id);
+
+        $this->load->view('manager/detail_lembur',$data);
+    }
+
+    // ====================================================== LEMBUR END ============================= //
+
+    // ====================================================== DINAS START ============================= //
+
+    public function dinas(){
+        $data['dinas']  = $this->md_dinas->tampil();
+        $data['judul']  = "Permohonan Perjalanan Dinas";
+
+        $this->load->view('manager/data_dinas', $data);
+    } 
+
+    public function edit_dinas($id){
+        $data['judul']  = 'Edit Permohonan Perjalanan Dinas';
+        $data['kode']   = $this->md_kode->kode_dinas();
+        $data['name']   = $this->session->userdata('name');
+        $data['dinas']  = $this->md_dinas->edit($id);
+
+        $this->load->view('manager/edit_dinas', $data);
+    }
+
+    public function update_dinas($id){
+        $this->md_dinas->val_dinas();
+
+        if($this->form_validation->run() === FALSE)
+        {
+            $this->edit_dinas($id);
+        }
+        else
+        {
+            $this->md_dinas->update();
+            $this->session->set_flashdata('update_sukses', 'Data Perjalanan Dinas berhasil diperbaharui');
+            redirect('manager/dinas');
+        }
+    }
+
+    function detail_dinas($id){
+        $data['judul']  = 'Detail Permohonan Perjalanan Dinas';
+        $data['dinas']  = $this->md_dinas->detail($id);
+        $where = array('id_dns' => $id);
+
+        $this->load->view('manager/detail_dinas',$data);
+    }
+
+    // ====================================================== DINAS END ============================= //
 }
