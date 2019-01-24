@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en">
 <?php include ('decorations/header.php');?>
+<style>
+    .statusnya {
+        background: #232526;
+        background: -webkit-linear-gradient(to right, #414345, #232526);
+        background: linear-gradient(to right, #414345, #232526);
+        border-radius: 6px;
+        padding: 3px 6px;
+    }
+</style>
 <body class="theme-cyan">
 <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
@@ -14,13 +23,12 @@
 							<div class="col-lg-6 col-md-8 col-sm-12">
 								<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-angle-double-left"></i></a> Dashboard</h2>
 								<ul class="breadcrumb">                            
-									<li class="breadcrumb-item">Persetujuan</li>
+									<li class="breadcrumb-item">Permohonan</li>
 									<li class="breadcrumb-item active">Cuti</li>
 								</ul>
 							</div>      
 						</div>
 					</div>
-
 					<div class="row clearfix">
                         <div class="col-lg-12">
                             <div class="card">
@@ -32,20 +40,20 @@
                                         <tbody>
                                             <?php foreach ($cuti as $row): 
                                             $status = $row->status_ct;
-                                            switch ($status) {
-                                                case 'Disetujui':
-                                                    $color = "#2ecc71";
-                                                    break;
-                                                case 'Pending':
-                                                    $color = "#f5b041";
-                                                    break;
-                                                case 'Ditolak':
-                                                    $color = "#e74c3c";
-                                                    break;
-                                                default:
-                                                    $color = "#17202a";
-                                                    break;
-                                            }    
+                                                switch ($status) {
+                                                    case 'Disetujui':
+                                                        $color = "#2ecc71";
+                                                        break;
+                                                    case 'Pending':
+                                                        $color = "#f5b041";
+                                                        break;
+                                                    case 'Ditolak':
+                                                        $color = "#e74c3c";
+                                                        break;
+                                                    default:
+                                                        $color = "#17202a";
+                                                        break;
+                                                }    
                                             ?>
                                             <tr>
                                                 <td width="20%"> Kode Cuti </td>
@@ -81,17 +89,15 @@
                                             </tr>
                                             <tr>
                                                 <td> Status Permohonan </td>
-                                                <td><?='<font color="'.$color.'">'.$row->status_ct.'</font>';?></td>
+                                                <td><span class="statusnya"><?='<font color="'.$color.'">'.$row->status_ct.'</font>';?></span></td>
                                             </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="body">
-                                    <a href="<?php echo base_url() ?>report/print_cuti" class="btn btn-xs btn-primary" role="button" title="Print Data">
-                                    <i class="fa fa-print"></i><span> Print</span></a>
                                     <a href="<?php echo site_url();?>manager/cuti" class="btn btn-xs btn-danger" role="button">
-									<i class="fa fa-angle-double-left"></i><span> Back</span></a>
+									<i class="fa fa-angle-double-left"></i><span> Kembali</span></a>
                                 </div>
                             </div>
                         </div>

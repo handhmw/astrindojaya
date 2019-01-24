@@ -42,11 +42,23 @@
 											<?php echo form_error('nama_ct'); ?>
 										</div>
 									</div>
-									<div class="form-group row">
+									<!-- <div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Divisi Pemohon</label>
 										<div class="col-sm-6">
 											<input type="text" class="form-control" id="divisi_" name="divisi_ct"  value="<?php echo set_value('divisi_ct'); ?>">
 											<?php echo form_error('divisi_ct'); ?>
+										</div>
+									</div> -->
+									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Divisi Pemohon</label>
+										<div class="col-sm-6">
+											<select type="text" class="form-control" name="divisi_ct" value="<?php echo set_value('divisi_ct'); ?>">
+												<option value="disabled selected">--Pilih Divisi--</option>
+												<?php foreach($divisi as $dvs) { ?>
+													<option value="<?php echo $dvs->divisi;?>"><?php echo $dvs->divisi;?></option>
+												<?php } ?>
+											</select>
+											<?php echo form_error('divisi_kry'); ?>
 										</div>
 									</div>
 									<div class="form-group row">

@@ -8,7 +8,7 @@ class Md_lembur extends CI_Model
 
 	public function tampil(){
 		$query = $this->db->get('tb_lembur');
-                return $query->result();
+        return $query->result();
 	}
 	
 	public function simpan(){

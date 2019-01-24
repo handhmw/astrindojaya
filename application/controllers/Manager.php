@@ -181,7 +181,7 @@ class Manager extends CI_Controller {
         $data['sakit']   = $this->md_sakit->detail($id);
         $where = array('id_skt' => $id);
 
-        $this->load->view('manager/detail_izin',$data);
+        $this->load->view('manager/detail_sakit',$data);
     }
 
     // ====================================================== SAKIT END ============================= //

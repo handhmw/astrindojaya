@@ -84,6 +84,7 @@ class Staff extends CI_Controller {
     public function add_cuti(){
         $data['judul']  = 'Tambah Data Cuti';
         $data['pjs']    = $this->md_master->get_pjs();
+        $data['divisi'] = $this->md_master->get_divisi();
         $data['kode']   = $this->md_kode->kode_cuti();
         $data['name']   = $this->session->userdata('name');
 

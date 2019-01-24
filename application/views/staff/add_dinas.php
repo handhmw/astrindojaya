@@ -88,7 +88,7 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Tujuan</label>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" name="tujuan_dns"  value="<?php echo set_value('tujuan_dns'); ?>">
+											<textarea class="form-control" rows="5" cols="30" name="tujuan_dns" value="<?php echo set_value('tujuan_dns'); ?>"><?php echo set_value('tujuan_dns'); ?></textarea>
 											<?php echo form_error('tujuan_dns'); ?>
 										</div>
 									</div>

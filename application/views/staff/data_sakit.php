@@ -2,6 +2,15 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
+<style>
+    .statusnya {
+        background: #232526;
+        background: -webkit-linear-gradient(to right, #414345, #232526);
+        background: linear-gradient(to right, #414345, #232526);
+        border-radius: 6px;
+        padding: 3px 6px;
+    }
+</style>
 <body class="theme-cyan">
 <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
@@ -36,10 +45,8 @@
                                         </div>
                                     <?php endif;?>
                                     <h5><i class="fa fa-paper-plane-o"></i> <?php echo $judul; ?></h5><br>
-                                    <a href="<?php echo base_url();?>staff/add_sakit" class="btn btn-xs btn-default" role="button" title="Tambah Karyawan">
+                                    <a href="<?php echo base_url();?>staff/add_sakit" class="btn btn-xs btn-default" role="button" title="Tambah Permohonan">
                                     <i class="icon-plus"></i><span> Tambah</span></a>
-                                    <a href="<?php echo base_url() ?>report/print_sakit" class="btn btn-xs btn-default" role="button" title="Print Data" target="_blank">
-                                    <i class="fa fa-print"></i><span> Print</span></a>
                                     
                                   
                                 <div class="body">
@@ -54,10 +61,6 @@
                                                     <th>Tanggal Awal</th>                                    
                                                     <th>Tanggal Akhir</th>
                                                     <th>Jumlah Hari</th> 
-                                                    <th>Penyakit</th>
-                                                    <th>Keterangan</th>
-                                                    <th>Nama PJS</th>
-                                                    <th>Lampiran</th>
                                                     <th>Status</th>
                                                     <th>Detail</th>
                                                 </tr>
@@ -89,10 +92,6 @@
                                                     <td style="text-align:center;"><?= $skt->tgl_awal_skt ?></td>
                                                     <td style="text-align:center;"><?= $skt->tgl_akhir_skt?></td>
                                                     <td style="text-align:center;"><?= $skt->jml_skt ?> Hari</td>
-                                                    <td><?= $skt->penyakit_skt ?></td>
-                                                    <td><?= $skt->keterangan_skt ?></td>
-                                                    <td><?= $skt->pjs_skt ?></td>
-                                                    <td><img src="<?=base_url('uploads/images/'.$skt->lampiran_skt)?>" style="width:100px; height:50"></td>
                                                     <td style="text-align: center;"><?='<font color="'.$color.'">'.$skt->status_skt.'</font>';?></td>
                                                     <td style="text-align: center;">
                                                         <a href="<?php echo base_url();?>staff/detail_sakit/<?php echo $skt->id_skt;?>" class="btn btn-xs btn-success m-r-5" role="button" title="Detail">

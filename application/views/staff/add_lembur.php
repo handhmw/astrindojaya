@@ -50,7 +50,7 @@
 												<label class="radio-inline"><input type="radio" name="rad" id="rad2" value="2" class="rad"> Relative Hour</label>
 												<div id="stt" style="display:none">
 													<div class="form-group row">
-														<table class="table">
+														<table class="table table-responsive">
 															<tbody>
 																<tr>
 																	<td><input type="checkbox" value=""> Sebelum Jadwal Kerja</label></td>

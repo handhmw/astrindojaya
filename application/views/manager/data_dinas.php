@@ -2,6 +2,15 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
+<style>
+    .statusnya {
+        background: #232526;
+        background: -webkit-linear-gradient(to right, #414345, #232526);
+        background: linear-gradient(to right, #414345, #232526);
+        border-radius: 6px;
+        padding: 3px 6px;
+    }
+</style>
 <body class="theme-cyan">
 <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
@@ -36,10 +45,6 @@
                                         </div>
                                     <?php endif;?>
                                     <h5><i class="fa fa-paper-plane-o"></i> <?php echo $judul; ?></h5><br>
-                                    <a href="<?php echo base_url();?>manager/add_dinas" class="btn btn-xs btn-default" role="button" title="Tambah Karyawan">
-                                    <i class="icon-plus"></i><span> Tambah</span></a>
-                                    <a href="<?php echo base_url() ?>report/print_dinas" class="btn btn-xs btn-default" role="button" title="Print Data" target="_blank">
-                                    <i class="fa fa-print"></i><span> Print</span></a>
                                     
                                 <div class="body">
                                     <div class="table-responsive">
@@ -50,14 +55,9 @@
                                                     <th>Jenis Tujuan</th>                          
                                                     <th>Kepentingan</th>                                    
                                                     <th>Nama Pemohon</th>
-                                                    <th>Total Tujuan</th>
                                                     <th>Tanggal Mulai</th> 
                                                     <th>Tanggal Akhir</th>
                                                     <th>Tujuan</th>
-                                                    <th>Pembayaran Awal</th>
-                                                    <th>Tanggal Pembayaran</th>
-                                                    <th>Keterangan</th>
-                                                    <th>Nama PJS</th>
                                                     <th>Status</th>
                                                     <th>Detail</th>
                                                 </tr>
@@ -86,15 +86,10 @@
                                                     <td><?= $dns->jenis_dns ?></td>
                                                     <td><?= $dns->kepentingan_dns ?></td>
                                                     <td><?= $dns->nama_dns ?></td>
-                                                    <td><?= $dns->total_dns ?></td>
                                                     <td><?= $dns->tgl_awal_dns ?></td>
                                                     <td><?= $dns->tgl_akhir_dns ?></td>
                                                     <td><?= $dns->tujuan_dns?></td>
-                                                    <td><?= $dns->pembayaran_dns ?></td>
-                                                    <td><?= $dns->tgl_bayar_dns ?></td>
-                                                    <td><?= $dns->keterangan_dns ?></td>
-                                                    <td><?= $dns->pjs_dns ?></td>
-                                                    <td style="text-align: center;"><?='<font color="'.$color.'">'.$dns->status_dns.'</font>';?></td>
+                                                    <td style="text-align: center;"><span class="statusnya"><?='<font color="'.$color.'">'.$dns->status_dns.'</font>';?></span></td>
                                                     <td style="text-align: center;">
                                                         <a href="<?php echo base_url();?>manager/detail_dinas/<?php echo $dns->id_dns;?>" class="btn btn-xs btn-success m-r-5" role="button" title="Detail">
                                                         <i class="icon-magnifier"></i>&nbsp;

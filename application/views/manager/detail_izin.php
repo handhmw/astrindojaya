@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en">
 <?php include ('decorations/header.php');?>
+<style>
+    .statusnya {
+        background: #232526;
+        background: -webkit-linear-gradient(to right, #414345, #232526);
+        background: linear-gradient(to right, #414345, #232526);
+        border-radius: 6px;
+        padding: 3px 6px;
+    }
+</style>
 <body class="theme-cyan">
 <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
@@ -77,17 +86,15 @@
                                             </tr>
                                             <tr>
                                                 <td> Status Permohonan </td>
-                                                <td><?='<font color="'.$color.'">'.$row->status_izn.'</font>';?></td>
+                                                <td><span class="statusnya"><?='<font color="'.$color.'">'.$row->status_izn.'</font>';?></span></td>
                                             </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="body">
-                                    <a href="<?php echo base_url() ?>report/print_izin" class="btn btn-xs btn-primary" role="button" title="Print Data">
-                                    <i class="fa fa-print"></i><span> Print</span></a>
                                     <a href="<?php echo site_url();?>manager/izin" class="btn btn-xs btn-danger" role="button">
-									<i class="fa fa-angle-double-left"></i><span> Back</span></a>
+									<i class="fa fa-angle-double-left"></i><span> Kembali</span></a>
                                 </div>
                             </div>
                         </div>
