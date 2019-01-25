@@ -37,11 +37,10 @@ class Md_resign extends CI_Model
         public function detail($id_rs){
                 return $this->db->get_where('tb_resign', array('id_rs' => $id_rs))->result();
 	}
-
-	public function update(){
-		$kondisi = ['id_rs' => $this->input->post('id_rs')];
-		$data = [
-                        'id_rs'            => $this->input->post('id_rs'),
+        
+        public function update($id_rs){
+		$data = array(
+			'id_rs'            => $this->input->post('id_rs'),
                         'bulan_rs'         => $this->input->post('bulan_rs'),
                         'nama_rs'          => $this->input->post('nama_rs'),
                         'pangkat_rs'       => $this->input->post('pangkat_rs'),
@@ -51,10 +50,19 @@ class Md_resign extends CI_Model
                         'tgl_resign_rs'    => $this->input->post('tgl_resign_rs'),
                         'masa_bulan_rs'    => $this->input->post('masa_bulan_rs'),
                         'masa_tahun_rs'    => $this->input->post('masa_tahun_rs'),
-                        'keterangan_rs'    => $this->input->post('keterangan_rs'),
-		];
-
-		$this->db->update('tb_resign', $data, $kondisi);
+                        'keterangan_rs'    => $this->input->post('keterangan_rs')
+		);
+			
+		if($id==1){
+		    return $this->db->insert('tb_resign',$data);
+			}
+			else
+			{
+		    $this->db->where('id_rs',$id_rs);
+		    return $this->db->update('tb_resign',$data);
+			}        
+			
+		$this->db->update('tb_resign', $data);
 	}
 
 	public function hapus($id_rs){

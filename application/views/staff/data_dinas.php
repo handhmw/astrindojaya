@@ -2,15 +2,6 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-<style>
-    .statusnya {
-        background: #232526;
-        background: -webkit-linear-gradient(to right, #414345, #232526);
-        background: linear-gradient(to right, #414345, #232526);
-        border-radius: 6px;
-        padding: 3px 6px;
-    }
-</style>
 <body class="theme-cyan">
 <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
@@ -92,7 +83,7 @@
                                                     <td><?= $dns->tgl_awal_dns ?></td>
                                                     <td><?= $dns->tgl_akhir_dns ?></td>
                                                     <td><?= $dns->tujuan_dns?></td>
-                                                    <td style="text-align: center;"><?='<font color="'.$color.'">'.$dns->status_dns.'</font>';?></td>
+                                                    <td style="text-align: center;"><span class="statusnya"><?='<font color="'.$color.'">'.$dns->status_dns.'</font>';?></span></td>
                                                     <td style="text-align: center;">
                                                         <a href="<?php echo base_url();?>staff/detail_dinas/<?php echo $dns->id_dns;?>" class="btn btn-xs btn-success m-r-5" role="button" title="Detail">
                                                         <i class="icon-magnifier"></i>&nbsp;
@@ -105,12 +96,10 @@
                                 </div>
                             </div>
                         </div>
-
 					</div>
 				</div>
 			</div>
 			<!-- End Main Content -->
-
-            <?php include ('decorations/footer.php');?>
+        <?php include ('decorations/footer.php');?>
     </body>
 </html>

@@ -78,7 +78,7 @@ class Manager extends CI_Controller {
         }
         else
         {
-            $this->md_izin->update();
+            $this->md_izin->update($id);
             $this->session->set_flashdata('update_sukses', 'Data Izin berhasil diperbaharui');
             redirect('manager/izin');
         }
@@ -127,7 +127,7 @@ class Manager extends CI_Controller {
         }
         else
         {
-            $this->md_cuti->update();
+            $this->md_cuti->update($id);
             $this->session->set_flashdata('update sukses', 'Data Cuti berhasil diperbaharui');
             redirect('manager/cuti');
         }
@@ -170,7 +170,7 @@ class Manager extends CI_Controller {
         }
         else
         {
-            $this->md_sakit->update();
+            $this->md_sakit->update($id);
             $this->session->set_flashdata('update_sukses', 'Data Sakit berhasil diperbaharui');
             redirect('manager/sakit');
         }
@@ -213,11 +213,29 @@ class Manager extends CI_Controller {
         }
         else
         {
-            $this->md_lembur->update();
+            $this->md_lembur->update($id);
             $this->session->set_flashdata('update_sukses', 'Data Lembur berhasil diperbaharui');
             redirect('manager/lembur');
         }
     }
+
+    // public function update($id)
+	// {
+	// 	 $rules = $this->md_lembur->rules;
+	//    	 $this->form_validation->set_rules($rules);
+	//      if($this->form_validation->run() == TRUE)
+	//  	 {
+	// 		$input = $this->input->post();
+	// 		$this->company_model->save($input, $id);
+	// 		$this->session->set_flashdata('message', 'Company Update Successfully..!');
+	// 		redirect('company');
+    //      } 
+    //      else 
+    //      {
+	// 		$this->session->set_flashdata('message', validation_errors());
+	// 		redirect('company/edit'.$id);
+	// 	 }
+	// }
 
     function detail_lembur($id){
         $data['judul']  = 'Detail Permohonan Lembur';
@@ -256,7 +274,7 @@ class Manager extends CI_Controller {
         }
         else
         {
-            $this->md_dinas->update();
+            $this->md_dinas->update($id);
             $this->session->set_flashdata('update_sukses', 'Data Perjalanan Dinas berhasil diperbaharui');
             redirect('manager/dinas');
         }

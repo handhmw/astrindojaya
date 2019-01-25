@@ -2,20 +2,10 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-<style>
-    .statusnya {
-        background: #232526;
-        background: -webkit-linear-gradient(to right, #414345, #232526);
-        background: linear-gradient(to right, #414345, #232526);
-        border-radius: 6px;
-        padding: 3px 6px;
-    }
-</style>
 <body class="theme-cyan">
 <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
     	<?php include ('decorations/sidebar.php');?>
-
 			<!-- Start Main Content -->
 			<div id="main-content">
 				<div class="container-fluid">
@@ -102,17 +92,15 @@
                                             </tr>
                                             <tr>
                                                 <td> Status Permohonan </td>
-                                                <td><?='<font color="'.$color.'">'.$row->status_skt.'</font>';?></td>
+                                                <td><span class="statusnya"><?='<font color="'.$color.'">'.$row->status_skt.'</font>';?></span></td>
                                             </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="body">
-                                    <a href="<?php echo base_url() ?>report/print_sakit" class="btn btn-xs btn-primary" role="button" title="Print Data">
-                                    <i class="fa fa-print"></i><span> Print</span></a>
                                     <a href="<?php echo site_url();?>staff/sakit" class="btn btn-xs btn-danger" role="button">
-									<i class="fa fa-angle-double-left"></i><span> Back</span></a>
+									<i class="fa fa-angle-double-left"></i><span> Kembali</span></a>
                                 </div>
                             </div>
                         </div>
@@ -120,9 +108,7 @@
 				</div>
 			</div>
 			<!-- End Main Content -->
-</div>
-
-<?php include ('decorations/footer.php');?>
-
-</body>
+        </div>
+        <?php include ('decorations/footer.php');?>
+    </body>
 </html>

@@ -53,8 +53,7 @@
                                                     <th>Kode</th>
                                                     <th>Bulan</th>
                                                     <th>Nama Lengkap</th>
-                                                    <th>Departemen</th>                      
-                                                    <th>Jabatan</th>                                    
+                                                    <th>Departemen</th>                                 
                                                     <th>Tanggal Masuk</th>
                                                     <th>Tanggal Resign</th> 
                                                     <th>Aksi</th>
@@ -68,7 +67,6 @@
                                                     <td><?= $kry->bulan_rs ?></td>
                                                     <td><?= $kry->nama_rs ?></td>
                                                     <td><?= $kry->dep_rs ?></td>
-                                                    <td><?= $kry->jabatan_rs ?></td>
                                                     <td><?= $kry->tgl_masuk_rs?></td>
                                                     <td><?= $kry->tgl_resign_rs ?></td>
                                                     <td style="text-align: center;">

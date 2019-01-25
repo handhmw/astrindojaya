@@ -8,7 +8,7 @@ class Md_cuti extends CI_Model
 
 	public function tampil(){
 		$query = $this->db->get('tb_cuti');
-                return $query->result();
+        return $query->result();
 	}
 	
 	public function simpan(){
@@ -24,6 +24,15 @@ class Md_cuti extends CI_Model
 				'status_ct'    => $this->input->post('status_ct')
 		];
 
+		// if($id==0){
+        //     return $this->db->insert('tb_cuti',$data);
+		// }
+		// else
+		// {
+        //     $this->db->where('id_ct',$id);
+        //     return $this->db->update('tb_cuti',$data);
+		// }
+
 		$this->db->insert('tb_cuti', $data);
 	}
 
@@ -36,62 +45,87 @@ class Md_cuti extends CI_Model
                 return $this->db->get_where('tb_cuti', array('id_ct' => $id))->result();
 	}
 
-	public function update(){
-		$data = [
-				'id_ct'        => $this->input->post('id_ct'),
-				'nama_ct'      => $this->input->post('nama_ct'),
-				'divisi_ct'    => $this->input->post('divisi_ct'),
-				'tgl_ct'       => $this->input->post('tgl_ct'),
-				'jenis_ct'     => $this->input->post('jenis_ct'),
-				'alasan_ct'    => $this->input->post('alasan_ct'),
-				'informasi_ct' => $this->input->post('informasi_ct'),
-				'pjs_ct'       => $this->input->post('pjs_ct'),
-				'status_ct'    => $this->input->post('status_ct')
-		];
+	// public function update(){
+	// 	$data = [
+	// 			'id_ct'        => $this->input->post('id_ct'),
+	// 			'nama_ct'      => $this->input->post('nama_ct'),
+	// 			'divisi_ct'    => $this->input->post('divisi_ct'),
+	// 			'tgl_ct'       => $this->input->post('tgl_ct'),
+	// 			'jenis_ct'     => $this->input->post('jenis_ct'),
+	// 			'alasan_ct'    => $this->input->post('alasan_ct'),
+	// 			'informasi_ct' => $this->input->post('informasi_ct'),
+	// 			'pjs_ct'       => $this->input->post('pjs_ct'),
+	// 			'status_ct'    => $this->input->post('status_ct')
+	// 	];
 
+	// 	$this->db->update('tb_cuti', $data);
+	// }
+
+	public function update($id){
+        $data = array(
+            'id_ct'        => $this->input->post('id_ct'),
+			'nama_ct'      => $this->input->post('nama_ct'),
+			'divisi_ct'    => $this->input->post('divisi_ct'),
+			'tgl_ct'       => $this->input->post('tgl_ct'),
+			'jenis_ct'     => $this->input->post('jenis_ct'),
+			'alasan_ct'    => $this->input->post('alasan_ct'),
+			'informasi_ct' => $this->input->post('informasi_ct'),
+			'pjs_ct'       => $this->input->post('pjs_ct'),
+			'status_ct'    => $this->input->post('status_ct')
+		);
+		
+        if($id==1){
+            return $this->db->insert('tb_cuti',$data);
+		}
+		else
+		{
+            $this->db->where('id_ct',$id);
+            return $this->db->update('tb_cuti',$data);
+		}        
+		
 		$this->db->update('tb_cuti', $data);
-	}
+    }
 
 	public function hapus($id){
 		$this->db->delete('tb_cuti', ['id_ct' => $id]);
-        }
+    }
         
-        public function val_cuti(){
-                $this->form_validation->set_message('required',"<p style='font-size:10px; 
-                margin-top: -10px;' class='text-danger'>". '{field} Tidak Boleh Kosong!'."</p>");
+    public function val_cuti(){
+		$this->form_validation->set_message('required',"<p style='font-size:10px; 
+		margin-top: -10px;' class='text-danger'>". '{field} Tidak Boleh Kosong!'."</p>");
 
-                $config = [
-				['field' => 'nama_ct',
-				'label' => 'Nama Pemohon',
-				'rules' => 'required'],
+		$config = [
+		['field' => 'nama_ct',
+		'label' => 'Nama Pemohon',
+		'rules' => 'required'],
 
-				['field' => 'divisi_ct',
-				'label' => 'Divisi Pemohon',
-				'rules' => 'required'],
+		['field' => 'divisi_ct',
+		'label' => 'Divisi Pemohon',
+		'rules' => 'required'],
 
-				['field' => 'tgl_ct',
-				'label' => 'Tanggal Permohonan',
-				'rules' => 'required'],
+		['field' => 'tgl_ct',
+		'label' => 'Tanggal Permohonan',
+		'rules' => 'required'],
 
-				['field' => 'jenis_ct',
-				'label' => 'Jenis Cuti',
-				'rules' => 'required'],
+		['field' => 'jenis_ct',
+		'label' => 'Jenis Cuti',
+		'rules' => 'required'],
 
-				['field' => 'alasan_ct',
-				'label' => 'Alasan',
-				'rules' => 'required'],
+		['field' => 'alasan_ct',
+		'label' => 'Alasan',
+		'rules' => 'required'],
 
-				['field' => 'informasi_ct',
-				'label' => 'Informasi Lain',
-				'rules' => 'required'],
+		['field' => 'informasi_ct',
+		'label' => 'Informasi Lain',
+		'rules' => 'required'],
 
-				['field' => 'pjs_ct',
-				'label' => 'Nama PJS',
-				'rules' => 'required'],
-                        ];
+		['field' => 'pjs_ct',
+		'label' => 'Nama PJS',
+		'rules' => 'required'],
+				];
 
-                $this->form_validation->set_rules($config);
-        }
+		$this->form_validation->set_rules($config);
+	}
 }
 
 ?>

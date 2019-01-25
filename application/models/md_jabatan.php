@@ -29,14 +29,22 @@ class Md_jabatan extends CI_Model
                 return $this->db->get_where('tb_jabatan', array('id' => $id))->result();
 	}
 
-	public function update(){
-		$kondisi = ['id' => $this->input->post('id')];
-		$data = [
-                        'id'         => $this->input->post('id'),
+	public function update($id){
+		$data = array(
+			'id'     => $this->input->post('id'),
                         'jabatan' => $this->input->post('jabatan')
-		];
-
-		$this->db->update('tb_jabatan', $data, $kondisi);
+		);
+			
+		if($id==1){
+		    return $this->db->insert('tb_jabatan',$data);
+			}
+			else
+			{
+		    $this->db->where('id',$id);
+		    return $this->db->update('tb_jabatan',$data);
+			}        
+			
+		$this->db->update('tb_jabatan', $data);
 	}
 
 	public function hapus($id){

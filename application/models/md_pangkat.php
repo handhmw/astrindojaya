@@ -29,14 +29,22 @@ class Md_pangkat extends CI_Model
                 return $this->db->get_where('tb_pangkat', array('id' => $id))->result();
 	}
 
-	public function update(){
-		$kondisi = ['id' => $this->input->post('id')];
-		$data = [
-                        'id'         => $this->input->post('id'),
-                        'pangkat' => $this->input->post('pangkat')
-		];
-
-		$this->db->update('tb_pangkat', $data, $kondisi);
+	public function update($id){
+		$data = array(
+			'id'     => $this->input->post('id'),
+			'pangkat' => $this->input->post('pangkat')
+		);
+			
+		if($id==1){
+		    return $this->db->insert('tb_pangkat',$data);
+			}
+			else
+			{
+		    $this->db->where('id',$id);
+		    return $this->db->update('tb_pangkat',$data);
+			}        
+			
+		$this->db->update('tb_pangkat', $data);
 	}
 
 	public function hapus($id){

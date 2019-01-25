@@ -2,15 +2,6 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-<style>
-    .statusnya {
-        background: #232526;
-        background: -webkit-linear-gradient(to right, #414345, #232526);
-        background: linear-gradient(to right, #414345, #232526);
-        border-radius: 6px;
-        padding: 3px 6px;
-    }
-</style>
 <body class="theme-cyan">
 <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
@@ -48,7 +39,6 @@
                                     <a href="<?php echo base_url();?>staff/add_izin" class="btn btn-xs btn-default" role="button" title="Tambah Permohonan">
                                     <i class="icon-plus"></i><span> Tambah</span></a>
                                     
-                                  
                                 <div class="body">
                                     <div class="table-responsive">
                                         <table class="table table-bordered dataTable" cellspacing="0" id="examples">
@@ -88,7 +78,7 @@
                                                     <td><?= $izn->tgl_minta_izn ?></td>
                                                     <td><?= $izn->tgl_akhir_izn ?></td>
                                                     <td><?= $izn->jenis_izn?></td>
-                                                    <td style="text-align: center;"><?='<font color="'.$color.'">'.$izn->status_izn.'</font>';?></td>
+                                                    <td style="text-align: center;"><span class="statusnya"><?='<font color="'.$color.'">'.$izn->status_izn.'</font>';?><</span></td>
                                                     <td style="text-align: center;">
                                                         <a href="<?php echo base_url();?>staff/detail_izin/<?php echo $izn->id_izn;?>" class="btn btn-xs btn-success m-r-5" role="button" title="Detail">
                                                         <i class="icon-magnifier"></i>&nbsp;
@@ -101,12 +91,10 @@
                                 </div>
                             </div>
                         </div>
-
 					</div>
 				</div>
 			</div>
 			<!-- End Main Content -->
-
-            <?php include ('decorations/footer.php');?>
+        <?php include ('decorations/footer.php');?>
     </body>
 </html>

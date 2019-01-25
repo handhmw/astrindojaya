@@ -2,15 +2,6 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-<style>
-    .statusnya {
-        background: #232526;
-        background: -webkit-linear-gradient(to right, #414345, #232526);
-        background: linear-gradient(to right, #414345, #232526);
-        border-radius: 6px;
-        padding: 3px 6px;
-    }
-</style>
 <body class="theme-cyan">
 <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
@@ -48,7 +39,6 @@
                                     <a href="<?php echo base_url();?>staff/add_sakit" class="btn btn-xs btn-default" role="button" title="Tambah Permohonan">
                                     <i class="icon-plus"></i><span> Tambah</span></a>
                                     
-                                  
                                 <div class="body">
                                     <div class="table-responsive">
                                         <table class="table table-bordered dataTable" cellspacing="0" id="examples">
@@ -92,7 +82,7 @@
                                                     <td style="text-align:center;"><?= $skt->tgl_awal_skt ?></td>
                                                     <td style="text-align:center;"><?= $skt->tgl_akhir_skt?></td>
                                                     <td style="text-align:center;"><?= $skt->jml_skt ?> Hari</td>
-                                                    <td style="text-align: center;"><?='<font color="'.$color.'">'.$skt->status_skt.'</font>';?></td>
+                                                    <td style="text-align: center;"><span class="statusnya"><?='<font color="'.$color.'">'.$skt->status_skt.'</font>';?></span></td>
                                                     <td style="text-align: center;">
                                                         <a href="<?php echo base_url();?>staff/detail_sakit/<?php echo $skt->id_skt;?>" class="btn btn-xs btn-success m-r-5" role="button" title="Detail">
                                                         <i class="icon-magnifier"></i>&nbsp;
@@ -105,12 +95,10 @@
                                 </div>
                             </div>
                         </div>
-
 					</div>
 				</div>
 			</div>
 			<!-- End Main Content -->
-
-            <?php include ('decorations/footer.php');?>
+        <?php include ('decorations/footer.php');?>
     </body>
 </html>

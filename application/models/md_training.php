@@ -40,12 +40,10 @@ class Md_training extends CI_Model
         public function detail($id_tr){
                 return $this->db->get_where('tb_training', array('id_tr' => $id_tr))->result();
 	}
-
-	public function update(){
-		$kondisi = ['id_tr' => $this->input->post('id_tr')];
-		
-		$data = [
-                        'id_tr'                => $this->input->post('id_tr'),
+        
+        public function update($id_tr){
+		$data = array(
+			'id_tr'                => $this->input->post('id_tr'),
                         'nama_pemohon_tr'      => $this->input->post('nama_pemohon_tr'),
                         'nik_pemohon_tr'       => $this->input->post('nik_pemohon_tr'),
                         'jabatan_pemohon_tr'   => $this->input->post('jabatan_pemohon_tr'),
@@ -59,9 +57,18 @@ class Md_training extends CI_Model
                         'pembayaran_tr'        => $this->input->post('pembayaran_tr'),
                         'tgl_terima_tr'        => $this->input->post('tgl_terima_tr'),
                         'tgl_bayar_tr'         => $this->input->post('tgl_bayar_tr')
-                ];
-
-		$this->db->update('tb_training', $data, $kondisi);
+		);
+			
+		if($id_tr==1){
+		    return $this->db->insert('tb_training',$data);
+			}
+			else
+			{
+		    $this->db->where('id_tr',$id_tr);
+		    return $this->db->update('tb_training',$data);
+			}        
+			
+		$this->db->update('tb_training', $data);
 	}
 
 	public function hapus($id_tr){

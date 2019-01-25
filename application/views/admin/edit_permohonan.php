@@ -161,8 +161,8 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Ringkasan Tugas & Tanggung Jawab</label>
 										<div class="col-sm-6">
-											<textarea value="<?php echo $kry_->ringkasan_tugas_pmhn; ?>" class="form-control" rows="5" cols="30" name="ringkasan_tugas_pmhn"; ?>
-											<?php echo $kry_->ringkasan_tugas_pmhn; ?></textarea>
+											<textarea class="form-control" value="<?php echo $kry_->ringkasan_tugas_pmhn; ?>" rows="5" cols="30" name="ringkasan_tugas_pmhn"><?php echo $kry_->ringkasan_tugas_pmhn; ?></textarea>
+											<?php echo form_error('ringkasan_tugas_pmhn'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -237,8 +237,8 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Keterampilan/ Keahlian khusus yang wajib dimiliki</label>
 										<div class="col-sm-6">
-											<textarea value="<?php echo $kry_->keterampilan_pmhn; ?>" class="form-control" rows="5" cols="30" name="keterampilan_pmhn"; ?>
-											<?php echo $kry_->keterampilan_pmhn; ?></textarea>
+											<textarea class="form-control" value="<?php echo $kry_->keterampilan_pmhn; ?>" rows="5" cols="30" name="keterampilan_pmhn"><?php echo $kry_->keterampilan_pmhn; ?></textarea>
+											<?php echo form_error('keterampilan_pmhn'); ?>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -257,8 +257,8 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Office Equipment</label>
 										<div class="col-sm-6">
-											<textarea value="<?php echo $kry_->office_equipment_pmhn; ?>" class="form-control" rows="5" cols="30" name="office_equipment_pmhn">
-											<?php echo $kry_->office_equipment_pmhn; ?></textarea>
+											<textarea class="form-control" value="<?php echo $kry_->office_equipment_pmhn; ?>" rows="5" cols="30" name="office_equipment_pmhn"><?php echo $kry_->office_equipment_pmhn; ?></textarea>
+											<?php echo form_error('office_equipment_pmhn'); ?>
 										</div>
 									</div>
 									<br>

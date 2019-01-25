@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/color_skins.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/struktur.css"/>
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/custom.css"/>
+<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/tambahan.css"/>
 
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/jquery-datatable/fixedeader/dataTables.fixedcolumns.bootstrap4.min.css">

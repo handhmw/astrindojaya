@@ -118,7 +118,7 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Keterangan</label>
 										<div class="col-sm-6">
-											<textarea value="<?php echo $kry->keterangan_rs; ?>" class="form-control" rows="5" cols="30" name="keterangan_rs"></textarea>
+											<textarea class="form-control" value="<?php echo $kry->keterangan_rs; ?>" rows="5" cols="30" name="keterangan_rs"><?php echo $kry->keterangan_rs; ?></textarea>
 											<?php echo form_error('keterangan_rs'); ?>
 										</div>
 									</div>

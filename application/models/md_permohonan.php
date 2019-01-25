@@ -51,36 +51,44 @@ class Md_permohonan extends CI_Model
                 return $this->db->get_where('tb_karyawan_baru', array('id_pmhn' => $id_pmhn))->result();
 	}
 
-	public function update(){
-		$data = [
-                                'id_pmhn'                => $this->input->post('id_pmhn'),
-                                'dep_pmhn'               => $this->input->post('dep_pmhn'),
-                                'nama_pemohon_pmhn'      => $this->input->post('nama_pemohon_pmhn'),
-                                'jabatan_pemohon_pmhn'   => $this->input->post('jabatan_pemohon_pmhn'),
-                                'jabatan_pmhn'           => $this->input->post('jabatan_pmhn'),
-                                'lokasi_pmhn'            => $this->input->post('lokasi_pmhn'),
-                                'waktu_pmhn'             => $this->input->post('waktu_pmhn'),
-                                'status_kerja_pmhn'      => $this->input->post('status_kerja_pmhn'),
-                                'jumlah_pmhn'            => $this->input->post('jumlah_pmhn'),
-                                'tanggal_pmhn'           => $this->input->post('tanggal_pmhn'),
-                                'dasar_permohonan_pmhn'  => $this->input->post('dasar_permohonan_pmhn'),
-                                'sumber_rekrutmen_pmhn'  => $this->input->post('sumber_rekrutmen_pmhn'),
-                                'ringkasan_tugas_pmhn'   => $this->input->post('ringkasan_tugas_pmhn'),
-                                'gajih_pmhn'             => $this->input->post('gajih_pmhn'),
-                                'jk_pmhn'                => $this->input->post('jk_pmhn'),
-                                'usia_pmhn'              => $this->input->post('usia_pmhn'),
-                                'pendidikan_pmhn'        => $this->input->post('pendidikan_pmhn'),
-                                'jurusan_pmhn'           => $this->input->post('jurusan_pmhn'),
-                                'pengalaman_kerja_pmhn'  => $this->input->post('pengalaman_kerja_pmhn'),
-                                'bidang_pmhn'            => $this->input->post('bidang_pmhn'),
-                                'syarat_lain_pmhn'       => $this->input->post('syarat_lain_pmhn'),
-                                'keterampilan_pmhn'      => $this->input->post('keterampilan_pmhn'),
-                                'tgl_bergabung_pmhn'     => $this->input->post('tgl_bergabung_pmhn'),
-                                'office_equipment_pmhn'  => $this->input->post('office_equipment_pmhn')
-                ];
-                
+        public function update($id_pmhn){
+		$data = array(
+			'id_pmhn'                => $this->input->post('id_pmhn'),
+                        'dep_pmhn'               => $this->input->post('dep_pmhn'),
+                        'nama_pemohon_pmhn'      => $this->input->post('nama_pemohon_pmhn'),
+                        'jabatan_pemohon_pmhn'   => $this->input->post('jabatan_pemohon_pmhn'),
+                        'jabatan_pmhn'           => $this->input->post('jabatan_pmhn'),
+                        'lokasi_pmhn'            => $this->input->post('lokasi_pmhn'),
+                        'waktu_pmhn'             => $this->input->post('waktu_pmhn'),
+                        'status_kerja_pmhn'      => $this->input->post('status_kerja_pmhn'),
+                        'jumlah_pmhn'            => $this->input->post('jumlah_pmhn'),
+                        'tanggal_pmhn'           => $this->input->post('tanggal_pmhn'),
+                        'dasar_permohonan_pmhn'  => $this->input->post('dasar_permohonan_pmhn'),
+                        'sumber_rekrutmen_pmhn'  => $this->input->post('sumber_rekrutmen_pmhn'),
+                        'ringkasan_tugas_pmhn'   => $this->input->post('ringkasan_tugas_pmhn'),
+                        'gajih_pmhn'             => $this->input->post('gajih_pmhn'),
+                        'jk_pmhn'                => $this->input->post('jk_pmhn'),
+                        'usia_pmhn'              => $this->input->post('usia_pmhn'),
+                        'pendidikan_pmhn'        => $this->input->post('pendidikan_pmhn'),
+                        'jurusan_pmhn'           => $this->input->post('jurusan_pmhn'),
+                        'pengalaman_kerja_pmhn'  => $this->input->post('pengalaman_kerja_pmhn'),
+                        'bidang_pmhn'            => $this->input->post('bidang_pmhn'),
+                        'syarat_lain_pmhn'       => $this->input->post('syarat_lain_pmhn'),
+                        'keterampilan_pmhn'      => $this->input->post('keterampilan_pmhn'),                                'tgl_bergabung_pmhn'     => $this->input->post('tgl_bergabung_pmhn'),
+                        'office_equipment_pmhn'  => $this->input->post('office_equipment_pmhn')
+		);
+			
+		if($id_pmhn==1){
+		    return $this->db->insert('tb_karyawan_baru',$data);
+			}
+			else
+			{
+		    $this->db->where('id_pmhn',$id_pmhn);
+		    return $this->db->update('tb_karyawan_baru',$data);
+			}        
+			
 		$this->db->update('tb_karyawan_baru', $data);
-        }
+	}
         
 	public function hapus($id_pmhn){
 		$this->db->delete('tb_karyawan_baru', ['id_pmhn' => $id_pmhn]);

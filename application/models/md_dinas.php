@@ -40,9 +40,9 @@ class Md_dinas extends CI_Model
         return $this->db->get_where('tb_dinas', array('id_dns' => $id))->result();
 	}
 
-	public function update(){
-		$data = [
-			'id_dns'        	=> $this->input->post('id_dns'),
+	public function update($id){
+        $data = array(
+            'id_dns'        	=> $this->input->post('id_dns'),
 			'jenis_dns'   		=> $this->input->post('jenis_dns'),
 			'kepentingan_dns'   => $this->input->post('kepentingan_dns'),
 			'nama_dns' 	        => $this->input->post('nama_dns'),
@@ -55,10 +55,19 @@ class Md_dinas extends CI_Model
 			'keterangan_dns'	=> $this->input->post('keterangan_dns'),
 			'pjs_dns'			=> $this->input->post('pjs_dns'),
 			'status_dns'    	=> $this->input->post('status_dns')
-		];
-
+		);
+		
+        if($id==1){
+            return $this->db->insert('tb_dinas',$data);
+		}
+		else
+		{
+            $this->db->where('id_dns',$id);
+            return $this->db->update('tb_dinas',$data);
+		}        
+		
 		$this->db->update('tb_dinas', $data);
-	}
+    }
 
 	public function hapus($id){
 		$this->db->delete('tb_dinas', ['id_dns' => $id]);

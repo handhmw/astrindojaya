@@ -2,15 +2,6 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-<style>
-    .statusnya {
-        background: #232526;
-        background: -webkit-linear-gradient(to right, #414345, #232526);
-        background: linear-gradient(to right, #414345, #232526);
-        border-radius: 6px;
-        padding: 3px 6px;
-    }
-</style>
 <body class="theme-cyan">
 <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
@@ -105,36 +96,6 @@
 				</div>
 			</div>
 			<!-- End Main Content -->
-
-            <!-- MODAL UPLOAD -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle"><i class="fa fa-file-excel-o"></i> Upload Data Excel Anda</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="<?php echo base_url();?>manager/upload_percobaan/" enctype="multipart/form-data" method="post">
-                                        <div class="file-upload">
-                                            <div class="file-select">
-                                                <div class="file-select-button" id="fileName">Choose File</div>
-                                                <div class="file-select-name" id="noFile">No file chosen...</div> 
-                                                    <input type="file" name="file" id="chooseFile">
-                                                </div><br>
-                                                    <input type="submit" name="import" value="Import" class="btn btn-xs btn-primary" role="button">
-                                            </div>
-                                        </div>
-                                    </form>
-                                <div class="modal-footer">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <?php include ('decorations/footer.php');?>
-        <script src="<?php echo base_url() ?>assets/js/upload.js"></script> 
+        <?php include ('decorations/footer.php');?>
     </body>
 </html>

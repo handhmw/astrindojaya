@@ -30,15 +30,23 @@ class Md_divisi extends CI_Model
                 return $this->db->get_where('tb_divisi', array('id' => $id))->result();
 	}
 
-	public function update(){
-		$kondisi = ['id' => $this->input->post('id')];
-		$data = [
+	public function update($id){
+		$data = array(
 			'id'     => $this->input->post('id'),
 			'unik'   => $this->input->post('unik'),
                         'divisi' => $this->input->post('divisi')
-		];
-
-		$this->db->update('tb_divisi', $data, $kondisi);
+		);
+			
+		if($id==1){
+		    return $this->db->insert('tb_divisi',$data);
+			}
+			else
+			{
+		    $this->db->where('id',$id);
+		    return $this->db->update('tb_divisi',$data);
+			}        
+			
+		$this->db->update('tb_divisi', $data);
 	}
 
 	public function hapus($id){

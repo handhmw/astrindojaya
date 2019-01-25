@@ -62,6 +62,16 @@
                                 </ul>
                             </li>
                             <li>
+                                <a href="" class="has-arrow"><i class="icon-envelope-letter"></i><span>Permohonan</span></a>
+                                <ul>
+                                    <li><a href="<?php echo base_url('admin/cuti');?>">Permohonan Cuti</a></li>
+                                    <li><a href="<?php echo base_url('admin/izin');?>">Permohonan Izin</a></li>
+                                    <li><a href="<?php echo base_url('admin/sakit');?>">Permohonan Sakit</a></li>
+                                    <li><a href="<?php echo base_url('admin/lembur');?>">Permohonan Lembur</a></li>
+                                    <li><a href="<?php echo base_url('admin/dinas');?>">Permohonan Dinas</a></li>
+                                </ul>
+                            </li>
+                            <li>
                                 <a href="#Report" class="has-arrow"><i class="icon-book-open"></i><span>Report</span></a>
                                 <ul>
                                     <li><a href="<?=base_url('report/print_penilaian')?>" target="_blank"<span> Report Penilaian</span></a></li>

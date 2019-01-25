@@ -6,11 +6,8 @@
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/datepicker/css/bootstrap-datepicker3.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/datepicker/css/bootstrap-datepicker3.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/datepicker/css/bootstrap-datepicker3.min.css">
-
 <body class="theme-cyan">
-
 <div id="wrapper">
-
     <?php include ('decorations/navbar.php');?>
     	<?php include ('decorations/sidebar.php');?>
 			<!-- Start Main Content -->
@@ -27,14 +24,12 @@
 							</div>      
 						</div>
 					</div>
-
 					<div class="row clearfix">
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 col-xl-12">						
 									<div class="card mb-3">
 										<div class="card-header">
 											<h5><i class="fa fa-pencil-square-o"></i> <?php echo $judul; ?></h5>
 										</div>
-											
 										<div class="card-body">
 											<?php echo form_open('admin/update_percobaan/'.$karyawan->id_cb, ['class' => 'form-horizontal', 'method' => 'post']); ?>
 											<div class="form-group row">
@@ -128,14 +123,14 @@
 											<div class="form-group row">
 												<label for="" class="col-sm-3 col-form-label">Catatan HR/GA</label>
 												<div class="col-sm-6">
-													<textarea value="<?php echo $karyawan->catatan_hr_cb; ?>" class="form-control" rows="5" cols="30" name="catatan_hr_cb"></textarea>
+													<textarea class="form-control" value="<?php echo $karyawan->catatan_hr_cb; ?>" rows="5" cols="30" name="catatan_hr_cb"><?php echo $karyawan->catatan_hr_cb; ?></textarea>
 													<?php echo form_error('catatan_hr_cb'); ?>
 												</div>
 											</div>
 											<div class="form-group row">
 												<label for="" class="col-sm-3 col-form-label">Catatan Atasan Langsung</label>
 												<div class="col-sm-6">
-													<textarea value="<?php echo $karyawan->catatan_atasan_cb; ?>" class="form-control" rows="5" cols="30" name="catatan_atasan_cb"></textarea>
+													<textarea class="form-control" value="<?php echo $karyawan->catatan_atasan_cb; ?>" rows="5" cols="30" name="catatan_atasan_cb"><?php echo $karyawan->catatan_atasan_cb; ?></textarea>
 													<?php echo form_error('catatan_atasan_cb'); ?>
 												</div>
 											</div>

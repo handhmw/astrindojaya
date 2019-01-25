@@ -32,18 +32,26 @@ class Md_pemohon extends CI_Model
                 return $this->db->get_where('tb_pemohon', array('id_pemohon' => $id))->result();
 	}
 
-	public function update(){
-		$kondisi = ['id_pemohon' => $this->input->post('id_pemohon')];
-		
-		$data = [
-                        'id_pemohon'        => $this->input->post('id_pemohon'),
+
+        public function update($id){
+		$data = array(
+			'id_pemohon'        => $this->input->post('id_pemohon'),
                         'nama_pemohon'      => $this->input->post('nama_pemohon'),
                         'nik_pemohon'       => $this->input->post('nik_pemohon'),
                         'jabatan_pemohon'   => $this->input->post('jabatan_pemohon'),
-                        'dep_pemohon'       => $this->input->post('dep_pemohon'),
-                ];
-
-		$this->db->update('tb_pemohon', $data, $kondisi);
+                        'dep_pemohon'       => $this->input->post('dep_pemohon')
+		);
+			
+		if($id==1){
+		    return $this->db->insert('tb_pemohon',$data);
+			}
+			else
+			{
+		    $this->db->where('id_pemohon',$id);
+		    return $this->db->update('tb_pemohon',$data);
+			}        
+			
+		$this->db->update('tb_pemohon', $data);
 	}
 
 	public function hapus($id){

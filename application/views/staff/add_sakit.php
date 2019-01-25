@@ -121,7 +121,6 @@
 													<input type="file" name="lampiran_skt" id="chooseFile">
 												</div>
 											</div>
-											<!-- <input type="file" name="lampiran_skt"> -->
 										</div>
 									</div>
 									<div class="form-group row">

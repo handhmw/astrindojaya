@@ -35,7 +35,6 @@
 						<div class="col-lg-12">
                             <div class="card">
                                 <div class="header">
-
                                 <?php
                                      if(isset($_SESSION['hapus_sukses']) || isset($_SESSION['update_sukses'])) :
                                         $notif = '';
@@ -77,17 +76,17 @@
                                                     foreach ($karyawan as $kry):
                                                     $status = $kry->status_kerja_kry;
                                                     switch ($status) {
-                                                        case 'TETAP':
-                                                            $color = "#ff591e";
+                                                        case 'Tetap':
+                                                            $color = "#2ecc71";
                                                             break;
-                                                        case 'KONTRAK':
-                                                            $color = "#5c86b8";
+                                                        case 'Kontrak':
+                                                            $color = "#f5b041";
                                                             break;
-                                                        case 'MAGANG':
-                                                            $color = "#5CB85C";
+                                                        case 'Magang':
+                                                            $color = "#e74c3c";
                                                             break;
                                                         default:
-                                                            $color = "#D9534F";
+                                                            $color = "#17202a";
                                                             break;
                                                     }
                                                 ?>
@@ -97,7 +96,7 @@
                                                     <td><?= $kry->nama_kry ?></td>
                                                     <td><?= $kry->jabatan_kry ?></td>
                                                     <td><?= $kry->pangkat_kry?></td>
-                                                    <td style="text-align: center;"><?='<font color="'.$color.'">'.$kry->status_kerja_kry.'</font>';?></td>
+                                                    <td style="text-align: center;"><span class="statusnya"><?='<font color="'.$color.'">'.$kry->status_kerja_kry.'</font>';?></status></td>
                                                     <td style="text-align: center;">
                                                         <a href="<?php echo base_url();?>admin/detail_karyawan/<?php echo $kry->id_kry;?>" class="btn btn-xs btn-success m-r-5" role="button" title="Detail">
                                                         <i class="icon-magnifier"></i>&nbsp;

@@ -44,7 +44,7 @@
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Kode Lembur</label>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" name="id_ot" readonly value="<?php echo set_value('id_ot', $lembur->id_ot); ?>" readonly>
+											<input type="text" class="form-control" name="id_ot" value="<?php echo set_value('id_ot', $lembur->id_ot); ?>" readonly>
 											<?php echo form_error('id_ot'); ?>
 										</div>
 									</div>

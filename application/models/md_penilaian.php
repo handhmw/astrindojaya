@@ -34,22 +34,29 @@ class Md_penilaian extends CI_Model
         public function detail($id_nl){
                 return $this->db->get_where('tb_penilaian', array('id_nl' => $id_nl))->result();
 	}
-
-	public function update(){
-		$kondisi = ['id_nl' => $this->input->post('id_nl')];
-		
-		$data = [
-                        'id_nl'                => $this->input->post('id_nl'),
+        
+        public function update($id){
+		$data = array(
+			'id_nl'                => $this->input->post('id_nl'),
                         'nama_nl'              => $this->input->post('nama_nl'),
                         'nik_nl'               => $this->input->post('nik_nl'),
                         'dep_nl'               => $this->input->post('dep_nl'),
                         'tgl_masuk_nl'         => $this->input->post('tgl_masuk_nl'),
                         'jabatan_nl'           => $this->input->post('jabatan_nl'),
                         'nama_penilai_nl'      => $this->input->post('nama_penilai_nl'),
-                        'jabatan_penilai_nl'   => $this->input->post('jabatan_penilai_nl'),
-                ];
-
-		$this->db->update('tb_penilaian', $data, $kondisi);
+                        'jabatan_penilai_nl'   => $this->input->post('jabatan_penilai_nl')
+		);
+			
+		if($id==1){
+		    return $this->db->insert('tb_penilaian',$data);
+			}
+			else
+			{
+		    $this->db->where('id_nl',$id);
+		    return $this->db->update('tb_penilaian',$data);
+			}        
+			
+		$this->db->update('tb_penilaian', $data);
 	}
 
 	public function hapus($id_nl){

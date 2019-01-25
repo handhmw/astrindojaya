@@ -47,36 +47,39 @@ class Md_mpp extends CI_Model
         return $this->db->get_where('tb_mpp', array('id_pp' => $id_pp))->result();
 	}
     
-	public function update(){
-		$kondisi = ['id_pp' => $this->input->post('id_pp')];
-		$data = [
-                    'id_pp'             => $this->input->post('id_pp'),
-                    'jabatan_pp'        => $this->input->post('jabatan_pp'),
-                    'dep_pp'            => $this->input->post('dep_pp'),
-                    'area_pp'           => $this->input->post('area_pp'),
-                    'status_pp'         => $this->input->post('status_pp'),
-                    'jml_butuh_pp'      => $this->input->post('jml_butuh_pp'),
-                    'sisa_pp'           => $this->input->post('sisa_pp'),
-                    'nama_pmh_pp'       => $this->input->post('nama_pmh_pp'),
-                    'jabatan_pmh_pp'    => $this->input->post('jabatan_pmh_pp'),
-                    'tgl_pmh_pp'        => $this->input->post('tgl_pmh_pp'),
-                    'tgl_tempo_pp'      => $this->input->post('tgl_tempo_pp'),
-                    'tgl_wawancara_pp'  => $this->input->post('tgl_wawancara_pp'),
-                    'tgl_pmnh_pp'       => $this->input->post('tgl_pmnh_pp'),
-                    'kcp_pmnh_pp'       => $this->input->post('kcp_pmnh_pp'),
-                    'total_pp'          => $this->input->post('total_pp'),
-                    'tgl_masuk_pp'      => $this->input->post('tgl_masuk_pp'),
-                    'sumber_rek_pp'     => $this->input->post('sumber_rek_pp'),
-                    'ket_pp'            => $this->input->post('ket_pp')
-                ];
-
-		$this->db->update('tb_mpp', $data, $kondisi);
-    }
-    
-    // function update($id_pp, $data)
-    // {
-    //     return $this->db->update('tb_mpp', $data, array('id_pp' => $id_pp));
-    // }
+    public function update($id_pp){
+		$data = array(
+			'id_pp'             => $this->input->post('id_pp'),
+            'jabatan_pp'        => $this->input->post('jabatan_pp'),
+            'dep_pp'            => $this->input->post('dep_pp'),
+            'area_pp'           => $this->input->post('area_pp'),
+            'status_pp'         => $this->input->post('status_pp'),
+            'jml_butuh_pp'      => $this->input->post('jml_butuh_pp'),
+            'sisa_pp'           => $this->input->post('sisa_pp'),
+            'nama_pmh_pp'       => $this->input->post('nama_pmh_pp'),
+            'jabatan_pmh_pp'    => $this->input->post('jabatan_pmh_pp'),
+            'tgl_pmh_pp'        => $this->input->post('tgl_pmh_pp'),
+            'tgl_tempo_pp'      => $this->input->post('tgl_tempo_pp'),
+            'tgl_wawancara_pp'  => $this->input->post('tgl_wawancara_pp'),
+            'tgl_pmnh_pp'       => $this->input->post('tgl_pmnh_pp'),
+            'kcp_pmnh_pp'       => $this->input->post('kcp_pmnh_pp'),
+            'total_pp'          => $this->input->post('total_pp'),
+            'tgl_masuk_pp'      => $this->input->post('tgl_masuk_pp'),
+            'sumber_rek_pp'     => $this->input->post('sumber_rek_pp'),
+            'ket_pp'            => $this->input->post('ket_pp')
+		);
+			
+		if($id==1){
+		    return $this->db->insert('tb_mpp',$data);
+			}
+			else
+			{
+		    $this->db->where('id_pp',$id_pp);
+		    return $this->db->update('tb_mpp',$data);
+			}        
+			
+		$this->db->update('tb_mpp', $data);
+	}
 
 	public function hapus($id_pp){
 		$this->db->delete('tb_mpp', ['id_pp' => $id_pp]);

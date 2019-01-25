@@ -2,15 +2,6 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-<style>
-    .statusnya {
-        background: #232526;
-        background: -webkit-linear-gradient(to right, #414345, #232526);
-        background: linear-gradient(to right, #414345, #232526);
-        border-radius: 6px;
-        padding: 3px 6px;
-    }
-</style>
 <body class="theme-cyan">
 <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
@@ -61,14 +52,6 @@
                                                     <th>Detail</th>
                                                 </tr>
                                             </thead>
-                                            <style>
-                                                .highlight {
-                                                    /* background-image: linear-gradient(to right, #F27121cc, #E94057cc, #8A2387cc); */
-                                                    background-color: black;
-                                                    border-radius: 6px;
-                                                    padding: 3px 6px;
-                                                }
-                                            </style>
                                             <tbody>
                                                 <?php $no = 1; 
                                                 foreach ($sakit as $skt): 

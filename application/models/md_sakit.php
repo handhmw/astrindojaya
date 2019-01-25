@@ -58,25 +58,34 @@ class Md_sakit extends CI_Model
         return $this->db->get_where('tb_sakit', array('id_skt' => $id))->result();
 	}
 
-	public function update(){
+	public function update($id){
 		$upload = $this->upload();
-		$data = array(
-				'id_skt'         => $this->input->post('id_skt'),
-				'nama_skt'       => $this->input->post('nama_skt'),
-				'nik_skt'    	 => $this->input->post('nik_skt'),
-				'jabatan_skt'    => $this->input->post('jabatan_skt'),
-				'tgl_awal_skt'   => $this->input->post('tgl_awal_skt'),				
-				'tgl_akhir_skt'  => $this->input->post('tgl_akhir_skt'),
-				'jml_skt' 		 => $this->input->post('jml_skt'),
-				'penyakit_skt'   => $this->input->post('penyakit_skt'),
-				'keterangan_skt' => $this->input->post('keterangan_skt'),
-				'pjs_skt'        => $this->input->post('pjs_skt'),
-				'status_skt'     => $this->input->post('status_skt'),
-				'lampiran_skt'   => $upload['file']['file_name']
+        $data = array(
+			'id_skt'         => $this->input->post('id_skt'),
+			'nama_skt'       => $this->input->post('nama_skt'),
+			'nik_skt'    	 => $this->input->post('nik_skt'),
+			'jabatan_skt'    => $this->input->post('jabatan_skt'),
+			'tgl_awal_skt'   => $this->input->post('tgl_awal_skt'),				
+			'tgl_akhir_skt'  => $this->input->post('tgl_akhir_skt'),
+			'jml_skt' 		 => $this->input->post('jml_skt'),
+			'penyakit_skt'   => $this->input->post('penyakit_skt'),
+			'keterangan_skt' => $this->input->post('keterangan_skt'),
+			'pjs_skt'        => $this->input->post('pjs_skt'),
+			'status_skt'     => $this->input->post('status_skt'),
+			'lampiran_skt'   => $upload['file']['file_name']
 		);
-
+		
+        if($id==1){
+            return $this->db->insert('tb_sakit',$data);
+		}
+		else
+		{
+            $this->db->where('id_skt',$id);
+            return $this->db->update('tb_sakit',$data);
+		}        
+		
 		$this->db->update('tb_sakit', $data);
-	}
+    }
 
 	public function hapus($id){
 		$this->db->delete('tb_sakit', ['id_skt' => $id]);

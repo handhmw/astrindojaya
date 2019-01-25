@@ -111,6 +111,18 @@
 											<?php echo form_error('pjs_skt'); ?>
 										</div>
 									</div>
+									<!-- <div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Lampiran</label>
+										<div class="col-sm-6">
+											<div class="file-upload">
+												<div class="file-select">
+													<div class="file-select-button" id="fileName" value="<?php echo set_value('lampiran_skt', $sakit->lampiran_skt); ?>">Choose File</div>
+												<div class="file-select-name" id="noFile">No file chosen...</div> 
+													<input type="file" name="lampiran_skt" id="chooseFile" value="<?php echo set_value('lampiran_skt', $sakit->lampiran_skt); ?>">
+												</div>
+											</div>
+										</div>
+									</div> -->
 									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Lampiran</label>
 										<div class="col-sm-6">

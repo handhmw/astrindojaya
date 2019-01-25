@@ -33,18 +33,27 @@ class Md_lembur extends CI_Model
         return $this->db->get_where('tb_lembur', array('id_ot' => $id))->result();
 	}
 
-	public function update(){
-		$data = [
-			'id_ot'        => $this->input->post('id_ot'),
+	public function update($id){
+        $data = array(
+            'id_ot'        => $this->input->post('id_ot'),
 			'tanggal_ot'   => $this->input->post('tanggal_ot'),
 			'waktu_ot'     => $this->input->post('waktu_ot'),
 			'nama_ot' 	   => $this->input->post('nama_ot'),
 			'keterangan_ot'=> $this->input->post('keterangan_ot'),
 			'status_ot'    => $this->input->post('status_ot')
-		];
-
+		);
+		
+        if($id==1){
+            return $this->db->insert('tb_lembur',$data);
+		}
+		else
+		{
+            $this->db->where('id_ot',$id);
+            return $this->db->update('tb_lembur',$data);
+		}        
+		
 		$this->db->update('tb_lembur', $data);
-	}
+    }
 
 	public function hapus($id){
 		$this->db->delete('tb_lembur', ['id_ot' => $id]);

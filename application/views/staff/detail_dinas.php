@@ -2,20 +2,10 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-<style>
-    .statusnya {
-        background: #232526;
-        background: -webkit-linear-gradient(to right, #414345, #232526);
-        background: linear-gradient(to right, #414345, #232526);
-        border-radius: 6px;
-        padding: 3px 6px;
-    }
-</style>
 <body class="theme-cyan">
 <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
     	<?php include ('decorations/sidebar.php');?>
-
 			<!-- Start Main Content -->
 			<div id="main-content">
 				<div class="container-fluid">
@@ -107,7 +97,7 @@
                                             </tr>
                                             <tr>
                                                 <td> Status Permohonan </td>
-                                                <td><b><?='<font color="'.$color.'">'.$row->status_dns.'</font>';?></b></td>
+                                                <td><span class="statusnya"><?='<font color="'.$color.'">'.$row->status_dns.'</font>';?></span></td>
                                             </tr>
                                             <?php endforeach; ?>
                                         </tbody>
@@ -123,9 +113,7 @@
 				</div>
 			</div>
 			<!-- End Main Content -->
-</div>
-
-<?php include ('decorations/footer.php');?>
-
-</body>
+        </div>
+    <?php include ('decorations/footer.php');?>
+    </body>
 </html>

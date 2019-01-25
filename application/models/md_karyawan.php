@@ -92,12 +92,10 @@ class Md_karyawan extends CI_Model
         public function detail($id_kry){
                 return $this->db->get_where('tb_karyawan', array('id_kry' => $id_kry))->result();
 	}
-
-	public function update(){
-		$kondisi = ['id_kry' => $this->input->post('id_kry')];
-		
-		$data = [
-                        'id_kry'                => $this->input->post('id_kry'),
+        
+        public function update($id_kry){
+		$data = array(
+			'id_kry'                => $this->input->post('id_kry'),
                         'nama_kry'              => $this->input->post('nama_kry'),
                         'nik_kry'               => $this->input->post('nik_kry'),
                         'jabatan_kry'           => $this->input->post('jabatan_kry'),
@@ -120,9 +118,18 @@ class Md_karyawan extends CI_Model
                         'status_kerja_kry'      => $this->input->post('status_kerja_kry'),
                         'status_nikah_kry'      => $this->input->post('status_nikah_kry'),
                         'email_kry'             => $this->input->post('email_kry')
-                ];
-
-		$this->db->update('tb_karyawan', $data, $kondisi);
+		);
+			
+		if($id==1){
+		    return $this->db->insert('tb_karyawan',$data);
+			}
+			else
+			{
+		    $this->db->where('id_kry',$id_kry);
+		    return $this->db->update('tb_karyawan',$data);
+			}        
+			
+		$this->db->update('tb_karyawan', $data);
 	}
 
 	public function hapus($id_kry){

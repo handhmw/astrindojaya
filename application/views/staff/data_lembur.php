@@ -2,15 +2,6 @@
 <html lang="en">
 
 <?php include ('decorations/header.php');?>
-<style>
-    .statusnya {
-        background: #232526;
-        background: -webkit-linear-gradient(to right, #414345, #232526);
-        background: linear-gradient(to right, #414345, #232526);
-        border-radius: 6px;
-        padding: 3px 6px;
-    }
-</style>
 <body class="theme-cyan">
 <div id="wrapper">
     <?php include ('decorations/navbar.php');?>
@@ -88,7 +79,7 @@
                                                     <td><?= $ot->waktu_ot ?></td>
                                                     <td><?= $ot->nama_ot ?></td>
                                                     <td><?= $ot->keterangan_ot?></td>
-                                                    <td style="text-align: center;"><?='<font color="'.$color.'">'.$ot->status_ot.'</font>';?></td>
+                                                    <td style="text-align: center;"><span class="statusnya"><?='<font color="'.$color.'">'.$ot->status_ot.'</font>';?></span></td>
                                                     <td style="text-align: center;">
                                                         <a href="<?php echo base_url();?>staff/detail_lembur/<?php echo $ot->id_ot;?>" class="btn btn-xs btn-success m-r-5" role="button" title="Detail">
                                                         <i class="icon-magnifier"></i>&nbsp;
@@ -101,12 +92,10 @@
                                 </div>
                             </div>
                         </div>
-
 					</div>
 				</div>
 			</div>
 			<!-- End Main Content -->
-
-            <?php include ('decorations/footer.php');?>
+        <?php include ('decorations/footer.php');?>
     </body>
 </html>

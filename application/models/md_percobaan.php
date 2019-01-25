@@ -50,10 +50,9 @@ class Md_percobaan extends CI_Model
                 return $this->db->get_where('tb_percobaan', array('id_cb' => $id_cb))->result();
 	}
 
-	public function update(){
-		$kondisi = ['id_cb' => $this->input->post('id_cb')];
-		$data = [
-                        'id_cb'                => $this->input->post('id_cb'),
+        public function update($id_cb){
+		$data = array(
+			'id_cb'                => $this->input->post('id_cb'),
                         'nama_cb'              => $this->input->post('nama_cb'),
                         'nik_cb'               => $this->input->post('nik_cb'),
                         'dep_cb'               => $this->input->post('dep_cb'),
@@ -65,9 +64,18 @@ class Md_percobaan extends CI_Model
                         'percobaan_cb'         => $this->input->post('percobaan_cb'),
                         'catatan_hr_cb'        => $this->input->post('catatan_hr_cb'),
                         'catatan_atasan_cb'    => $this->input->post('catatan_atasan_cb')
-                ];
-
-		$this->db->update('tb_percobaan', $data, $kondisi);
+		);
+			
+		if($id_cb==1){
+		    return $this->db->insert('tb_percobaan',$data);
+			}
+			else
+			{
+		    $this->db->where('id_cb',$id_cb);
+		    return $this->db->update('tb_percobaan',$data);
+			}        
+			
+		$this->db->update('tb_percobaan', $data);
 	}
 
 	public function hapus($id_cb){

@@ -29,14 +29,22 @@ class Md_departemen extends CI_Model
                 return $this->db->get_where('tb_departemen', array('id' => $id))->result();
 	}
 
-	public function update(){
-		$kondisi = ['id' => $this->input->post('id')];
-		$data = [
-                        'id'         => $this->input->post('id'),
+	public function update($id){
+		$data = array(
+			'id'         => $this->input->post('id'),
                         'departemen' => $this->input->post('departemen')
-		];
-
-		$this->db->update('tb_departemen', $data, $kondisi);
+		);
+			
+		if($id==1){
+		    return $this->db->insert('tb_departemen',$data);
+			}
+			else
+			{
+		    $this->db->where('id',$id);
+		    return $this->db->update('tb_departemen',$data);
+			}        
+			
+		$this->db->update('tb_departemen', $data);
 	}
 
 	public function hapus($id){

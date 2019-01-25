@@ -176,24 +176,6 @@
 		<script type="text/javascript">
 			$(document).ready(function () {
 				$('#date').mask('00-00-0000',{placeholder:"dd-mm-yyyy"});
-
-				// $('#kodeku_').on('input',function(){
-				// 	var id_kry = $(this).val();
-				// 	$.ajax({
-				// 		type : "POST",
-				// 		url  : "<?php echo base_url('staff/get_pjs')?>",
-				// 		dataType : "JSON",
-				// 		data : {id_kry: id_kry},
-				// 		cache:false,
-				// 		success: function(data){
-				// 			$.each(data,function(id_kry, nama_kry){
-				// 				$('[id="pjs_"]').val(data.nama_kry);
-				// 			});   
-				// 		}
-				// 	});
-				// 	return false;
-				// });
-
 				$('#kode').on('input',function(){
 					var id_kry = $(this).val();
 					$.ajax({
@@ -215,18 +197,15 @@
 		</script>
 		<script type="text/javascript">
 		$(document).ready(function(){
-
 		    $('#namanya').autocomplete({
                 source: "<?php echo site_url('staff/get_autocomplete');?>",
-     
                 select: function (event, ui) {
                     $(this).val(ui.item.label);
                     $("#form_search").submit(); 
-                }
-            });
-
-		});
-	</script>
+                	}
+            	});
+			});
+		</script>
 	</body>
 </html>
 
