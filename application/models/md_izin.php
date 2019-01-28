@@ -8,8 +8,14 @@ class Md_izin extends CI_Model
 
 	public function tampil(){
 		$query = $this->db->get('tb_izin');
-                return $query->result();
+        return $query->result();
 	}
+
+	function tampil_index(){
+		$this->db->where('status_izn', 'Disetujui');
+        $query = $this->db->get('tb_izin');
+        return $query->result();
+    }
 	
 	public function simpan(){
 		$data = [

@@ -10,9 +10,25 @@ class Md_cuti extends CI_Model
 		$query = $this->db->get('tb_cuti');
         return $query->result();
 	}
+
+	function tampil_index(){
+		$this->db->where('status_ct', 'Disetujui');
+		$this->db->order_by('tgl_ct', 'ASC');
+        $query = $this->db->get('tb_cuti');
+        return $query->result();
+    }
+
+	// public function tampil(){
+	// 	$this->db->select("*");
+	// 	$this->db->from('tb_cuti');
+	// 	$this->db->where('name', $this->session->userdata('username'));
+	 
+	// 	return $this->db->get();
+	//  }
 	
 	public function simpan(){
 		$data = [
+				'id_user'      => $this->session->userdata('name'),
 				'id_ct'        => $this->input->post('id_ct'),
 				'nama_ct'      => $this->input->post('nama_ct'),
 				'divisi_ct'    => $this->input->post('divisi_ct'),
@@ -23,15 +39,6 @@ class Md_cuti extends CI_Model
 				'pjs_ct'       => $this->input->post('pjs_ct'),
 				'status_ct'    => $this->input->post('status_ct')
 		];
-
-		// if($id==0){
-        //     return $this->db->insert('tb_cuti',$data);
-		// }
-		// else
-		// {
-        //     $this->db->where('id_ct',$id);
-        //     return $this->db->update('tb_cuti',$data);
-		// }
 
 		$this->db->insert('tb_cuti', $data);
 	}

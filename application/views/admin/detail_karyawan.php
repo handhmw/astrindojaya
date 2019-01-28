@@ -29,7 +29,22 @@
                                 <div class="body">
                                     <table class="table table-bordered" width="100%" cellpadding="0" cellspacing="0">
                                         <tbody>
-                                            <?php foreach ($karyawan as $karyawan): ?>
+                                            <?php foreach ($karyawan as $karyawan): 
+                                                $status = $karyawan->status_kerja_kry;
+                                                switch ($status) {
+                                                    case 'Tetap':
+                                                        $color = "#2ecc71";
+                                                        break;
+                                                    case 'Kontrak':
+                                                        $color = "#f5b041";
+                                                        break;
+                                                    case 'Magang':
+                                                        $color = "#e74c3c";
+                                                        break;
+                                                    default:
+                                                        $color = "#17202a";
+                                                        break;
+                                                }?>
                                             <tr>
                                                 <td width="20%"> Kode Karyawan </td>
                                                 <td><?= $karyawan->id_kry ?></td>
@@ -112,7 +127,7 @@
                                             </tr>
                                             <tr>
                                                 <td> Status Pekerjaan </td>
-                                                <td><?= $karyawan->status_kerja_kry ?></td>
+                                                <td><span class="statusnya"><?='<font color="'.$color.'">'.$karyawan->status_kerja_kry.'</font>';?></status></td>
                                             </tr>
                                             <tr>
                                                 <td> Status Pernikahan </td>

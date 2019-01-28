@@ -89,14 +89,13 @@
                                                 <?php $no++; endforeach; ?>
                                             </tbody>
                                         </table>
-                                    </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-					</div>
-				</div>
-			</div>
-			<!-- End Main Content -->
-        <?php include ('decorations/footer.php');?>
-    </body>
-</html>
+                    </div>
+                </div>
+                <!-- End Main Content -->
+            <?php include ('decorations/footer.php');?>
+        </body>
+    </html>

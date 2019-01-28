@@ -29,6 +29,13 @@
 								<div class="card-body">
 									<?php echo form_open('staff/save_cuti', ['class' => 'form-horizontal', 'method' => 'post']); ?>
 									<div class="form-group row">
+										<label for="" class="col-sm-3 col-form-label">Kode User</label>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" name="id_user" readonly value="<?php echo $this->session->userdata('nams');?>">
+											<?php echo form_error('id_user'); ?>
+										</div>
+									</div>
+									<div class="form-group row">
 										<label for="" class="col-sm-3 col-form-label">Kode Cuti</label>
 										<div class="col-sm-6">
 											<input type="text" class="form-control" name="id_ct" readonly value="<?php echo set_value('id_ct'); ?><?= $kode; ?>">

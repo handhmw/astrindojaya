@@ -36,6 +36,8 @@ class Staff extends CI_Controller {
         $data['jml']      = $this->md_karyawan->get_total_karyawan(); 
         $data['jmlb']     = $this->md_karyawan->get_total_baru();
         $data['coba']     = $this->md_percobaan->tampil();
+        $data['cuti']     = $this->md_cuti->tampil_index();
+        $data['izin']     = $this->md_izin->tampil_index();
         $data['bdy']      = $this->md_karyawan->birthday();
         $data['karyawan'] = $this->md_karyawan->tampil();
         $data['perdep']   = $this->md_master->per_dep();
